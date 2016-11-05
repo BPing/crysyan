@@ -1,2 +1,5 @@
-# js_drawing_board
+# crysyan
 a web drawing board with canvas
+
+# dependence
+* jQuery
