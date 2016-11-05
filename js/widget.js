@@ -41,9 +41,9 @@
          * @param  {object} e   event
          * @param  {object} loc  the coordinates on the canvas of event
          */
-        mousedown: function(e, loc) {},
-        mouseup: function(e, loc) {},
-        mousemove: function(e, loc) {},
+        mouseDown: function(e, loc) {},
+        mouseUp: function(e, loc) {},
+        mouseMove: function(e, loc) {},
 
           //  clone widget
           //  another child widget  call this function to  clone  'CaysyanWidget'

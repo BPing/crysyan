@@ -2,13 +2,13 @@
     'use strict';
     var CrysyanPencilWidget = CrysyanWidget.clone();
 
-    CrysyanPencilWidget.mousedown = function(e, loc) {
+    CrysyanPencilWidget.mouseDown = function(e, loc) {
     
     };
-    CrysyanPencilWidget.mousemove = function(e, loc) {
+    CrysyanPencilWidget.mouseMove = function(e, loc) {
 
     };
-    CrysyanPencilWidget.mouseup = function(e, loc) {
+    CrysyanPencilWidget.mouseUp = function(e, loc) {
 
     };
 

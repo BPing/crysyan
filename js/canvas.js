@@ -15,7 +15,7 @@
         if (typeof ops !== 'object') {
             ops = {};
         }
-        ops = $.extend(Canvas.defaultOptions, ops);
+        ops = $.extend(CrysyanCanvas.defaultOptions, ops);
         // canvas document element
         this.playCanvas = document.getElementById(ops.canvasId);
         // TODO:should throw an exception ?
@@ -104,7 +104,7 @@
     };
 
     // the default config for Canvas
-    Canvas.defaultOptions = {
+    CrysyanCanvas.defaultOptions = {
         // px
         width: 200,
         height: 150,

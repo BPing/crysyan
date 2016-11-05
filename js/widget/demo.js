@@ -2,14 +2,14 @@
 //     'use strict';
 //     var CrysyanDemoWidget = CrysyanWidget.clone();
 //
-//     CrysyanDemoWidget.mousedown = function(e, loc) {
+//     CrysyanDemoWidget.mouseDown = function(e, loc) {
 //
 //
 //     };
-//     CrysyanDemoWidget.mousemove = function(e, loc) {
+//     CrysyanDemoWidget.mouseMove = function(e, loc) {
 //
 //     };
-//     CrysyanDemoWidget.mouseup = function(e, loc) {
+//     CrysyanDemoWidget.mouseUp = function(e, loc) {
 //
 //     };
 //

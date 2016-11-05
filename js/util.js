@@ -1,6 +1,6 @@
 /**
  *  utility
- *      commmon methord
+ *      common method
  */
 (function() {
     'use strict';

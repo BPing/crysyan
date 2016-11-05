@@ -2,13 +2,13 @@
     'use strict';
     var CrysyanCursorWidget = CrysyanWidget.clone();
 
-    CrysyanCursorWidget.mousedown = function(e, loc) {
+    CrysyanCursorWidget.mouseDown = function(e, loc) {
 
     };
-    CrysyanCursorWidget.mousemove = function(e, loc) {
+    CrysyanCursorWidget.mouseMove = function(e, loc) {
 
     };
-    CrysyanCursorWidget.mouseup = function(e, loc) {
+    CrysyanCursorWidget.mouseUp = function(e, loc) {
 
     };
 
