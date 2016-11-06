@@ -2,7 +2,7 @@
  *   Base struct of widget
  *  @module CaysyanWidget
  */
-(function() {
+(function($util) {
     'use strict';
     /**
      *   Base struct of widget
@@ -48,9 +48,9 @@
           //  clone widget
           //  another child widget  call this function to  clone  'CaysyanWidget'
         clone:function(){
-                  return  CrysyanUtil.clone(this);
+                  return  $util.clone(this);
         }
     };
     // export to window
     window.CrysyanWidget=CrysyanWidget;
-})();
+})(CrysyanUtil);

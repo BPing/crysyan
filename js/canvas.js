@@ -3,7 +3,7 @@
  *  @module CrysyanCanvas
  *  @depend util.js
  */
-(function() {
+(function($util) {
     'use strict';
     /**
      * @class CrysyanCanvas
@@ -99,7 +99,7 @@
         },
         //  add  event  to canvas
         addEvent:function(eventType, callback){
-                     CrysyanUtil.addEvent(this.playCanvas, eventType, callback);
+            $util.addEvent(this.playCanvas, eventType, callback);
         }
     };
 
@@ -117,4 +117,4 @@
 
     // export to window
     window.CrysyanCanvas = CrysyanCanvas;
-})();
+})(CrysyanUtil);

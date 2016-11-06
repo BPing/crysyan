@@ -1,6 +1,6 @@
-// (function() {
+// (function($widget) {
 //     'use strict';
-//     var CrysyanDemoWidget = CrysyanWidget.clone();
+//     var CrysyanDemoWidget = $widget.clone();
 //
 //     CrysyanDemoWidget.mouseDown = function(e, loc) {
 //
@@ -16,4 +16,4 @@
 //     CrysyanDemoWidget.CrysyanWidgetType = "CrysyanDemoWidget";
 //     // export to window
 //     window.CrysyanDemoWidget = CrysyanDemoWidget;
-// })();
+// })(CrysyanWidget);

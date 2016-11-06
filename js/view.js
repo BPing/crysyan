@@ -2,6 +2,7 @@
  *   View of canvas
  *  @module
  */
-(function(){
-'use strict';
+(function () {
+    'use strict';
+
 })();

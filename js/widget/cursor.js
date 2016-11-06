@@ -1,6 +1,6 @@
-(function() {
+(function($widget) {
     'use strict';
-    var CrysyanCursorWidget = CrysyanWidget.clone();
+    var CrysyanCursorWidget = $widget.clone();
 
     CrysyanCursorWidget.mouseDown = function(e, loc) {
 
@@ -15,4 +15,4 @@
     CrysyanCursorWidget.CrysyanWidgetType = "CrysyanCursorWidget";
     // export to window
     window.CrysyanCursorWidget = CrysyanCursorWidget;
-})();
+})(CrysyanWidget);
