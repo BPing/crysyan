@@ -18,22 +18,24 @@
         icon: "widget-icon",
         name: "widget-name",
 
-       //   Call method ,'hasOwnProperty()'' ,to judge whether the type of object  is "CrysyanWidgetType" or not
-       //   example:
-       //              obj.hasOwnProperty("CrysyanWidgetType")===true
-        CrysyanWidgetType:"CrysyanWidget",
+        //   Call method ,'hasOwnProperty()'' ,to judge whether the type of object  is "CrysyanWidgetType" or not
+        //   example:
+        //              obj.hasOwnProperty("CrysyanWidgetType")===true
+        // must unique
+        CrysyanWidgetType: "CrysyanWidget",
 
         // canvas
-        playCanvas: null,
-        playCanvasCtx: null,
+        crysyanCanvas: null,
 
-       // pre-event attribute
-        prePiont:{
-             //  event
-               e:null,
-              // the coordinates on the canvas of event
-               loc:null
+        // pre-event attribute
+        prePiont: {
+            //  event
+            e: null,
+            // the coordinates on the canvas of event
+            loc: null
         },
+        // if mouse down
+        isDown: false,
 
         /**
          *  the widget's handler for mouse event
@@ -44,13 +46,19 @@
         mouseDown: function(e, loc) {},
         mouseUp: function(e, loc) {},
         mouseMove: function(e, loc) {},
+        /**
+         *
+         * @param  {[type]} ele [description]
+         * @param  {object} e   event
+         */
+        iconClick: function(ele, e) {},
 
-          //  clone widget
-          //  another child widget  call this function to  clone  'CaysyanWidget'
-        clone:function(){
-                  return  $util.clone(this);
+        //  clone widget
+        //  another child widget  call this function to  clone  'CaysyanWidget'
+        clone: function() {
+            return $util.clone(this);
         }
     };
     // export to window
-    window.CrysyanWidget=CrysyanWidget;
+    window.CrysyanWidget = CrysyanWidget;
 })(CrysyanUtil);

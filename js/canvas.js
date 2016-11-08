@@ -23,8 +23,10 @@
             throw "can't get the Element by id:" + ops.canvasId;
         // 2d context to draw
         this.playContext = this.playCanvas.getContext("2d");
-        this.playCanvas.width = ops.width;
-        this.playCanvas.height = ops.height;
+        if (ops.width !== 0)
+            this.playCanvas.width = ops.width;
+        if (ops.height !== 0)
+            this.playCanvas.height = ops.height;
 
         this.drawingSurfaceImageData = null;
 
@@ -33,6 +35,7 @@
         // The length should shorter than 'ops.historyListLen'.
         // Element,the most left of array, must be removed when array is full(length=='historyListLen')
         // when pushing element at the most right
+        // The first frame is empty canvas
         this.revokeImgDatas = [];
         // An array that store the history imgdata which pop the most right element from 'revokeImgDatas'
         // for forward revoking.
@@ -41,7 +44,6 @@
         //  the most length of history 'revokeImgDatas' list
         this.historyListLen = ops.historyListLen;
     }
-
     CrysyanCanvas.prototype = {
         // Save e drawing surface
         saveDrawingSurface: function() {
@@ -68,17 +70,30 @@
             // clear the array
             this.forwardRevokeImgDatas = [];
         },
+        saveForwardRevokeFirstFrame: function() {
+            this.forwardRevokeImgDatas[0] = this.playContext.getImageData(0, 0, this.playCanvas.width, this.playCanvas.height);
+        },
         // Revoke
+        //  if length of list is zero ,return zero
         revoke: function() {
+            if (this.revokeImgDatas.length <= 0)
+                return 0;
             var drawingSurfaceImageData = this.revokeImgDatas.pop();
             this.forwardRevokeImgDatas.push(drawingSurfaceImageData);
             this.playContext.putImageData(drawingSurfaceImageData, 0, 0);
         },
         //  Forward revoke
+        //  if length of list is zero ,return zero
         forwardRevoke: function() {
+            if (this.forwardRevokeImgDatas.length <= 0)
+                return 0;
             var drawingSurfaceImageData = this.forwardRevokeImgDatas.pop();
             this.revokeImgDatas.push(drawingSurfaceImageData);
             this.playContext.putImageData(drawingSurfaceImageData, 0, 0);
+        },
+        //
+        clearCanvas: function() {
+            this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
         },
         /**
          *  The event coordinate point is transformed
@@ -87,9 +102,9 @@
          * @param  {number} y  e.clientY
          */
         windowToCanvas: function(x, y) {
-            var bbox = canvas.getBoundingClientRect();
+            var bbox = this.playCanvas.getBoundingClientRect();
             return {
-                x: x - bbox.left ,
+                x: x - bbox.left,
                 y: y - bbox.top
             };
             // return {
@@ -98,20 +113,50 @@
             // };
         },
         //  add  event  to canvas
-        addEvent:function(eventType, callback){
+        addEvent: function(eventType, callback) {
             $util.addEvent(this.playCanvas, eventType, callback);
+        },
+        //
+        mousedown: function(callback) {
+            if (typeof callback !== "function") return;
+            var canvas = this;
+            canvas.addEvent("mousedown", function(e) {
+                e.preventDefault();
+                canvas.saveRevokeImgDatas();
+                callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
+            });
+        },
+        //
+        mousemove: function(callback) {
+            if (typeof callback !== "function") return;
+            var canvas = this;
+            canvas.addEvent("mousemove", function(e) {
+                e.preventDefault();
+                callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
+            });
+        },
+        //
+        mouseup: function(callback) {
+            if (typeof callback !== "function") return;
+            var canvas = this;
+            canvas.addEvent("mouseup", function(e) {
+                e.preventDefault();
+                callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
+                canvas.saveForwardRevokeFirstFrame();
+            });
         }
-    };
 
+    };
+    CrysyanCanvas.prototype.constructor = CrysyanCanvas;
     // the default config for Canvas
     CrysyanCanvas.defaultOptions = {
         // px
-        width: 200,
-        height: 150,
+        width: 0,
+        height: 0,
         // id of canvas element
         canvasId: "canvas",
         // length of history 'revokeImgDatas' list
-        historyListLen: 10
+        historyListLen: 50
     };
 
 
