@@ -5,16 +5,17 @@
     'use strict';
 
     var jsLoadCache = [];
+   //
+    var viewCacheMap = {};
 
     /**
      * Simple dynamically load JS file in serial
      *
      * @param {Array|string} filePaths  the path of js file
-     * @param {function} callback  will be called  after all file be completely loaded
+     * @param {function} callback  will be called  after all files been completely loaded
      */
     function requireSeries(filePaths, callback) {
         var headElement = document.getElementsByTagName("head").item(0) || document.documentElement;
-
         if (typeof filePaths === "string") {
             filePaths = [filePaths];
         }
@@ -26,6 +27,10 @@
                 if (typeof callback === "function") callback();
                 return;
             }
+            // if the file has been loaded
+            // if (jsLoadCache.hasOwnProperty(filePaths[i])) {
+            //     recursiveLoad(i + 1);
+            // }
             var script = document.createElement("script");
             script.src = filePaths[i];
             script.type = "text/javascript";
@@ -35,6 +40,7 @@
                     // remove the 'script' tag  after loading the js file is complete
                     this.onload = this.onreadystatechange = null;
                     this.parentNode.removeChild(this);
+                    // jsLoadCache[filePaths[i]] = 1;
                     if (i < filePaths.length) {
                         recursiveLoad(i + 1);
                     }
@@ -69,9 +75,8 @@
     var init = function() {
         widgetinit(function() {
             console.log("successfully load");
-            var view = new CrysyanView({});
-            view.handleWidget();
-            view.handleCanvas();
+            var view = new CrysyanView({}).init();
+            viewCacheMap["default"] = view;
         });
     };
     if ($load) {
@@ -82,10 +87,16 @@
             baseLoadPath + "config.js",
             baseLoadPath + "widget.js",
             baseLoadPath + "canvas.js",
-            baseLoadPath + "view.js"
+            baseLoadPath + "view.js",
         ], init);
     } else {
         // TODO:do something
     }
-
+    var Crysyan = {
+        getView: function(name) {
+            if (typeof name === "undefined" || name === "") name = "default";
+            return viewCacheMap[name] ;
+        }
+    };
+    window.Crysyan = Crysyan;
 })(true);

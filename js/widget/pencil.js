@@ -5,6 +5,7 @@
     pencil.mouseDown = function(e, loc) {
     };
     pencil.mouseMove = function(e, loc) {
+       var pencil=this;
         if (!pencil.isDown) return;
         var ctx = pencil.crysyanCanvas.playContext;
         ctx.save();
@@ -17,6 +18,7 @@
         ctx.restore();
     };
     pencil.mouseUp = function(e, loc) {
+       var pencil=this;
         pencil.isDown = false;
     };
 

@@ -3,7 +3,7 @@
  *  @module
  *  @depend util.js;canvas.js;widget.js;widget/*.js
  */
-(function($defaultConfig, $widgetConfig) {
+(function($defaultConfig, $widgetConfig, $util) {
     'use strict';
     /**
      *      view
@@ -16,6 +16,7 @@
         this.ops = $.extend($defaultConfig, ops);
         this.crysyanCanvas = new CrysyanCanvas(this.ops.canvas);
         this.toolbarElement = document.getElementById(this.ops.toolbar.Id);
+        this.submitElement = document.getElementById(this.ops.submit.Id);
         console.dir(this);
         if (this.toolbarElement === null)
             throw "can't get the Element by id:" + this.ops.toolbar.Id;
@@ -32,6 +33,17 @@
     var handledWidgetsMap = {};
 
     CrysyanView.prototype = {
+        init: function() {
+            var view = this;
+            view.handleWidget();
+            view.handleCanvas();
+            if (view.submitElement !== null) {
+                $util.addEvent(view.submitElement, "click", function(e) {
+                    view.ops.submit.callback(view.crysyanCanvas, e);
+                });
+            }
+            return this;
+        },
         //
         handleWidget: function() {
             var view = this;
@@ -92,7 +104,7 @@
         handleCanvas: function() {
             var view = this;
             view.crysyanCanvas.mousedown(function(e, loc) {
-                console.log("mousedown");
+                // console.log("mousedown");
                 if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
                     var widgetInstance = view.widgetEventMap[view.widgetSelected];
                     widgetInstance.isDown = true;
@@ -107,16 +119,22 @@
                 }
             });
             view.crysyanCanvas.mouseup(function(e, loc) {
-                console.log("mouseup");
+                // console.log("mouseup");
                 if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
                     var widgetInstance = view.widgetEventMap[view.widgetSelected];
                     widgetInstance.isDown = false;
                     widgetInstance.mouseUp(e, loc);
                 }
             });
+        },
+        // reset callback of submit action 
+        setSubmitCallback: function(callback) {
+            if (typeof callback === "function")
+                this.ops.submit.callback = callback;
         }
+
     };
     CrysyanView.prototype.constructor = CrysyanView;
     window.CrysyanView = CrysyanView;
 
-})(CrysyanDefaultConfig, CrysyanWidgetConfig);
+})(CrysyanDefaultConfig, CrysyanWidgetConfig, CrysyanUtil);

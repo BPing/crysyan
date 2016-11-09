@@ -36,6 +36,12 @@
             }
             return this;
         },
+        isIE: function() {
+            if (navigator.appName === "Microsoft Internet Explorer") {
+                return true;
+            }
+            return false;
+        }
 
     };
     // clone

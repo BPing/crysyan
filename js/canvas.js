@@ -112,6 +112,117 @@
             //     y: y - bbox.top * (canvas.height / bbox.height)
             // };
         },
+        /**
+         *  see context drawImage()
+         * Example:
+         * 1、Locate the image on the canvas:
+         *    drawImageFile (imagefile: ?, dx: number, dy: number)
+         *
+         * 2、Locate the image on the canvas, and specify the width and height of the image:
+         *    drawImageFile(imagefile,x,y,width,height);
+         *
+         * 3、Cut the image and locate the part on the canvas:
+         *   drawImageFile(imagefile,sx,sy,swidth,sheight,x,y,width,height);
+         */
+        drawImageFile: function(file) {
+            var canvas = this;
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                canvas.drawDataUrl(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        },
+        /**
+         *  draw image with dataUrl
+         *
+         * @param dataUrl
+         */
+        drawDataUrl: function(dataUrl) {
+            var ctx = this.playContext;
+            var image = new Image();
+            image.onload = function() {
+                arguments[0] = image;
+                ctx.drawImage.apply(ctx, arguments);
+            };
+            image.src = dataUrl;
+        },
+        /**
+         *  see context drawImage()
+         * Example:
+         * 1、Locate the image on the canvas:
+         *    drawImage(image, dx, dy)
+         *
+         * 2、Locate the image on the canvas, and specify the width and height of the image:
+         *    drawImage(image,x,y,width,height);
+         *
+         * 3、Cut the image and locate the part on the canvas:
+         *   drawImage(image,sx,sy,swidth,sheight,x,y,width,height);
+         */
+        drawImage: function() {
+            var ctx = this.playContext;
+            ctx.drawImage.apply(ctx, arguments);
+        },
+        /**
+         *@param {string} [type]
+         *                            Indicating the image format. The default type is image/png.
+         *@param {*} [encoderOptions]
+         *                            A Number between 0 and 1 indicating image quality
+         *                            if the requested type is image/jpeg or image/webp.If this argument is anything else,
+         *                            the default value for image quality is used. The default value is 0.92.
+         *                            Other arguments are ignored.
+         *@return {string}
+         */
+        toDataURL: function(type, encoderOptions) {
+            return this.playCanvas.toDataURL(type, encoderOptions);
+        },
+
+        /**
+         * Covert the canvas to a Image object
+         *
+         * See toDataURL()
+         *
+         * @param callback  called in image.onload
+         * @returns {Image}  image dom element
+         */
+        toImageEle: function(type, encoderOptions, callback) {
+            var image = new Image();
+            image.onload = function() {
+                callback();
+            };
+            image.src = this.toDataURL(type, encoderOptions);
+            return image;
+        },
+        /**
+         *  Covert the canvas to a Blob object
+         *  See toDataURL()
+         * @return {Blob}
+         */
+        toBlob: function(type, encoderOptions) {
+            //DataURL: 'data:text/plain;base64,YWFhYWFhYQ=='
+            var arr = this.toDataURL(type, encoderOptions).split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {
+                type: mime
+            });
+        },
+        /**
+         * Save the canvas to a local png
+         * download
+         */
+        saveAsLocalImagePng: function() {
+            // here is the most important part because if you don't replace you will get a DOM 18 exception.
+            // var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition: attachment;filename=foobar.png");
+            var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            // it will save locally
+            window.location.href = image;
+        },
+
         //  add  event  to canvas
         addEvent: function(eventType, callback) {
             $util.addEvent(this.playCanvas, eventType, callback);

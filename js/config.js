@@ -29,6 +29,13 @@
                 icon: "eraser.png",
                 name: "eraser"
             },
+            ImageWidget: {
+                exportVar: "CrysyanImageWidget",
+                jsFile: "image.js",
+                // Icon and Name of widget in toolbar
+                icon: "image.png",
+                name: "image"
+            },
             UndoWidget: {
                 exportVar: "CrysyanUndoWidget",
                 jsFile: "undo.js",
@@ -55,6 +62,11 @@
 
     //
     window.CrysyanDefaultConfig = {
+        submit: {
+            Id: "crysyan-submit",
+            // function called after submit
+            callback: function(crysyanCanvas,event){}
+        },
         canvas: {
             canvasId: "crysyan-canvas",
             // px
@@ -63,7 +75,7 @@
         },
         toolbar: {
             Id: "crysyan-toolbar",
-            widgets: ["CursorWidget", "PencilWidget","EraserWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
+            widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
         }
     };
 })();
