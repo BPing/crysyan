@@ -1,5 +1,6 @@
 # crysyan
-a web drawing board with canvas
+a web drawing board with canvas 
+[https://bping.github.io/crysyan/](https://bping.github.io/crysyan/)
 
 # Quick start
 * your.html
