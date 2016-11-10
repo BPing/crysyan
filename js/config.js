@@ -63,7 +63,7 @@
     //
     window.CrysyanDefaultConfig = {
        commom:{
-
+                 projectPath:""
        },
         submit: {
             Id: "crysyan-submit",

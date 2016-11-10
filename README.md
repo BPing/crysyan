@@ -1,6 +1,44 @@
 # crysyan
 a web drawing board with canvas
 
+# Quick start
+* your.html
+```html
+       <div style="width:1000px; height:1000px;" class="crysyan-designer"></div>
+       <!-- include the crysyan-designer.js -->
+       <script src="projectPath/js/crysyan-designer.js"></script>
+```
+* your.js
+```javascript
+// jquery
+$(".crysyan-designer").CrysyanDesigner({
+    canvas: {
+        // px
+        width: 900,
+        height: 500
+    },
+    toobar: {
+        length: 500
+    }
+}, function(designer) {
+    console.dir(designer);
+});
+//  another
+// var designer=CrysyanDesigner({
+//     canvas: {
+//         // px
+//         width: 900,
+//         height: 500
+//     },
+//     toobar: {
+//         length: 500
+//     }
+// }, function(designer) {
+//     console.dir(designer);
+// });
+// designer.appendTo(document.getElementsByClassName("crysyan-designer"));
+```
+
 # Dependence
 * jQuery
 
