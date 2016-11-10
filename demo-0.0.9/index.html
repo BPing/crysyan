@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-dark.css" media="screen">
+    <title>demo-0.0.9</title>
+    <script type="application/javascript" src="../lib/jquery-3.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>demo-0.0.9</h1>
+        <h2>a demo base on v0.0.9</h2>
+    </div>
+</header>
+
+<div class="container">
+    <section id="main_content">
+        <div style="width:600px; height:600px;" class="crysyan-designer"></div>
+        <h1>
+            <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true"
+                                                                              class="octicon octicon-link"></span></a>Demo
+        </h1>
+    </section>
+</div>
+<script type="application/javascript" src="crysyan/js/crysyan-designer.js"></script>
+<script type="application/javascript">
+    $(".crysyan-designer").CrysyanDesigner({
+        projectPath:"crysyan/",
+        canvas: {
+            // px
+            width: 500,
+            height: 500
+        },
+        toobar: {
+            length: 500
+        }
+    }, function(designer) {
+        console.dir(designer);
+        var dataurl =
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
+        designer.drawBackgroupWithImage(dataurl);
+    });
+</script>
+
+</body>
+</html>

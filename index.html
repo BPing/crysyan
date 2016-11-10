@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
@@ -9,48 +9,60 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <title>Crysyan by BPing</title>
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <header>
-      <div class="container">
+<header>
+    <div class="container">
         <h1>Crysyan</h1>
         <h2>a web drawing board with canvas</h2>
 
         <section id="downloads">
-          <a href="https://github.com/BPing/crysyan/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/BPing/crysyan/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/BPing/crysyan" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+            <a href="https://github.com/BPing/crysyan/zipball/master" class="btn">Download as .zip</a>
+            <a href="https://github.com/BPing/crysyan/tarball/master" class="btn">Download as .tar.gz</a>
+            <a href="https://github.com/BPing/crysyan" class="btn btn-github"><span class="icon"></span>View on
+                GitHub</a>
         </section>
-      </div>
-    </header>
+    </div>
+</header>
 
-    <div class="container">
-      <section id="main_content">
+<div class="container">
+    <section id="main_content">
         <h1>
-<a id="crysyan" class="anchor" href="#crysyan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>crysyan</h1>
+            <a id="crysyan" class="anchor" href="#crysyan" aria-hidden="true"><span aria-hidden="true"
+                                                                                    class="octicon octicon-link"></span></a>crysyan
+        </h1>
 
-<p>a web drawing board with canvas</p>
+        <p>a web drawing board with canvas</p>
 
-<h1>
-<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick start</h1>
+        <h1>
+            <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true"
+                                                                                            class="octicon octicon-link"></span></a>Quick
+            start</h1>
 
-<ul>
-<li>your.html</li>
-</ul>
+        <ul>
+            <li>your.html</li>
+        </ul>
 
-<div class="highlight highlight-text-html-basic"><pre>       <span class="pl-c">&lt;!--&lt;script src="jquery-3.1.1.min.js"&gt;&lt;/script&gt;--&gt;</span>
-       &lt;<span class="pl-ent">div</span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>width:1000px; height:1000px;<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>crysyan-designer<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+        <div class="highlight highlight-text-html-basic"><pre>       <span class="pl-c">&lt;!--&lt;script src="jquery-3.1.1.min.js"&gt;&lt;/script&gt;--&gt;</span>
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">style</span>=<span class="pl-s"><span
+                    class="pl-pds">"</span>width:1000px; height:1000px;<span class="pl-pds">"</span></span> <span
+                    class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>crysyan-designer<span
+                    class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
        <span class="pl-c">&lt;!-- include the crysyan-designer.js --&gt;</span>
-<span class="pl-s1">       &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>projectPath/js/crysyan-designer.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+<span class="pl-s1">       &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span
+        class="pl-pds">"</span>projectPath/js/crysyan-designer.js<span class="pl-pds">"</span></span>&gt;&lt;/<span
+        class="pl-ent">script</span>&gt;</span></pre>
+        </div>
 
-<ul>
-<li>your.js</li>
-</ul>
+        <ul>
+            <li>your.js</li>
+        </ul>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c">// jquery</span>
-<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.crysyan-designer<span class="pl-pds">"</span></span>).<span class="pl-en">CrysyanDesigner</span>({
+        <div class="highlight highlight-source-js"><pre><span class="pl-c">// jquery</span>
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.crysyan-designer<span
+                    class="pl-pds">"</span></span>).<span class="pl-en">CrysyanDesigner</span>({
     canvas<span class="pl-k">:</span> {
         <span class="pl-c">// px</span>
         width<span class="pl-k">:</span> <span class="pl-c1">900</span>,
@@ -75,32 +87,50 @@
 <span class="pl-c">// }, function(designer) {</span>
 <span class="pl-c">//     console.dir(designer);</span>
 <span class="pl-c">// });</span>
-<span class="pl-c">// designer.appendTo(document.getElementsByClassName("crysyan-designer"));</span></pre></div>
+<span class="pl-c">// designer.appendTo(document.getElementsByClassName("crysyan-designer"));</span></pre>
+        </div>
 
-<h1>
-<a id="dependence" class="anchor" href="#dependence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependence</h1>
+        <h1>
+            <a id="dependence" class="anchor" href="#dependence" aria-hidden="true"><span aria-hidden="true"
+                                                                                          class="octicon octicon-link"></span></a>Dependence
+        </h1>
 
-<ul>
-<li>jQuery</li>
-</ul>
+        <ul>
+            <li>jQuery</li>
+        </ul>
 
-<h1>
-<a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatibility</h1>
+        <h1>
+            <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true"
+                                                                                        class="octicon octicon-link"></span></a>Demo
+        </h1>
 
-<ul>
-<li>turn the canvas into a picture and save  <code>IE9+, Chrome4+,Firefox3.6(1.9.2)</code>
-</li>
-</ul>
+        <ul>
+            <li><a href="demo-0.0.9/index.html">demo-0.0.9</a>
+            </li>
+        </ul>
 
-<h1>
-<a id="reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reference</h1>
+        <h1>
+            <a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true"
+                                                                                                class="octicon octicon-link"></span></a>Compatibility
+        </h1>
 
-<ul>
-<li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer">Canvas-Designer</a></li>
-</ul>
-      </section>
-    </div>
+        <ul>
+            <li>turn the canvas into a picture and save <code>IE9+, Chrome4+,Firefox3.6(1.9.2)</code>
+            </li>
+        </ul>
 
-    
-  </body>
+        <h1>
+            <a id="reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true"
+                                                                                        class="octicon octicon-link"></span></a>Reference
+        </h1>
+
+        <ul>
+            <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer">Canvas-Designer</a>
+            </li>
+        </ul>
+    </section>
+</div>
+
+
+</body>
 </html>
