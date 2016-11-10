@@ -15,7 +15,7 @@
 
 <header>
     <div class="container">
-        <h1>demo-0.0.9</h1>
+        <h1>version-0.0.9</h1>
         <h2>a demo base on v0.0.9</h2>
         <section id="downloads">
             <a href="https://github.com//BPing/crysyan/archive/v0.0.9.zip" class="btn">Download as .zip</a>
@@ -27,11 +27,98 @@
 
 <div class="container">
     <section id="main_content">
+        <a  id="download-png" download="my-file-name.png" class="btn btn-github">download png</a>
+
         <div style="width:600px; height:600px;" class="crysyan-designer"></div>
         <h1>
-            <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true"
-                                                                              class="octicon octicon-link"></span></a>Demo
+            <a id="crysyan" class="anchor" href="#crysyan" aria-hidden="true"><span aria-hidden="true"
+                                                                                    class="octicon octicon-link"></span></a>crysyan
         </h1>
+
+        <p>a web drawing board with canvas</p>
+
+        <h1>
+            <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true"
+                                                                                            class="octicon octicon-link"></span></a>Quick
+            start</h1>
+
+        <ul>
+            <li>your.html</li>
+        </ul>
+
+        <div class="highlight highlight-text-html-basic"><pre>       <span class="pl-c">&lt;!--&lt;script src="jquery-3.1.1.min.js"&gt;&lt;/script&gt;--&gt;</span>
+       &lt;<span class="pl-ent">div</span> <span class="pl-e">style</span>=<span class="pl-s"><span
+                    class="pl-pds">"</span>width:1000px; height:1000px;<span class="pl-pds">"</span></span> <span
+                    class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>crysyan-designer<span
+                    class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+       <span class="pl-c">&lt;!-- include the crysyan-designer.js --&gt;</span>
+<span class="pl-s1">       &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span
+        class="pl-pds">"</span>projectPath/js/crysyan-designer.js<span class="pl-pds">"</span></span>&gt;&lt;/<span
+        class="pl-ent">script</span>&gt;</span></pre>
+        </div>
+
+        <ul>
+            <li>your.js</li>
+        </ul>
+
+        <div class="highlight highlight-source-js"><pre><span class="pl-c">// jquery</span>
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.crysyan-designer<span
+                    class="pl-pds">"</span></span>).<span class="pl-en">CrysyanDesigner</span>({
+    canvas<span class="pl-k">:</span> {
+        <span class="pl-c">// px</span>
+        width<span class="pl-k">:</span> <span class="pl-c1">900</span>,
+        height<span class="pl-k">:</span> <span class="pl-c1">500</span>
+    },
+    toobar<span class="pl-k">:</span> {
+        length<span class="pl-k">:</span> <span class="pl-c1">500</span>
+    }
+}, <span class="pl-k">function</span>(<span class="pl-smi">designer</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">dir</span>(designer);
+});
+<span class="pl-c">//  another</span>
+<span class="pl-c">// var designer=CrysyanDesigner({</span>
+<span class="pl-c">//     canvas: {</span>
+<span class="pl-c">//         // px</span>
+<span class="pl-c">//         width: 900,</span>
+<span class="pl-c">//         height: 500</span>
+<span class="pl-c">//     },</span>
+<span class="pl-c">//     toobar: {</span>
+<span class="pl-c">//         length: 500</span>
+<span class="pl-c">//     }</span>
+<span class="pl-c">// }, function(designer) {</span>
+<span class="pl-c">//     console.dir(designer);</span>
+<span class="pl-c">// });</span>
+<span class="pl-c">// designer.appendTo(document.getElementsByClassName("crysyan-designer"));</span></pre>
+        </div>
+
+        <h1>
+            <a id="dependence" class="anchor" href="#dependence" aria-hidden="true"><span aria-hidden="true"
+                                                                                          class="octicon octicon-link"></span></a>Dependence
+        </h1>
+
+        <ul>
+            <li>jQuery</li>
+        </ul>
+
+        <h1>
+            <a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true"
+                                                                                                class="octicon octicon-link"></span></a>Compatibility
+        </h1>
+
+        <ul>
+            <li>turn the canvas into a picture and save <code>IE9+, Chrome4+,Firefox3.6(1.9.2)</code>
+            </li>
+        </ul>
+
+        <h1>
+            <a id="reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true"
+                                                                                        class="octicon octicon-link"></span></a>Reference
+        </h1>
+
+        <ul>
+            <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer">Canvas-Designer</a>
+            </li>
+        </ul>
     </section>
 </div>
 <script type="application/javascript" src="crysyan/js/crysyan-designer.js"></script>
@@ -47,7 +134,12 @@
             length: 500
         }
     }, function(designer) {
-        console.dir(designer);
+        $("#download-png").click(function () {
+            var canvas=designer.getView().crysyanCanvas;
+            document.getElementById("download-png").href=canvas.toDataURL();
+
+        });
+
         var dataurl =
                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
         designer.drawBackgroupWithImage(dataurl);
