@@ -273,11 +273,13 @@
         /**
          * Save the canvas to a local png
          * download
+         * @deprecated
+         * @link http://weworkweplay.com/play/saving-html5-canvas-as-image/
          */
         saveAsLocalImagePng: function() {
             // here is the most important part because if you don't replace you will get a DOM 18 exception.
-            // var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition: attachment;filename=foobar.png");
-            var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition:attachment;filename=foo.png");
+            //var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream");
             // it will save locally
             window.location.href = image;
         },

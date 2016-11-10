@@ -26,7 +26,7 @@
             designer.iframe = document.createElement('iframe');
             designer.iframe.name = config.ifrName ? config.ifrName : "default-iframe" + getRandomString();
             designer.iframe.uid = designer.iframe.name;
-            designer.iframe.src = (config.projectPath || "") + "crysyan.html?config=" + JSON.stringify(config);
+            designer.iframe.src = (config.projectPath || "") + "html/crysyan.html?config=" + JSON.stringify(config);
             designer.iframe.style.width = '100%';
             designer.iframe.style.height = '100%';
             designer.iframe.style.border = 0;
