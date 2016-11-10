@@ -62,7 +62,7 @@
 
     //
     window.CrysyanDefaultConfig = {
-       commom:{
+       common:{
                  projectPath:""
        },
         submit: {

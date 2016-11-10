@@ -14,7 +14,7 @@
             ops = {};
         }
         this.ops = {};
-        this.ops.commom = $.extend($defaultConfig.submit, ops.commom || {});
+        this.ops.common = $.extend($defaultConfig.submit, ops.common || {});
         this.ops.submit = $.extend($defaultConfig.submit, ops.submit || {});
         this.ops.canvas = $.extend($defaultConfig.canvas, ops.canvas || {});
         this.ops.toolbar = $.extend($defaultConfig.toolbar, ops.toolbar || {});

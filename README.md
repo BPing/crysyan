@@ -4,6 +4,7 @@ a web drawing board with canvas
 # Quick start
 * your.html
 ```html
+       <!--<script src="jquery-3.1.1.min.js"></script>-->
        <div style="width:1000px; height:1000px;" class="crysyan-designer"></div>
        <!-- include the crysyan-designer.js -->
        <script src="projectPath/js/crysyan-designer.js"></script>
