@@ -3,10 +3,20 @@
  */
 (function($load) {
     'use strict';
-
+    // jquery
+    if (!window.$) {
+        var jQuery = window.parent.$ || window.jQuery;
+        if (!jQuery) {
+            throw new Error("Crysyan requires 'jQuery'");
+        } else {
+            window.$ = jQuery;
+        }
+    }
     var jsLoadCache = [];
-   //
+    // map to Cache  the view instances
     var viewCacheMap = {};
+   // Parameters parsed from href
+    var hrefRequestArgs = {};
 
     /**
      * Simple dynamically load JS file in serial
@@ -51,6 +61,17 @@
         recursiveLoad(0);
     }
 
+    (function getRequest() {
+        // get from URL string after '?'
+        var url = decodeURI(location.search);
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                hrefRequestArgs[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+        }
+    })();
     //
     var widgetinit = function(callback) {
         var widgetBasePath = "../js/widget/";
@@ -74,8 +95,8 @@
     //
     var init = function() {
         widgetinit(function() {
-            console.log("successfully load");
-            var view = new CrysyanView({}).init();
+            var config = JSON.parse(hrefRequestArgs.config);
+            var view = new CrysyanView(config).init();
             viewCacheMap["default"] = view;
         });
     };
@@ -95,7 +116,7 @@
     var Crysyan = {
         getView: function(name) {
             if (typeof name === "undefined" || name === "") name = "default";
-            return viewCacheMap[name] ;
+            return viewCacheMap[name];
         }
     };
     window.Crysyan = Crysyan;

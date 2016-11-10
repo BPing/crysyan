@@ -13,7 +13,7 @@
     eraser.eraserWidth = 25;
     // eraser.mouseDown = function(e, loc) {};
     eraser.mouseMove = function(e, loc) {
-         if (!eraser.isDown) return;
+        if (!eraser.isDown) return;
         var ctx = eraser.crysyanCanvas.playContext;
         eraser.eraseLast(ctx);
         eraser.drawEraser(loc, ctx);
@@ -55,7 +55,7 @@
         var radio = eraser.eraserWidth / 2 + ERASER_LINE_WIDTH;
         context.save();
         eraser.setErasePathForEraser(context);
-        context.clearRect(last.x - radio, last.y - radio, 2 * radio, 2 * radio);
+        eraser.crysyanCanvas.clearCanvas();
         context.restore();
     };
     //

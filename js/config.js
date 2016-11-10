@@ -62,6 +62,9 @@
 
     //
     window.CrysyanDefaultConfig = {
+       commom:{
+
+       },
         submit: {
             Id: "crysyan-submit",
             // function called after submit
@@ -70,11 +73,13 @@
         canvas: {
             canvasId: "crysyan-canvas",
             // px
-            width: 0,
-            height: 0
+            width: 900,
+            height: 400
         },
         toolbar: {
             Id: "crysyan-toolbar",
+            length:900,
+            widgetLength:50,
             widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
         }
     };

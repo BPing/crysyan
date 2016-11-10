@@ -29,6 +29,12 @@
             this.playCanvas.height = ops.height;
 
         this.drawingSurfaceImageData = null;
+        // Background image information
+        this.backgroudImage = {
+            image: null,
+            width: 0,
+            height: 0
+        };
 
         // An array that store the history imgdata which capture from canvas
         // for revoking and forward revoking.
@@ -94,6 +100,11 @@
         //
         clearCanvas: function() {
             this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
+            if (this.backgroudImage.image !== null) {
+                var image = this.backgroudImage.image;
+                this.drawImage(image, (this.playCanvas.width - image.width) / 2, (this.playCanvas.height - image.height) / 2, image.width, image.height);
+                return;
+            }
         },
         /**
          *  The event coordinate point is transformed
@@ -111,6 +122,54 @@
             //     x: x - bbox.left * (canvas.width / bbox.width),
             //     y: y - bbox.top * (canvas.height / bbox.height)
             // };
+        },
+        drawBackgroupWithImage: function(obj, mode) {
+            if (typeof mode === "undefined") {
+                //  image scaling mode
+                //  if mode !=1 ,fulling mode
+                //  default 1
+                mode = 1;
+            }
+            var canvas = this;
+            var image = new Image();
+            image.onload = function() {
+                canvas.backgroudImage.image = image;
+                canvas.backgroudImage.width = canvas.playCanvas.width;
+                canvas.backgroudImage.height = canvas.playCanvas.height;
+                if (mode === 1) {
+                    // Ratio of picture's and canvas's  width and height
+                    var ivwr = image.width === 0 || canvas.playCanvas.width === 0 ? 0 : image.width / canvas.playCanvas.width;
+                    var ivhr = image.height === 0 || canvas.playCanvas.height === 0 ? 0 : image.height / canvas.playCanvas.height;
+                    if (image.width >= canvas.playCanvas.width && ivwr > ivhr) {
+                        // Beyond the canvas's width
+                        //zoom ratio
+                        canvas.backgroudImage.height = image.height * ivwr;
+                    } else if (image.height >= canvas.playCanvas.heigh && (ivhr > ivwr)) {
+                        // Beyond the canvas's height
+                        //zoom ratio
+                        canvas.backgroudImage.width = image.width * ivhr;
+                    }
+                }
+                canvas.clearCanvas();
+            };
+            // image
+            if (obj instanceof Image) {
+                image.src = obj.src;
+                return;
+            }
+            // file
+            if (obj instanceof File) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    image.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+                return;
+            }
+            // dataUrl
+            if (typeof obj === "string") {
+                image.src = obj;
+            }
         },
         /**
          *  see context drawImage()
