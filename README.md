@@ -161,9 +161,11 @@ designer.iframe.style.border = '5px solid red';
 *  **Config**
 
 ### `ifrName`
-Name of iframe
+Name of iframe.
+You do not need to set this value if it is not necessary.
+Normally, it's ok to use the default values.
 ### `projectPath`
-Path of  crysyan project 
+Path of  crysyan project.
 ### `canvas`
 * `width`  
 Width of the  canvas
@@ -172,9 +174,9 @@ Height of the bottom canvas
 
 ### `toolbar`
 * `widgetLength`  
-The length of each tool icon
+The length of each tool icon.
 * `widgets`
-The widgets you want to use see `build-in/widgets`
+The widgets you want to use see `build-in/widgets`.
 
 <h2 align="center">Add New Tools Widgets</h2>
 
