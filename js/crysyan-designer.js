@@ -52,9 +52,10 @@
             view.crysyanCanvas.drawBackgroupWithImage(img, 1);
         };
 
-        designer.toDataUrl = function() {
+        designer.toDataUrl = function(type) {
+            if (typeof type==="undefined") type="image/png";
             var view = window[designer.iframe.uid].Crysyan.getView();
-            return view.crysyanCanvas.toDataURL("image/png");
+            return view.crysyanCanvas.toDataURL(type);
         };
 
     }
