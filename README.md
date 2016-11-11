@@ -44,6 +44,7 @@ $(".crysyan-designer").CrysyanDesigner({
 
 # API Reference
 *  **CrysyanDesigner**
+
 ### `appendTo`
 CrysyanDesigner is a widget; that widget should be appended to a DOM object. 
 This method allows you pass `<body>` or any other HTMLDOMElement.
