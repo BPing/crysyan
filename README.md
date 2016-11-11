@@ -176,7 +176,7 @@ The length of each tool icon
 * `widgets`
 The widgets you want to use see `build-in/widgets`
 
-<h2 align="center">Add New Tools</h2>
+<h2 align="center">Add New Tools Widgets</h2>
 
 ## First Step
 ## Second Step
