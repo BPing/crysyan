@@ -163,7 +163,7 @@ designer.iframe.style.border = '5px solid red';
 ### `ifrName`
 Name of iframe.
 You do not need to set this value if it is not necessary.
-Normally, it's ok to use the default values.
+Normally, the default value is OK
 ### `projectPath`
 Path of  crysyan project.
 ### `canvas`
