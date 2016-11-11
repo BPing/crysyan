@@ -161,7 +161,23 @@ if(!designer.iframe) {
 }
 designer.iframe.style.border = '5px solid red';
 ```
+*  **Config**
 
+### `ifrName`
+   Name of iframe
+### `projectPath`
+    Path of  crysyan project 
+### `canvas`
+*`width`  
+Width of the  canvas
+*`height`
+Height of the bottom canvas
+
+### `toolbar`
+*`widgetLength`  
+The length of each tool icon
+*`widgets`
+The widgets you want to use see `build-in/widgets`
 
 # Dependence
 * jQuery
