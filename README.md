@@ -20,9 +20,6 @@ $(".crysyan-designer").CrysyanDesigner({
         width: 900,
         height: 500
     },
-    toobar: {
-        length: 500
-    }
 }, function(designer) {
     console.dir(designer);
 });
