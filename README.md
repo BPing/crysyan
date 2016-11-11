@@ -42,6 +42,31 @@ $(".crysyan-designer").CrysyanDesigner({
 // designer.appendTo(document.getElementsByClassName("crysyan-designer"));
 ```
 
+# Build-in
+## widgets
+ You can use config for below widgets.
+``` 
+config{
+    toolbar: {
+        widgets:
+        ["CursorWidget", 
+        "PencilWidget", 
+        "EraserWidget", 
+        "ImageWidget",
+        "UndoWidget",
+        "IndoGoWidget", 
+        "ClearWidget"],
+    }
+    }
+```
+
+1. `pencil` --- `PencilWidget`   to write/draw shapes 
+2. `eraser` --- `EraserWidget`   to erase/clear specific portion of shapes 
+3. `image` ---  `ImageWidget`    add external images
+4. `uodo` ---  `UndoWidget`      revoke history of canvas
+5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
+6. `clear` --- `ClearWidget`     clear canvas
+
 # API Reference
 *  **CrysyanDesigner**
 
