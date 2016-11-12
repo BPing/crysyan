@@ -43,7 +43,8 @@ $(".crysyan-designer").CrysyanDesigner({
 ```
 # Version
 * 0.0.9
-> First
+
+> First 
 
 # Build-in
 ## widgets
@@ -174,15 +175,20 @@ Normally, the default value is OK
 Path of  crysyan project.
 ### `canvas`
 * `width`  
-      Width of the  canvas
+
+        Width of the  canvas
+    
 * `height`
+
         Height of the bottom canvas
 
 ### `toolbar`
-* `widgetLength`  
-       The length of each tool icon.
+* `widgetLength`
+
+        The length of each tool icon.
 * `widgets`
-      The widgets you want to use see `build-in/widgets`.
+
+        The widgets you want to use see `build-in/widgets`.
 
 <h2 align="center">Add New Tools Widgets</h2>
 
