@@ -180,7 +180,7 @@ Path of  crysyan project.
     
 * `height`
 
-    Height of the bottom canvas
+        Height of the bottom canvas
 
 ### `toolbar`
 * `widgetLength`
