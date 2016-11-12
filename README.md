@@ -3,10 +3,18 @@ a web drawing board with canvas
 
 > home: [https://bping.github.io/crysyan/](https://bping.github.io/crysyan/)
 
-# Compatibility
-* turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
+# <a name="index"/>Index
+* [Compatibility](#Compatibility)
+* [Quick start](#Quick_start)
+* [Directory](#Directory)
+* [Version](#Version)
+* [Build-in](#Version)
+* [API Reference](#API)
+* [Dependence](#Dependence)
+* [Reference](#Reference)
+* [**](#**)
 
-# Quick start
+# <a name="Quick_start"/>Quick start
 * your.html
 ```html
 <!--<script src="jquery-3.1.1.min.js"></script>-->
@@ -41,12 +49,26 @@ $(".crysyan-designer").CrysyanDesigner({
 // });
 // designer.appendTo(document.getElementsByClassName("crysyan-designer"));
 ```
-# Version
+
+# <a name="Directory"/>Directory
+
+     /            -->
+      css/             --> css
+      html/           --> view
+      img/            --> used to place the tool icon file
+      js/               -->  javascript file
+
+
+
+# <a name="Compatibility"/>Compatibility
+* turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
+
+# <a name="Version"/>Version
 * 0.0.9
 
-> First 
+> First
 
-# Build-in
+# <a name="Build-in"/>Build-in
 ## widgets
  You can use config for below widgets.
 ```
@@ -71,7 +93,7 @@ config{
 5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
 6. `clear` --- `ClearWidget`     clear canvas
 
-# API Reference
+# <a name="API"/>API Reference
 *  **CrysyanDesigner**
 
 ### `appendTo`
@@ -167,6 +189,35 @@ designer.iframe.style.border = '5px solid red';
 ```
 *  **Config**
 
+The configuration of the entire project.
+> **Note:**The unit of length is: px.
+```javascript
+var designer=CrysyanDesigner({
+    ifrName:"",
+    projectPath:"",
+    canvas: {
+        // px
+        width: 900,
+        height: 500
+    },
+    toobar: {
+        widgetLength: 50,
+        widgets:
+        [
+        "CursorWidget",
+        "PencilWidget",
+        "EraserWidget",
+        "ImageWidget",
+        "UndoWidget",
+        "IndoGoWidget",
+        "ClearWidget"],
+    }
+    }
+}, function(designer) {
+    console.dir(designer);
+});
+```
+
 ### `ifrName`
 Name of iframe.
 You do not need to set this value if it is not necessary.
@@ -176,8 +227,8 @@ Path of  crysyan project.
 ### `canvas`
 * `width`  
 
-        Width of the  canvas
-    
+        Width of the  canvas.
+
 * `height`
 
         Height of the bottom canvas
@@ -188,7 +239,8 @@ Path of  crysyan project.
         The length of each tool icon.
 * `widgets`
 
-        The widgets you want to use see `build-in/widgets`.
+        The widgets you want to use. see `build-in/widgets`.
+        Normally, the default value is OK.
 
 <h2 align="center">Add New Tools Widgets</h2>
 
@@ -196,8 +248,8 @@ Path of  crysyan project.
 ## Second Step
 ## Third Step
 
-# Dependence
+# <a name="Dependence"/>Dependence
 * jQuery
 
-# Reference
+# <a name="Reference"/>Reference
 * [Canvas-Designer](https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer)
