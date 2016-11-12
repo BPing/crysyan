@@ -1,7 +1,10 @@
 # crysyan
-a web drawing board with canvas 
+a web drawing board with canvas
 
 > home: [https://bping.github.io/crysyan/](https://bping.github.io/crysyan/)
+
+# Compatibility
+* turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
 
 # Quick start
 * your.html
@@ -38,27 +41,30 @@ $(".crysyan-designer").CrysyanDesigner({
 // });
 // designer.appendTo(document.getElementsByClassName("crysyan-designer"));
 ```
+# Version
+* 0.0.9
+> First 
 
 # Build-in
 ## widgets
  You can use config for below widgets.
-``` 
+```
 config{
     toolbar: {
         widgets:
-        ["CursorWidget", 
-        "PencilWidget", 
-        "EraserWidget", 
+        ["CursorWidget",
+        "PencilWidget",
+        "EraserWidget",
         "ImageWidget",
         "UndoWidget",
-        "IndoGoWidget", 
+        "IndoGoWidget",
         "ClearWidget"],
     }
     }
 ```
 
-1. `pencil` --- `PencilWidget`   to write/draw shapes 
-2. `eraser` --- `EraserWidget`   to erase/clear specific portion of shapes 
+1. `pencil` --- `PencilWidget`   to write/draw shapes
+2. `eraser` --- `EraserWidget`   to erase/clear specific portion of shapes
 3. `image` ---  `ImageWidget`    add external images
 4. `uodo` ---  `UndoWidget`      revoke history of canvas
 5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
@@ -68,7 +74,7 @@ config{
 *  **CrysyanDesigner**
 
 ### `appendTo`
-CrysyanDesigner is a widget; that widget should be appended to a DOM object. 
+CrysyanDesigner is a widget; that widget should be appended to a DOM object.
 This method allows you pass `<body>` or any other HTMLDOMElement.
 
 ```javascript
@@ -86,15 +92,15 @@ designer.destroy();
 
 ### `getView`
  You can get a view `CrysyanView` instance from child `iframe`:
- 
+
 ```javascript
 designer.getView();
-``` 
- 
+```
+
 
 ### `drawBackgroupWithImage`
   Draw a image on a canvas as background.
-  
+
 draw `DataUrl` :
 ```javascript
 var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr
@@ -119,7 +125,7 @@ designer.drawBackgroupWithImage(file);
 ```
 
 ### `toDataUrl`
-Get data-URL of your drawings! 
+Get data-URL of your drawings!
 
 ```javascript
 window.open(designer.toDataURL('image/png'));
@@ -127,7 +133,7 @@ window.open(designer.toDataURL('image/png'));
 
 you can download the png:
 
-> **Note:** focus on attribute  of `download` of  `<a>` tag 
+> **Note:** focus on attribute  of `download` of  `<a>` tag
 
 `html`:
 ```html
@@ -168,15 +174,15 @@ Normally, the default value is OK
 Path of  crysyan project.
 ### `canvas`
 * `width`  
-Width of the  canvas
+      Width of the  canvas
 * `height`
-Height of the bottom canvas
+        Height of the bottom canvas
 
 ### `toolbar`
 * `widgetLength`  
-The length of each tool icon.
+       The length of each tool icon.
 * `widgets`
-The widgets you want to use see `build-in/widgets`.
+      The widgets you want to use see `build-in/widgets`.
 
 <h2 align="center">Add New Tools Widgets</h2>
 
@@ -186,9 +192,6 @@ The widgets you want to use see `build-in/widgets`.
 
 # Dependence
 * jQuery
-
-# Compatibility
-* turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
 
 # Reference
 * [Canvas-Designer](https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer)
