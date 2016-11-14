@@ -97,7 +97,7 @@ config{
 
 ## gulp
 
-1、First of all,you need install node.js and gulp and gulp's add-ons which used in gulpfile.js.And then build.
+1、First of all,you need install node.js and gulp and gulp's add-ons which used in gulpfile.js.
 
 2、You can choose which widgets you need to include,in other word, widgets that you can provide to users.
 Look file `gulpfile.js` as follows:
