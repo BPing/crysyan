@@ -1,18 +1,4 @@
 # crysyan
-a web drawing board with canvas
-
-> home: [https://bping.github.io/crysyan/](https://bping.github.io/crysyan/)
-
-# <a name="index"/>Index
-* [Compatibility](#Compatibility)
-* [Quick start](#Quick_start)
-* [Directory](#Directory)
-* [Version](#Version)
-* [Build-in](#Version)
-* [API Reference](#API)
-* [Dependence](#Dependence)
-* [Reference](#Reference)
-* [**](#**)
 
 # <a name="Quick_start"/>Quick start
 * your.html
@@ -20,8 +6,7 @@ a web drawing board with canvas
 <!--<script src="jquery-3.1.1.min.js"></script>-->
 <div style="width:1000px; height:1000px;" class="crysyan-designer"></div>
 <!-- include the crysyan-designer.js -->
-<!--<script src="projectPath/crysyan-designer-min.js"></script>-->
-<script src="projectPath/js/crysyan-designer.js"></script>
+<script src="projectPath/crysyan-designer-min.js"></script>
 ```
 * your.js
 ```javascript
@@ -42,92 +27,11 @@ $(".crysyan-designer").CrysyanDesigner({
 //         width: 900,
 //         height: 500
 //     },
-//     toobar: {
-//         length: 500
-//     }
 // }, function(designer) {
 //     console.dir(designer);
 // });
 // designer.appendTo(document.getElementsByClassName("crysyan-designer"));
 ```
-
-# <a name="Directory"/>Directory
-
-     /            -->
-      css/             --> css
-      html/           --> view
-      img/            --> used to place the tool icon file
-      js/               -->  javascript file
-
-
-
-# <a name="Compatibility"/>Compatibility
-* turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
-
-# <a name="Version"/>Version
-* 0.0.9
-
-> First
-
-# <a name="Build-in"/>Build-in
-## widgets
- You can use config for below widgets.
- Sets the widgets needed for a particular instance of a artboard.
-```
-config{
-    toolbar: {
-        widgets:
-        ["CursorWidget",
-        "PencilWidget",
-        "EraserWidget",
-        "ImageWidget",
-        "UndoWidget",
-        "IndoGoWidget",
-        "ClearWidget"],
-    }
-    }
-```
-
-1. `pencil` --- `PencilWidget`   to write/draw shapes
-2. `eraser` --- `EraserWidget`   to erase/clear specific portion of shapes
-3. `image` ---  `ImageWidget`    add external images
-4. `uodo` ---  `UndoWidget`      revoke history of canvas
-5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
-6. `clear` --- `ClearWidget`     clear canvas
-
-## gulp
-
-1、First of all,you need install node.js and gulp and gulp's add-ons which used in gulpfile.js.And then build.
-
-2、You can choose which widgets you need to include,in other word, widgets that you can provide to users.
-Look file `gulpfile.js` as follows:
-
-```javascript
-widgetPath="js/widget/";
-    // widgetsLoad = [widgetPath+"*.js"]; or 
-    widgetsLoad = [
-        // widget's file name
-        widgetPath+"cursor.js", 
-        widgetPath+"pencil.js", 
-        widgetPath+"eraser.js", 
-        widgetPath+"image.js", 
-        widgetPath+"undo.js", 
-        widgetPath+"into-go.js",
-        widgetPath+"clear.js"];
-```
-
-3、build.
-```cmd
-    gulp build
-```
-After build successfully.
-You can find a 'crysyan' folder,the JS files under this folder have been compressed, which can be used in your project, under the 'dist' folder
-Just like that:
-```html
-<!-- include the crysyan-designer.js -->
-<script src="projectPath/crysyan-designer-min.js"></script>
-```
-
 # <a name="API"/>API Reference
 *  **CrysyanDesigner**
 
@@ -276,15 +180,3 @@ Path of  crysyan project.
 
         The widgets you want to use. see `build-in/widgets`.
         Normally, the default value is OK.
-
-<h2 align="center">Add New Tools Widgets</h2>
-
-## First Step
-## Second Step
-## Third Step
-
-# <a name="Dependence"/>Dependence
-* jQuery
-
-# <a name="Reference"/>Reference
-* [Canvas-Designer](https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer)

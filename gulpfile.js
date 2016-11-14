@@ -10,7 +10,7 @@ var zip = require('gulp-zip');
 // var debug = require('gulp-debug');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
-var distPath = "dist/";
+var distPath = "dist/crysyan/";
 var version = "0.0.9";
 var widgetsLoad = [];
 
@@ -94,12 +94,18 @@ gulp.task('html-replace-move', function () {
         .pipe(gulp.dest(distPath + "html/"));
 });
 
+gulp.task('guidance-move', function () {
+    return gulp.src(["guidance.md"])
+        .pipe(gulp.dest(distPath));
+});
+
+
 gulp.task('building', ['clean-all'], function (cb) {
     runSequence(
         ["designer-minify",
             "core-widgets-concat-minify",
             "imagemin",
-            "html-replace-move"], cb);
+            "html-replace-move","guidance-move"], cb);
 });
 
 gulp.task('after-building-clean', ['building'], function () {
@@ -111,7 +117,7 @@ gulp.task('after-building-clean', ['building'], function () {
 gulp.task('build', ['building','after-building-clean']);
 
 gulp.task('publish', ['build'], function () {
-    return gulp.src(['dist/*', 'dist/**/*', '!dist/js'])
+    return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
         .pipe(plumber())
         .pipe(zip('crysyan-' + version + '.zip'))
         .pipe(gulp.dest('release'));
