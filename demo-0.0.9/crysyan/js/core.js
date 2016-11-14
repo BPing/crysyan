@@ -1,4 +1,227 @@
 /**
+ *  utility
+ *      common method
+ */
+(function() {
+    'use strict';
+    var util = {
+        /**
+         *  add  event  to element(Adaptation)
+         *  @param {String} eventType  type of event
+         *  @param {Function} callback function for callback
+         */
+        addEvent: function(element, eventType, callback) {
+            if (element.addEventListener) {
+                element.addEventListener(eventType, callback, !1);
+            } else if (element.attachEvent) { // for IE
+                element.attachEvent('on' + eventType, callback);
+            } else {
+                element['on' + eventType] = callback;
+            }
+            return this;
+        },
+
+        /**
+         *  remove  event  from element(Adaptation)
+         *  @param {string} eventType  type of event
+         *  @param {function} callback function for callback
+         */
+        removeEvent: function(element, eventType, callback) {
+            if (element.removeEventListener) {
+                element.removeEventListener(eventType, callback, !1);
+            } else if (element.detachEvent) { // for IE
+                element.detachEvent('on' + eventType, callback);
+            } else {
+                element['on' + eventType] = null;
+            }
+            return this;
+        },
+        isIE: function() {
+            if (navigator.appName === "Microsoft Internet Explorer") {
+                return true;
+            }
+            return false;
+        }
+
+    };
+    // clone
+    function clone(obj) {
+        // Handle the 3 simple types, and null or undefined
+        if (null === obj || "object" != typeof obj) {
+            return obj;
+        }
+        var result;
+        if (obj instanceof Array) {
+            result = [];
+        } else if (obj instanceof Object) {
+            result = {};
+        }
+        for (var attr in obj) {
+            // Recursive clone
+            result[attr] = clone(obj[attr]);
+        }
+        return result;
+    }
+
+    util.clone = clone;
+    // export to window
+    window.CrysyanUtil = util;
+})();
+
+/**
+ *  config
+ */
+(function() {
+
+    //
+    window.CrysyanWidgetConfig = {
+        widgets: {
+            CursorWidget: {
+                // Variable name exported to window
+                exportVar: "CrysyanCursorWidget",
+                // Defined  file
+                jsFile: "cursor.js",
+                // Icon and Name of widget in toolbar
+                icon: "cursor.png",
+                name: "cursor"
+            },
+            PencilWidget: {
+                exportVar: "CrysyanPencilWidget",
+                jsFile: "pencil.js",
+                // Icon and Name of widget in toolbar
+                icon: "pencil.png",
+                name: "pencil"
+            },
+            EraserWidget: {
+                exportVar: "CrysyanEraserWidget",
+                jsFile: "eraser.js",
+                // Icon and Name of widget in toolbar
+                icon: "eraser.png",
+                name: "eraser"
+            },
+            ImageWidget: {
+                exportVar: "CrysyanImageWidget",
+                jsFile: "image.js",
+                // Icon and Name of widget in toolbar
+                icon: "image.png",
+                name: "image"
+            },
+            UndoWidget: {
+                exportVar: "CrysyanUndoWidget",
+                jsFile: "undo.js",
+                // Icon and Name of widget in toolbar
+                icon: "undo.png",
+                name: "undo"
+            },
+            IndoGoWidget: {
+                exportVar: "CrysyanIndoGoWidget",
+                jsFile: "into-go.js",
+                // Icon and Name of widget in toolbar
+                icon: "into-go.png",
+                name: "into-go"
+            },
+            ClearWidget: {
+                exportVar: "CrysyanClearWidget",
+                jsFile: "clear.js",
+                // Icon and Name of widget in toolbar
+                icon: "clear.png",
+                name: "clear"
+            }
+        }
+    };
+
+    //
+    window.CrysyanDefaultConfig = {
+       common:{
+                 projectPath:""
+       },
+        submit: {
+            Id: "crysyan-submit",
+            // function called after submit
+            callback: function(crysyanCanvas,event){}
+        },
+        canvas: {
+            canvasId: "crysyan-canvas",
+            // px
+            width: 900,
+            height: 400
+        },
+        toolbar: {
+            Id: "crysyan-toolbar",
+            length:900,
+            widgetLength:50,
+            widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
+        }
+    };
+    
+})(window);
+
+/**
+ *   Base struct of widget
+ *  @module CaysyanWidget
+ */
+(function($util) {
+    'use strict';
+    /**
+     *   Base struct of widget
+     *          another child widget must be cloned and extended from 'CrysyanWidget',
+     *          in other words,'CrysyanWidget'  is parent of other widget
+     */
+    var CrysyanWidget = {
+        // Identifier of widget
+        // must unique
+        id: "widget-id",
+
+        // Icon and Name of widget in toolbar
+        icon: "widget-icon",
+        name: "widget-name",
+
+        //   Call method ,'hasOwnProperty()'' ,to judge whether the type of object  is "CrysyanWidgetType" or not
+        //   example:
+        //              obj.hasOwnProperty("CrysyanWidgetType")===true
+        // must unique
+        CrysyanWidgetType: "CrysyanWidget",
+
+        // canvas
+        crysyanCanvas: null,
+
+        // pre-event attribute
+        prePiont: {
+            //  event
+            e: null,
+            // the coordinates on the canvas of event
+            loc: null
+        },
+        // if mouse down
+        isDown: false,
+
+        /**
+         *  the widget's handler for mouse event
+         *        overwrited by child widget
+         * @param  {object} e   event
+         * @param  {object} loc  the coordinates on the canvas of event
+         */
+        mouseDown: function(e, loc) {},
+        mouseUp: function(e, loc) {},
+        mouseMove: function(e, loc) {},
+        /**
+         *
+         * @param  {[type]} ele [description]
+         * @param  {object} e   event
+         */
+        iconClick: function(ele, e) {},
+
+        //  clone widget
+        //  another child widget  call this function to  clone  'CaysyanWidget'
+        clone: function() {
+            return $util.clone(this);
+        }
+    };
+    // export to window
+    window.CrysyanWidget = CrysyanWidget;
+})(CrysyanUtil);
+
+/**
  *  Entrance for canvas operation
  *  @module CrysyanCanvas
  *  @depend util.js
@@ -278,7 +501,7 @@
          */
         saveAsLocalImagePng: function() {
             // here is the most important part because if you don't replace you will get a DOM 18 exception.
-             var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition:attachment;filename=foo.png");
+            var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition:attachment;filename=foo.png");
             //var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream");
             // it will save locally
             window.location.href = image;
@@ -335,3 +558,146 @@
     // export to window
     window.CrysyanCanvas = CrysyanCanvas;
 })(CrysyanUtil);
+
+/**
+ *   View of canvas
+ *  @module
+ *  @depend util.js;canvas.js;widget.js;widget/*.js
+ */
+(function($defaultConfig, $widgetConfig, $util) {
+    'use strict';
+    /**
+     *      view
+     * @param {[object]} ops config
+     */
+    function CrysyanView(ops) {
+        if (typeof ops !== 'object') {
+            ops = {};
+        }
+        this.ops = {};
+        this.ops.common = $.extend($defaultConfig.submit, ops.common || {});
+        this.ops.submit = $.extend($defaultConfig.submit, ops.submit || {});
+        this.ops.canvas = $.extend($defaultConfig.canvas, ops.canvas || {});
+        this.ops.toolbar = $.extend($defaultConfig.toolbar, ops.toolbar || {});
+
+        this.crysyanCanvas = new CrysyanCanvas(this.ops.canvas);
+        this.toolbarElement = document.getElementById(this.ops.toolbar.Id);
+        this.submitElement = document.getElementById(this.ops.submit.Id);
+        //  console.dir(this);
+        if (this.toolbarElement === null)
+            throw "can't get the Element by id:" + this.ops.toolbar.Id;
+        // the type of widget that has been selected now
+        // 'CrysyanWidgetType'
+        this.widgetSelected = "";
+        // widgets' event
+        //  example
+        //         this.widgetEventMap[widgetExportVar.CrysyanWidgetType] = widgetExportVar
+        this.widgetEventMap = {};
+    }
+
+    // Record the widget which has been handled
+    var handledWidgetsMap = {};
+    //
+    var handleWidget = function(view) {
+        var widgets = view.ops.toolbar.widgets;
+        var configWidgets = $widgetConfig.widgets;
+        var innerHTML = "<ul id=\"widgets-list\" class=\"ul-widget-list \">";
+        for (var index = 0; index < widgets.length; index++) {
+            var widget = widgets[index];
+            if (handledWidgetsMap.hasOwnProperty(widget)) {
+                continue;
+            }
+            if (!configWidgets.hasOwnProperty(widget) || !window.hasOwnProperty(configWidgets[widget].exportVar)) {
+                console.error("widget: '" + widget + "'does not exist");
+                continue;
+            }
+            var widgetExportVar = window[configWidgets[widget].exportVar];
+            widgetExportVar.icon = configWidgets[widget].icon;
+            widgetExportVar.crysyanCanvas = view.crysyanCanvas;
+            if (widgetExportVar.hasOwnProperty("CrysyanWidgetType")) {
+                // handle event
+                view.widgetEventMap[widgetExportVar.CrysyanWidgetType] = widgetExportVar;
+                // widget view
+                //  id must be equal to 'CrysyanWidgetType'
+                innerHTML = innerHTML + " <li><img  width=\"" + view.ops.toolbar.widgetLength + "px\" height=\"" + view.ops.toolbar.widgetLength + "px\"  id=\"" + widgetExportVar.CrysyanWidgetType + " \" class=\"crysyan-widget-class\" src=\" " + widgetExportVar.icon + "  \"></li>";
+            }
+            // set flag
+            handledWidgetsMap[widget] = 1;
+        }
+        innerHTML += "</ul>";
+        view.toolbarElement.innerHTML = innerHTML;
+        // default selected widget
+        view.widgetSelected = "CrysyanCursorWidget";
+        //  Set click event
+        //  Error ,'Don't make functions within a loop' ,detected by jslint can be ignored.
+        $(".crysyan-widget-class", document).each(function() {
+            var ele = $(this);
+            //  id is equal to 'CrysyanWidgetType'
+            var widgetSelected = ele.attr("id").replace(/\s+/g, "");
+            var clickFunc = function(e) {
+                if (widgetSelected !== "CrysyanUndoWidget" && widgetSelected !== "CrysyanIndoGoWidget" && widgetSelected !== "CrysyanClearWidget") {
+                    $(".widget-selected-shape", document).each(function() {
+                        $(this).removeClass("widget-selected-shape");
+                    });
+                    ele.addClass("widget-selected-shape");
+                    view.widgetSelected = widgetSelected;
+                }
+                //console.log(view.widgetSelected);
+                // call the click event if is exist
+                if (view.widgetEventMap.hasOwnProperty(widgetSelected)) {
+                    view.widgetEventMap[widgetSelected].iconClick(ele, e);
+                }
+            };
+            ele.click(clickFunc);
+        });
+    };
+    //
+    // called after the 'handleWidget'
+    var handleCanvas = function(view) {
+        view.crysyanCanvas.mousedown(function(e, loc) {
+            // console.log("mousedown");
+            if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
+                var widgetInstance = view.widgetEventMap[view.widgetSelected];
+                widgetInstance.isDown = true;
+                widgetInstance.prePiont.e = e;
+                widgetInstance.prePiont.loc = loc;
+                widgetInstance.mouseDown(e, loc);
+            }
+        });
+        view.crysyanCanvas.mousemove(function(e, loc) {
+            if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
+                view.widgetEventMap[view.widgetSelected].mouseMove(e, loc);
+            }
+        });
+        view.crysyanCanvas.mouseup(function(e, loc) {
+            // console.log("mouseup");
+            if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
+                var widgetInstance = view.widgetEventMap[view.widgetSelected];
+                widgetInstance.isDown = false;
+                widgetInstance.mouseUp(e, loc);
+            }
+        });
+    };
+
+    CrysyanView.prototype = {
+        init: function() {
+            var view = this;
+            handleWidget(view);
+            handleCanvas(view);
+            if (view.submitElement !== null) {
+                $util.addEvent(view.submitElement, "click", function(e) {
+                    view.ops.submit.callback(view.crysyanCanvas, e);
+                });
+            }
+            return this;
+        },
+        // reset callback of submit action
+        setSubmitCallback: function(callback) {
+            if (typeof callback === "function")
+                this.ops.submit.callback = callback;
+        },
+    };
+    CrysyanView.prototype.constructor = CrysyanView;
+    window.CrysyanView = CrysyanView;
+
+})(CrysyanDefaultConfig, CrysyanWidgetConfig, CrysyanUtil);
