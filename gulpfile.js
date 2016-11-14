@@ -31,7 +31,7 @@ var widgetsLoad = [];
         widgetPath+"eraser.js", 
         widgetPath+"image.js", 
         widgetPath+"undo.js", 
-        widgetPath+"indo.js", 
+        widgetPath+"into-go.js",
         widgetPath+"clear.js"];
 })();
 
