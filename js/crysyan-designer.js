@@ -1,4 +1,14 @@
 (function() {
+    // jquery
+    if (!window.$) {
+        var jQuery = window.parent.$ || window.jQuery;
+        if (!jQuery) {
+            throw new Error("Crysyan requires 'jQuery'");
+        } else {
+            window.$ = jQuery;
+        }
+    }
+
     //
     function getRandomString() {
         if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
@@ -64,9 +74,9 @@
     $.fn.CrysyanDesigner = function(config, callback) {
         var designer = this;
         designer.each(function() {
-            var a = new CrysyanDesigner(config, callback).appendTo(this);
+            new CrysyanDesigner(config, callback).appendTo(this);
         });
     };
-
+    // export 
     window.CrysyanDesigner = CrysyanDesigner;
 })();

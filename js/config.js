@@ -83,4 +83,5 @@
             widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
         }
     };
-})();
+    
+})(window);

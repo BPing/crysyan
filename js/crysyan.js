@@ -1,8 +1,9 @@
 /**
- *  @module
+ *  @module Crysyan-Core
  */
 (function($load) {
     'use strict';
+    if (typeof $load==="undefined") $load=true;
     // jquery
     if (!window.$) {
         var jQuery = window.parent.$ || window.jQuery;
@@ -89,7 +90,7 @@
         if ($load) {
             requireSeries(widgetsLoad, callback);
         } else {
-            // TODO:do something
+            callback();
         }
     };
     //
@@ -111,7 +112,7 @@
             baseLoadPath + "view.js",
         ], init);
     } else {
-        // TODO:do something
+        init();
     }
     var Crysyan = {
         getView: function(name) {
@@ -120,4 +121,4 @@
         }
     };
     window.Crysyan = Crysyan;
-})(true);
+})(CrysyanFlag);
