@@ -123,6 +123,11 @@
             //     y: y - bbox.top * (canvas.height / bbox.height)
             // };
         },
+        /**
+         *
+         * @param {String|File|Image} obj
+         * @param mode
+         */
         drawBackgroupWithImage: function(obj, mode) {
             if (typeof mode === "undefined") {
                 //  image scaling mode
@@ -132,6 +137,8 @@
             }
             var canvas = this;
             var image = new Image();
+            // CORS settings attributes
+            image.crossOrigin = 'Anonymous';
             image.onload = function() {
                 canvas.backgroudImage.image = image;
                 canvas.backgroudImage.width = canvas.playCanvas.width;
@@ -155,16 +162,14 @@
             // image
             if (obj instanceof Image) {
                 image.src = obj.src;
-                return;
             }
             // file
-            if (obj instanceof File) {
+            if (obj instanceof File || obj instanceof Blob) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     image.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
-                return;
             }
             // dataUrl
             if (typeof obj === "string") {
