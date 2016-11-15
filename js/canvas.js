@@ -125,7 +125,7 @@
         },
         /**
          *
-         * @param {String|File|Image} obj
+         * @param {String|File|Image|Blob} obj
          * @param mode
          */
         drawBackGroupWithImage: function(obj, mode) {
@@ -159,8 +159,8 @@
                 }
                 canvas.clearCanvas();
             };
-            // image
-            if (obj instanceof Image) {
+            // image  the image object maybe come from parent's window.
+            if (obj instanceof Image ||(parent&&parent.window&&obj instanceof parent.window.Image)||typeof obj.src!=="undefined") {
                 image.src = obj.src;
                 return;
             }
