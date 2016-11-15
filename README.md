@@ -104,7 +104,8 @@ config{
 1、First of all,you need install node.js and gulp and gulp's add-ons which used in gulpfile.js.
 
 2、You can choose which widgets you need to include,in other word, widgets that you can provide to users.
-Look file `gulpfile.js` as follows:
+
+Look `gulpfile.js` as follows:
 
 ```javascript
 widgetPath="js/widget/";
@@ -122,15 +123,18 @@ widgetPath="js/widget/";
 
 3、build.
 ```cmd
-    gulp build
+>gulp build
 ```
 After build successfully.
 You can find a 'crysyan' folder,the JS files under this folder have been compressed, which can be used in your project, under the 'dist' folder
-Just like that:
+
+Include in your html file Just like that:
 ```html
-<!-- include the crysyan-designer.js -->
+<!-- include the crysyan-designer-min.js.js -->
+<!-- projectPath is the root of 'crysyan' folder -->
 <script src="projectPath/crysyan-designer-min.js"></script>
 ```
+`projectPath` is the root directory where the 'crysyan' project  is located.
 
 # <a name="API"/>API Reference
 *  **CrysyanDesigner**
