@@ -96,7 +96,7 @@ gulp.task('html-replace-move', function () {
 
 gulp.task('demo-replace-move', function () {
     return gulp.src(["index.html"])
-        .pipe(replace('src="../js/crysyan.js"', 'src="crysyan-core-min.js"'))
+        .pipe(replace('src="js/crysyan-designer.js"', 'src="crysyan-designer-min.js"'))
         .pipe(plumber())
         .pipe(rename({prefix: 'demo-'}))
         .pipe(gulp.dest(distPath));
@@ -117,7 +117,7 @@ gulp.task('building', ['clean-all'], function (cb) {
 });
 
 gulp.task('after-building-clean', ['building'], function () {
-    return gulp.src([distPath+'js',distPath+"dist/js/*"])
+    return gulp.src([distPath+'js'])
         .pipe(clean())
         .pipe(plumber());
 });
