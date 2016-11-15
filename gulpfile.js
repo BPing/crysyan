@@ -94,6 +94,14 @@ gulp.task('html-replace-move', function () {
         .pipe(gulp.dest(distPath + "html/"));
 });
 
+gulp.task('demo-replace-move', function () {
+    return gulp.src(["index.html"])
+        .pipe(replace('src="js/crysyan-designer.js"', 'src="crysyan-designer-min.js"'))
+        .pipe(plumber())
+        .pipe(rename({prefix: 'demo-'}))
+        .pipe(gulp.dest(distPath));
+});
+
 gulp.task('guidance-move', function () {
     return gulp.src(["guidance.md"])
         .pipe(gulp.dest(distPath));
@@ -105,11 +113,11 @@ gulp.task('building', ['clean-all'], function (cb) {
         ["designer-minify",
             "core-widgets-concat-minify",
             "imagemin",
-            "html-replace-move","guidance-move"], cb);
+            "html-replace-move","guidance-move","demo-replace-move"], cb);
 });
 
 gulp.task('after-building-clean', ['building'], function () {
-    return gulp.src(['dist/js'])
+    return gulp.src([distPath+'js'])
         .pipe(clean())
         .pipe(plumber());
 });

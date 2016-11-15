@@ -121,4 +121,4 @@
         }
     };
     window.Crysyan = Crysyan;
-})(CrysyanFlag);
+})(typeof CrysyanFlag==="undefined"? true:CrysyanFlag);

@@ -62,7 +62,8 @@ $(".crysyan-designer").CrysyanDesigner({
 
 
 # <a name="Compatibility"/>Compatibility
-* turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
+* Turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
+* CORS enabled image  `Chrome13+,Firefox (Gecko)8+  IE(No support)`
 
 # <a name="Version"/>Version
 * 0.0.9
