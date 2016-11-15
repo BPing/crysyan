@@ -164,8 +164,10 @@
                 image.src = obj.src;
                 return;
             }
-            // file
-            if (obj instanceof File || obj instanceof Blob) {
+            // file the File|Blob object maybe come from parent's window.
+            if (obj instanceof File
+                || obj instanceof Blob
+                ||(parent&&parent.window&&(obj instanceof parent.window.File||obj instanceof parent.window.Blob))) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     image.src = event.target.result;
