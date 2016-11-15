@@ -183,8 +183,9 @@ var file=new File()
 designer.drawBackgroupWithImage(file);
 ```
 
-draw `image-path` ,
- Usually, you need to add "../../" in front of the relative directory to roll back to the root directory where the 'crysyan' project  is located
+draw `image-path`：
+
+Usually, you need to add "../../" in front of the relative directory to roll back to the root directory where the 'crysyan' project  is located
 ```javascript
 designer.drawBackgroupWithImage("../../img/a.png");
 ```
