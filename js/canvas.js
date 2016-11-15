@@ -151,7 +151,7 @@
                         // Beyond the canvas's width
                         //zoom ratio
                         canvas.backgroudImage.height = image.height * ivwr;
-                    } else if (image.height >= canvas.playCanvas.heigh && (ivhr > ivwr)) {
+                    } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
                         //zoom ratio
                         canvas.backgroudImage.width = image.width * ivhr;
@@ -176,7 +176,9 @@
             // dataUrl
             if (typeof obj === "string") {
                 image.src = obj;
+                return;
             }
+            console.error("drawBackGroupWithImage:Obj is invalid parameter");
         },
         /**
          *  see context drawImage()
