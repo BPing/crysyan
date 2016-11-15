@@ -107,7 +107,6 @@ gulp.task('guidance-move', function () {
         .pipe(gulp.dest(distPath));
 });
 
-
 gulp.task('building', ['clean-all'], function (cb) {
     runSequence(
         ["designer-minify",

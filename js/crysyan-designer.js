@@ -27,8 +27,8 @@
      *
      * @param {object}   config
      * @param {Function} callback
-     *                                   called after iframe has been loaded.
-     *                                   'CrysyanDesigner' instance  as a parameter to pass to it.
+     *                      called after iframe has been loaded.
+     *                      and a 'CrysyanDesigner' instance as a parameter to pass to it.
      */
     function CrysyanDesigner(config, callback) {
         var designer = this;
@@ -55,11 +55,15 @@
             return window[designer.iframe.uid].Crysyan.getView();
         };
         /**
-         * @param  {[File|Image|DataUrl]} img
+         *  drawBackgroupWithImage
+         *
+         *       Usually, you need to add "../../" in front of the relative directory
+         *       to roll back to the root directory where the 'crysyan' project  is located.
+         * @param  {[File|Image|String} image
          */
-        designer.drawBackgroupWithImage = function(img) {
+        designer.drawBackgroupWithImage = function(image) {
             var view = window[designer.iframe.uid].Crysyan.getView();
-            view.crysyanCanvas.drawBackgroupWithImage(img, 1);
+            view.crysyanCanvas.drawBackGroupWithImage(image, 1);
         };
 
         designer.toDataUrl = function(type) {

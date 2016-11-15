@@ -125,7 +125,7 @@
         },
         /**
          *
-         * @param {String|File|Image} obj
+         * @param {String|File|Image|Blob} obj
          * @param mode
          */
         drawBackGroupWithImage: function(obj, mode) {
@@ -151,7 +151,7 @@
                         // Beyond the canvas's width
                         //zoom ratio
                         canvas.backgroudImage.height = image.height * ivwr;
-                    } else if (image.height >= canvas.playCanvas.heigh && (ivhr > ivwr)) {
+                    } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
                         //zoom ratio
                         canvas.backgroudImage.width = image.width * ivhr;
@@ -159,8 +159,8 @@
                 }
                 canvas.clearCanvas();
             };
-            // image
-            if (obj instanceof Image) {
+            // image  the image object maybe come from parent's window.
+            if (obj instanceof Image ||(parent&&parent.window&&obj instanceof parent.window.Image)||typeof obj.src!=="undefined") {
                 image.src = obj.src;
                 return;
             }
@@ -176,7 +176,9 @@
             // dataUrl
             if (typeof obj === "string") {
                 image.src = obj;
+                return;
             }
+            console.error("drawBackGroupWithImage:Obj is invalid parameter");
         },
         /**
          *  see context drawImage()
