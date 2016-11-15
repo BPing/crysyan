@@ -62,8 +62,11 @@ $(".crysyan-designer").CrysyanDesigner({
 
 
 # <a name="Compatibility"/>Compatibility
-* Turn the canvas into a picture and save  `IE9+, Chrome4+,Firefox3.6(1.9.2)`
-* CORS enabled image  `Chrome13+,Firefox (Gecko)8+  IE(No support)`
+
+Feature | Chrome | Firefox |IE
+--- | :----:| :----:| ---
+Turn the canvas into a picture and save  | 4+	  | 3.6(1.9.2) | 9+
+CORS enabled image   | 13+	  | (Gecko)8+ | No support
 
 # <a name="Version"/>Version
 * 0.0.9
@@ -160,7 +163,8 @@ designer.getView();
 ### `drawBackgroupWithImage`
   Draw a image on a canvas as background.
 
-draw `DataUrl` :
+1、draw `DataUrl` :
+`#4`(`draw image-path`) recommended to replace.
 ```javascript
 var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr
 GAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn
@@ -169,21 +173,21 @@ EgqPcT12VgAAAABJRU5ErkJggg=="
 designer.drawBackgroupWithImage(dataurl);
 ```
 
-draw `Image` :
+2、draw `Image` :
 ```javascript
 var image=new Image()
 image.src="imagePath";
 designer.drawBackgroupWithImage(image);
 ```
 
-draw `File` :
+3、draw `File` :
 ```javascript
 var file=new File()
 // do something
 designer.drawBackgroupWithImage(file);
 ```
 
-draw `image-path`：
+4、draw `image-path`：
 
 Usually, you need to add "../../" in front of the relative directory to roll back to the root directory where the 'crysyan' project  is located
 ```javascript
