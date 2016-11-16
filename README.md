@@ -1,7 +1,7 @@
 # crysyan
 a web drawing board with canvas
 
-> home: [https://bping.github.io/crysyan/](https://bping.github.io/crysyan/)
+> home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/)
 
 # <a name="index"/>Index
 * [Compatibility](#Compatibility)
@@ -235,6 +235,7 @@ $("#download-png").click(function () {
 
 ### `getCanvasRecorder`
 Get `RecordRTC` of your drawings,which used to record canvas to video(video/webm).Does not supported in IE browser.
+First，you should set `isRecord=true` if you want to record. 
 
 API of RecordRTC,see:[RecordRTC API Reference](http://recordrtc.org/RecordRTC.html)
 
@@ -251,6 +252,7 @@ API of RecordRTC,see:[RecordRTC API Reference](http://recordrtc.org/RecordRTC.ht
 var recorder = designer.getCanvasRecorder();
 $("#start-record").click(function () {
        console.log("recording");
+       recorder.initRecorder();
        recorder.startRecording();
 });
 $("#stop-record").click(function () {

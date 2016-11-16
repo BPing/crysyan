@@ -59,11 +59,12 @@ designer.destroy();
 designer.getView();
 ```
 
-
 ### `drawBackgroupWithImage`
   Draw a image on a canvas as background.
 
-draw `DataUrl` :
+1、draw `DataUrl` :
+
+recommended to replace by`#4`(`draw image-path`) 
 ```javascript
 var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr
 GAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn
@@ -72,18 +73,25 @@ EgqPcT12VgAAAABJRU5ErkJggg=="
 designer.drawBackgroupWithImage(dataurl);
 ```
 
-draw `Image` :
+2、draw `Image` :
 ```javascript
 var image=new Image()
 image.src="imagePath";
 designer.drawBackgroupWithImage(image);
 ```
 
-draw `File` :
+3、draw `File` :
 ```javascript
 var file=new File()
 // do something
 designer.drawBackgroupWithImage(file);
+```
+
+4、draw `image-path`：
+
+Usually, you need to add "../../" in front of the relative directory to roll back to the root directory where the 'crysyan' project  is located
+```javascript
+designer.drawBackgroupWithImage("../../img/a.png");
 ```
 
 ### `toDataUrl`
@@ -106,6 +114,41 @@ you can download the png:
 ```javascript
 $("#download-png").click(function () {
     document.getElementById("download-png").href=designer.toDataURL('image/png');
+});
+```
+
+### `getCanvasRecorder`
+Get `RecordRTC` of your drawings,which used to record canvas to video(video/webm).Does not supported in IE browser.
+
+API of RecordRTC,see:[RecordRTC API Reference](http://recordrtc.org/RecordRTC.html)
+
+`example:`
+
+`html`:
+```html
+<button type="button" id="start-record">start-record</button>
+<button  id="stop-record">stop-record</button>
+<div id="videoTag" style="width:1000px; height:500px;">ddd</div>
+```
+`javascript`
+```javascript
+var recorder = designer.getCanvasRecorder();
+$("#start-record").click(function () {
+       console.log("recording");
+       recorder.initRecorder();
+       recorder.startRecording();
+});
+$("#stop-record").click(function () {
+    console.log("stop");
+    recorder.stopRecording(function() {
+        var blob = recorder.getBlob();
+        var video = document.createElement('video');
+        video.src = URL.createObjectURL(blob);
+        video.setAttribute('style', 'height: 100%; position: absolute; top:0; left:0;z-index:9999;width:100%;');
+        document.body.appendChild(video);
+        video.controls = true;
+        video.play();
+    });
 });
 ```
 
@@ -134,6 +177,7 @@ The configuration of the entire project.
 var designer=CrysyanDesigner({
     ifrName:"",
     projectPath:"",
+    isRecord:false,
     canvas: {
         // px
         width: 900,
@@ -163,6 +207,8 @@ You do not need to set this value if it is not necessary.
 Normally, the default value is OK
 ### `projectPath`
 Path of  crysyan project.
+### `isRecord`
+Whether to open the recording feature.Default:`false`.
 ### `canvas`
 * `width`  
 
