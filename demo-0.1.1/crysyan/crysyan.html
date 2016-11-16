@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            background: #eeeeee;
+        }
+
+        canvas {
+            background: #ffffff;
+            border: dashed;
+            cursor: pointer;
+            -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #crysyan-toolbar {
+            background: #0980d8;
+            border: dashed;
+            text-align: center;
+            ;
+            /*height: 100px;*/
+        }
+
+        .ul-widget-list {
+            padding-left: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .ul-widget-list li {
+            list-style-type: none;
+            display: inline;
+            border-right: 1px solid #000;
+            padding: 0px;
+        }
+
+        .ul-widget-list li img {
+            /*width: 50px;
+            height: 50px;*/
+            vertical-align: middle;
+        }
+
+        .ul-widget-list li img:hover {
+            background: rgb(255, 247, 103)!important;
+        }
+
+        .widget-selected-shape {
+            box-shadow: inset 0px 0px 4px 1px rgb(193, 164, 19)!important;
+            background: rgb(255, 247, 103)!important;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="crysyan-canvas" >Canvas not supported</canvas>
+    <div id="crysyan-toolbar" >
+    </div>
+</body>
+<script src="crysyan-core-min.js"></script>
+</html>
