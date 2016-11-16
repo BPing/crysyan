@@ -75,7 +75,13 @@ Record Canvas(video/webM)   | 30+	  | 30+ | No support
 # <a name="Version"/>Version
 * 0.0.9
 
-> First
+> 1、simple UI version.
+> 2、draw image to canvas's backgroup and covert canvas to image（png）.
+> 3、widgets：simple pencil、eraser、iamge、clear、revoke and anti-revoke.
+
+* 0.1.1
+
+> record canvas.
 
 # <a name="Build-in"/>Build-in
 ## widgets

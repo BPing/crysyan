@@ -10,7 +10,7 @@
     <div style="width:1000px; height:600px;" class="crysyan-designer"></div>
     <button type="button" id="start-record">start-record</button>
     <button  id="stop-record">stop-record</button>
-    <div id="videoTag" style="width:1000px; height:500px;">ddd</div>
+    <div id="videoTag" style="width:1000px; height:500px;"></div>
 </body>
 
 </html>
@@ -33,14 +33,17 @@
         image.src="http://dream.com:9977/img/pencil.png";
         console.log(image instanceof Image);
         var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
-        designer.drawBackgroupWithImage("img/pencil.png");
+        designer.drawBackgroupWithImage("../img/pencil.png");
 
-        var video=document.getElementsByTagName("videoTag");
+        var videoTag=document.getElementById("videoTag");
+        var videoEle;
 
         var recorder = designer.getCanvasRecorder({mimeType:"video/wav"});
 
         $("#start-record").click(function () {
                console.log("recording");
+               if (videoEle instanceof HTMLVideoElement) videoTag.removeChild(videoEle);
+               recorder.initRecorder();
                recorder.startRecording();
         });
 
@@ -48,13 +51,12 @@
             console.log("stop");
             recorder.stopRecording(function() {
                 var blob = recorder.getBlob();
-                var video = document.createElement('video');
-                video.src = URL.createObjectURL(blob);
-                video.setAttribute('style', 'height: 100%; position: absolute; top:0; left:0;z-index:9999;width:100%;');
-                document.body.appendChild(video);
-                video.controls = true;
-                video.onload
-                video.play();
+                videoEle = document.createElement('video');
+                videoEle.src = URL.createObjectURL(blob);
+               // videoEle.setAttribute('style', 'height: 100%; position: absolute; top:0; left:0;z-index:9999;width:100%;');
+                videoTag.appendChild(videoEle);
+                videoEle.controls = true;
+                videoEle.play();
             });
         });
     });

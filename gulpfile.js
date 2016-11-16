@@ -7,11 +7,13 @@ var concat = require('gulp-concat');
 var header = require('gulp-header');
 var imagemin = require('gulp-imagemin');
 var zip = require('gulp-zip');
+var tar = require('gulp-tar');
+var gzip = require('gulp-gzip');
 // var debug = require('gulp-debug');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
 var distPath = "dist/crysyan/";
-var version = "0.1";
+var version = "0.1.1";
 var widgetsLoad = [];
 
 (function () {
@@ -78,6 +80,8 @@ gulp.task('core-header', function () {
         .pipe(plumber())
         .pipe(replace('../js/ext/RecordRTC.js', 'RecordRTC.js'))
         .pipe(plumber())
+        .pipe(replace(' var widgetIconPath = "../img/";', ' var widgetIconPath = "img/";'))
+        .pipe(plumber())
         .pipe(gulp.dest(distPath + "js/"));
 });
 
@@ -109,6 +113,8 @@ gulp.task('demo-replace-move', function () {
     return gulp.src(["index.html"])
         .pipe(replace('src="js/crysyan-designer.js"', 'src="crysyan-designer-min.js"'))
         .pipe(plumber())
+        .pipe(replace('../img/pencil.png"', 'img/pencil.png"'))
+        .pipe(plumber())
         .pipe(rename({prefix: 'demo-'}))
         .pipe(gulp.dest(distPath));
 });
@@ -137,11 +143,26 @@ gulp.task('after-building-clean', ['building'], function () {
 
 gulp.task('build', ['building','after-building-clean']);
 
-gulp.task('publish', ['build'], function () {
+gulp.task('zip', function () {
     return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
         .pipe(plumber())
         .pipe(zip('crysyan-' + version + '.zip'))
         .pipe(gulp.dest('release'));
+});
+
+gulp.task('tar.gz', function () {
+    return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
+        .pipe(plumber())
+        .pipe(tar('crysyan-' + version +'.tar'))
+        .pipe(gzip())
+        .pipe(gulp.dest('release'));
+
+});
+
+
+
+gulp.task('publish', ['build'], function (cb) {
+    runSequence(["zip","tar.gz"], cb);
 });
 
 gulp.task('default', ["build"]);

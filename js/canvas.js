@@ -307,7 +307,7 @@
          * get RecordRTC recorder to record the canvas
          *
          * @param config
-         * @returns {RecordRTC}
+         * @returns {RecordRTC|null}
          * @see {@link https://github.com/muaz-khan/RecordRTC}
          */
         getCanvasRecorder:function (config) {
@@ -315,9 +315,9 @@
             config=config||{};
             config.type="canvas";
             return new RecordRTC(this.playCanvas,config);
-            }else{
-                console.error("can't record canvas")
             }
+            console.error("can't record canvas")
+            return null;
         },
         
         //  add  event  to canvas

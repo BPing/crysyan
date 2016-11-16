@@ -84,7 +84,7 @@
          *  get  Recorder
          *  
          * @param config
-         * @returns {*|RecordRTC}
+         * @returns {null|RecordRTC}  if record not  supported,return null.
          */
         designer.getCanvasRecorder = function(config) {
             var view = window[designer.iframe.uid].Crysyan.getView();
