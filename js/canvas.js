@@ -36,6 +36,7 @@
             height: 0
         };
 
+        this.backgroudColor=ops.bgColor||"#ffffff";
         // An array that store the history imgdata which capture from canvas
         // for revoking and forward revoking.
         // The length should shorter than 'ops.historyListLen'.
@@ -49,6 +50,8 @@
         this.forwardRevokeImgDatas = [];
         //  the most length of history 'revokeImgDatas' list
         this.historyListLen = ops.historyListLen;
+
+        this.clearCanvas();
     }
     CrysyanCanvas.prototype = {
         // Save e drawing surface
@@ -99,12 +102,15 @@
         },
         //
         clearCanvas: function() {
-            this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
+            this.playContext.save();
+            this.playContext.fillStyle=this.backgroudColor;
+            this.playContext.fillRect(0,0,this.playCanvas.width, this.playCanvas.height);
+           // this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
             if (this.backgroudImage.image !== null) {
                 var image = this.backgroudImage.image;
                 this.drawImage(image, (this.playCanvas.width - image.width) / 2, (this.playCanvas.height - image.height) / 2, image.width, image.height);
-                return;
             }
+            this.playContext.restore();
         },
         /**
          *  The event coordinate point is transformed
@@ -164,8 +170,10 @@
                 image.src = obj.src;
                 return;
             }
-            // file
-            if (obj instanceof File || obj instanceof Blob) {
+            // file the File|Blob object maybe come from parent's window.
+            if (obj instanceof File
+                || obj instanceof Blob
+                ||(parent&&parent.window&&(obj instanceof parent.window.File||obj instanceof parent.window.Blob))) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     image.src = event.target.result;
@@ -295,6 +303,23 @@
             window.location.href = image;
         },
 
+        /**
+         * get RecordRTC recorder to record the canvas
+         *
+         * @param config
+         * @returns {RecordRTC}
+         * @see {@link https://github.com/muaz-khan/RecordRTC}
+         */
+        getCanvasRecorder:function (config) {
+            if(RecordRTC){
+            config=config||{};
+            config.type="canvas";
+            return new RecordRTC(this.playCanvas,config);
+            }else{
+                console.error("can't record canvas")
+            }
+        },
+        
         //  add  event  to canvas
         addEvent: function(eventType, callback) {
             $util.addEvent(this.playCanvas, eventType, callback);

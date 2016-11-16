@@ -62,9 +62,8 @@
 
     //
     window.CrysyanDefaultConfig = {
-       common:{
-                 projectPath:""
-       },
+        projectPath:"",
+        isRecord:false,
         submit: {
             Id: "crysyan-submit",
             // function called after submit
@@ -83,5 +82,5 @@
             widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
         }
     };
-    
+
 })(window);

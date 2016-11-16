@@ -10,14 +10,13 @@
      * @param {[object]} ops config
      */
     function CrysyanView(ops) {
-        if (typeof ops !== 'object') {
-            ops = {};
-        }
+        ops =ops|| {};
         this.ops = {};
         this.ops.common = $.extend($defaultConfig.submit, ops.common || {});
         this.ops.submit = $.extend($defaultConfig.submit, ops.submit || {});
         this.ops.canvas = $.extend($defaultConfig.canvas, ops.canvas || {});
         this.ops.toolbar = $.extend($defaultConfig.toolbar, ops.toolbar || {});
+        this.ops = $.extend(ops,  this.ops);
 
         this.crysyanCanvas = new CrysyanCanvas(this.ops.canvas);
         this.toolbarElement = document.getElementById(this.ops.toolbar.Id);
