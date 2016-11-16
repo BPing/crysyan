@@ -235,6 +235,7 @@ $("#download-png").click(function () {
 
 ### `getCanvasRecorder`
 Get `RecordRTC` of your drawings,which used to record canvas to video(video/webm).Does not supported in IE browser.
+First，you should set `isRecord=true` if you want to record. 
 
 API of RecordRTC,see:[RecordRTC API Reference](http://recordrtc.org/RecordRTC.html)
 
