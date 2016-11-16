@@ -251,6 +251,7 @@ API of RecordRTC,see:[RecordRTC API Reference](http://recordrtc.org/RecordRTC.ht
 var recorder = designer.getCanvasRecorder();
 $("#start-record").click(function () {
        console.log("recording");
+       recorder.initRecorder();
        recorder.startRecording();
 });
 $("#stop-record").click(function () {
