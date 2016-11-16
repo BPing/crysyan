@@ -3,68 +3,81 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
     <title>demo-0.0.9</title>
     <script type="application/javascript" src="../lib/jquery-3.1.1.min.js"></script>
-
 </head>
 
 <body>
-
 <header>
-    <div class="container">
-        <h1>version-0.0.9</h1>
-        <h2>a demo base on v0.0.9</h2>
-        <section id="downloads">
-            <a href="../index.html" class="btn">Home</a>
-            <a href="https://github.com//BPing/crysyan/archive/v0.0.9.zip" class="btn">Download as .zip</a>
-            <a href="https://github.com/BPing/crysyan/tree/v0.0.9" class="btn btn-github"><span class="icon"></span>View on
-                GitHub</a>
-        </section>
+    <div class="inner">
+        <h1>Crysyan</h1>
+        <h2>a web drawing board with canvas</h2>
+        <a href="https://github.com/BPing/crysyan" class="button"><small>View project on</small> GitHub</a>
     </div>
 </header>
 
+<div id="content-wrapper">
+    <div class="inner clearfix">
+        <section id="main-content">
 
-<div class="container">
-    <section id="main_content">
+            <h1>
+                <a id="crysyan" class="anchor" href="#crysyan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>crysyan</h1>
 
-        <a  id="download-png" download="my-file-name.png" class="btn btn-github">download png</a>
+            <p>a web drawing board with canvas</p>
 
-        <div style="width:600px; height:600px;" class="crysyan-designer"></div>
-        <h1>
-            <a id="crysyan" class="anchor" href="#crysyan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>crysyan</h1>
+            <blockquote>
+                <p>home: <a href="https://bping.github.io/crysyan/">https://bping.github.io/crysyan/</a></p>
+            </blockquote>
 
-        <p>a web drawing board with canvas </p>
+            <a  id="download-png" download="my-file-name.png" class="btn btn-github">download png</a>
 
-        <blockquote>
-            <p>home: <a href="https://bping.github.io/crysyan/">https://bping.github.io/crysyan/</a></p>
-        </blockquote>
-        <h1>
-            <a id="Version" class="anchor" href="#Version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version</h1>
+            <div style="width:600px; height:600px;" class="crysyan-designer"></div>
 
-        <ul>
-            <li><a href="demo-0.0.9/index.html">version-0.0.9</a>
-            </li>
-        </ul>
-        <h1>
-            <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick start</h1>
 
-        <ul>
-            <li>your.html</li>
-        </ul>
 
-        <div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!--&lt;script src="jquery-3.1.1.min.js"&gt;&lt;/script&gt;--&gt;</span>
+            <h1>
+                <a id="index" class="anchor" href="#index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="index"></a>Index</h1>
+
+            <ul>
+                <li><a href="#Compatibility">Compatibility</a></li>
+                <li><a href="#Quick_start">Quick start</a></li>
+                <li><a href="#Directory">Directory</a></li>
+                <li><a href="#Version">Version</a></li>
+                <li><a href="#Version">Build-in</a></li>
+                <li><a href="#API">API Reference</a></li>
+                <li><a href="#Dependence">Dependence</a></li>
+                <li><a href="#Reference">Reference</a></li>
+                <li><a href="#**">**</a></li>
+            </ul>
+
+            <h1>
+                <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Quick_start"></a>Quick start</h1>
+
+            <ul>
+                <li>your.html</li>
+            </ul>
+
+            <div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!--&lt;script src="jquery-3.1.1.min.js"&gt;&lt;/script&gt;--&gt;</span>
 &lt;<span class="pl-ent">div</span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>width:1000px; height:1000px;<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>crysyan-designer<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
 <span class="pl-c">&lt;!-- include the crysyan-designer.js --&gt;</span>
+<span class="pl-c">&lt;!--&lt;script src="projectPath/crysyan-designer-min.js"&gt;&lt;/script&gt;--&gt;</span>
 &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>projectPath/js/crysyan-designer.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
-        <ul>
-            <li>your.js</li>
-        </ul>
+            <ul>
+                <li>your.js</li>
+            </ul>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-c">// jquery</span>
+            <div class="highlight highlight-source-js"><pre><span class="pl-c">// jquery</span>
 <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.crysyan-designer<span class="pl-pds">"</span></span>).<span class="pl-en">CrysyanDesigner</span>({
     canvas<span class="pl-k">:</span> {
         <span class="pl-c">// px</span>
@@ -89,15 +102,45 @@
 <span class="pl-c">// });</span>
 <span class="pl-c">// designer.appendTo(document.getElementsByClassName("crysyan-designer"));</span></pre></div>
 
-        <h1>
-            <a id="build-in" class="anchor" href="#build-in" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build-in</h1>
+            <h1>
+                <a id="directory" class="anchor" href="#directory" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Directory"></a>Directory</h1>
 
-        <h2>
-            <a id="widgets" class="anchor" href="#widgets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>widgets</h2>
+<pre><code> /            --&gt;
+  css/             --&gt; css
+  html/           --&gt; view
+  img/            --&gt; used to place the tool icon file
+  js/               --&gt;  javascript file
+</code></pre>
 
-        <p>You can use config for below widgets.</p>
+            <h1>
+                <a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Compatibility"></a>Compatibility</h1>
 
-        <pre><code>config{
+            <ul>
+                <li>turn the canvas into a picture and save  <code>IE9+, Chrome4+,Firefox3.6(1.9.2)</code>
+                </li>
+            </ul>
+
+            <h1>
+                <a id="version" class="anchor" href="#version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Version"></a>Version</h1>
+
+            <ul>
+                <li>0.0.9</li>
+            </ul>
+
+            <blockquote>
+                <p>First</p>
+            </blockquote>
+
+            <h1>
+                <a id="build-in" class="anchor" href="#build-in" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Build-in"></a>Build-in</h1>
+
+            <h2>
+                <a id="widgets" class="anchor" href="#widgets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>widgets</h2>
+
+            <p>You can use config for below widgets.
+                Sets the widgets needed for a particular instance of a artboard.</p>
+
+<pre><code>config{
     toolbar: {
         widgets:
         ["CursorWidget",
@@ -111,199 +154,288 @@
     }
 </code></pre>
 
-        <ol>
-            <li>
-                <code>pencil</code> --- <code>PencilWidget</code>   to write/draw shapes </li>
-            <li>
-                <code>eraser</code> --- <code>EraserWidget</code>   to erase/clear specific portion of shapes </li>
-            <li>
-                <code>image</code> ---  <code>ImageWidget</code>    add external images</li>
-            <li>
-                <code>uodo</code> ---  <code>UndoWidget</code>      revoke history of canvas</li>
-            <li>
-                <code>indo-go</code> --- <code>IndoGoWidget</code>  forward revoke history of canvas</li>
-            <li>
-                <code>clear</code> --- <code>ClearWidget</code>     clear canvas</li>
-        </ol>
+            <ol>
+                <li>
+                    <code>pencil</code> --- <code>PencilWidget</code>   to write/draw shapes</li>
+                <li>
+                    <code>eraser</code> --- <code>EraserWidget</code>   to erase/clear specific portion of shapes</li>
+                <li>
+                    <code>image</code> ---  <code>ImageWidget</code>    add external images</li>
+                <li>
+                    <code>uodo</code> ---  <code>UndoWidget</code>      revoke history of canvas</li>
+                <li>
+                    <code>indo-go</code> --- <code>IndoGoWidget</code>  forward revoke history of canvas</li>
+                <li>
+                    <code>clear</code> --- <code>ClearWidget</code>     clear canvas</li>
+            </ol>
 
-        <h1>
-            <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Reference</h1>
+            <h2>
+                <a id="gulp" class="anchor" href="#gulp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>gulp</h2>
 
-        <ul>
-            <li> <strong>CrysyanDesigner</strong>
-            </li>
-        </ul>
+            <p>1、First of all,you need install node.js and gulp and gulp's add-ons which used in gulpfile.js.</p>
 
-        <h3>
-            <a id="appendto" class="anchor" href="#appendto" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>appendTo</code>
-        </h3>
+            <p>2、You can choose which widgets you need to include,in other word, widgets that you can provide to users.
+                Look file <code>gulpfile.js</code> as follows:</p>
 
-        <p>CrysyanDesigner is a widget; that widget should be appended to a DOM object.
-            This method allows you pass <code>&lt;body&gt;</code> or any other HTMLDOMElement.</p>
+            <div class="highlight highlight-source-js"><pre>widgetPath<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>js/widget/<span class="pl-pds">"</span></span>;
+    <span class="pl-c">// widgetsLoad = [widgetPath+"*.js"]; or </span>
+    widgetsLoad <span class="pl-k">=</span> [
+        <span class="pl-c">// widget's file name</span>
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>cursor.js<span class="pl-pds">"</span></span>,
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>pencil.js<span class="pl-pds">"</span></span>,
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>eraser.js<span class="pl-pds">"</span></span>,
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>image.js<span class="pl-pds">"</span></span>,
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>undo.js<span class="pl-pds">"</span></span>,
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>into-go.js<span class="pl-pds">"</span></span>,
+        widgetPath<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>clear.js<span class="pl-pds">"</span></span>];</pre></div>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">appendTo</span>(<span class="pl-c1">document</span>.<span class="pl-c1">body</span> <span class="pl-k">||</span> <span class="pl-c1">document</span>.<span class="pl-c1">documentElement</span>);</pre></div>
+            <p>3、build.</p>
 
-        <p>The correct name for <code>appendTo</code> is: <code>append-iframe to target HTML-DOM-element</code></p>
+            <div class="highlight highlight-source-batchfile"><pre>    gulp build</pre></div>
 
-        <h3>
-            <a id="destroy" class="anchor" href="#destroy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>destroy</code>
-        </h3>
+            <p>After build successfully.
+                You can find a 'crysyan' folder,the JS files under this folder have been compressed, which can be used in your project, under the 'dist' folder
+                Just like that:</p>
 
-        <p>If you want to remove the widget from your HTMLDOMElement.</p>
+            <div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- include the crysyan-designer.js --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>projectPath/crysyan-designer-min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">destroy</span>();</pre></div>
+            <h1>
+                <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="API"></a>API Reference</h1>
 
-        <h3>
-            <a id="getview" class="anchor" href="#getview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>getView</code>
-        </h3>
+            <ul>
+                <li> <strong>CrysyanDesigner</strong>
+                </li>
+            </ul>
 
-        <p>You can get a view <code>CrysyanView</code> instance from child <code>iframe</code>:</p>
+            <h3>
+                <a id="appendto" class="anchor" href="#appendto" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>appendTo</code>
+            </h3>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">getView</span>();</pre></div>
+            <p>CrysyanDesigner is a widget; that widget should be appended to a DOM object.
+                This method allows you pass <code>&lt;body&gt;</code> or any other HTMLDOMElement.</p>
 
-        <h3>
-            <a id="drawbackgroupwithimage" class="anchor" href="#drawbackgroupwithimage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>drawBackgroupWithImage</code>
-        </h3>
+            <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">appendTo</span>(<span class="pl-c1">document</span>.<span class="pl-c1">body</span> <span class="pl-k">||</span> <span class="pl-c1">document</span>.<span class="pl-c1">documentElement</span>);</pre></div>
 
-        <p>Draw a image on a canvas as background.</p>
+            <p>The correct name for <code>appendTo</code> is: <code>append-iframe to target HTML-DOM-element</code></p>
 
-        <p>draw <code>DataUrl</code> :</p>
+            <h3>
+                <a id="destroy" class="anchor" href="#destroy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>destroy</code>
+            </h3>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> dataurl <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-ii">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr</span></span>
+            <p>If you want to remove the widget from your HTMLDOMElement.</p>
+
+            <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">destroy</span>();</pre></div>
+
+            <h3>
+                <a id="getview" class="anchor" href="#getview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>getView</code>
+            </h3>
+
+            <p>You can get a view <code>CrysyanView</code> instance from child <code>iframe</code>:</p>
+
+            <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">getView</span>();</pre></div>
+
+            <h3>
+                <a id="drawbackgroupwithimage" class="anchor" href="#drawbackgroupwithimage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>drawBackgroupWithImage</code>
+            </h3>
+
+            <p>Draw a image on a canvas as background.</p>
+
+            <p>draw <code>DataUrl</code> :</p>
+
+            <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> dataurl <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-ii">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr</span></span>
 <span class="pl-s"><span class="pl-ii">GAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn</span></span>
 <span class="pl-s"><span class="pl-ii">7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAAr</span></span>
 <span class="pl-s">EgqPcT12VgAAAABJRU5ErkJggg==<span class="pl-pds">"</span></span>
 <span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(dataurl);</pre></div>
 
-        <p>draw <code>Image</code> :</p>
+            <p>draw <code>Image</code> :</p>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> image<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">Image</span>()
+            <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> image<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">Image</span>()
 <span class="pl-smi">image</span>.<span class="pl-smi">src</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>imagePath<span class="pl-pds">"</span></span>;
 <span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(image);</pre></div>
 
-        <p>draw <code>File</code> :</p>
+            <p>draw <code>File</code> :</p>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> file<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">File</span>()
+            <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> file<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">File</span>()
 <span class="pl-c">// do something</span>
 <span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(file);</pre></div>
 
-        <h3>
-            <a id="todataurl" class="anchor" href="#todataurl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>toDataUrl</code>
-        </h3>
+            <h3>
+                <a id="todataurl" class="anchor" href="#todataurl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>toDataUrl</code>
+            </h3>
 
-        <p>Get data-URL of your drawings! </p>
+            <p>Get data-URL of your drawings!</p>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-c1">window</span>.<span class="pl-c1">open</span>(<span class="pl-smi">designer</span>.<span class="pl-c1">toDataURL</span>(<span class="pl-s"><span class="pl-pds">'</span>image/png<span class="pl-pds">'</span></span>));</pre></div>
+            <div class="highlight highlight-source-js"><pre><span class="pl-c1">window</span>.<span class="pl-c1">open</span>(<span class="pl-smi">designer</span>.<span class="pl-c1">toDataURL</span>(<span class="pl-s"><span class="pl-pds">'</span>image/png<span class="pl-pds">'</span></span>));</pre></div>
 
-        <p>you can download the png:</p>
+            <p>you can download the png:</p>
 
-        <blockquote>
-            <p><strong>Note:</strong> focus on attribute  of <code>download</code> of  <code>&lt;a&gt;</code> tag </p>
-        </blockquote>
+            <blockquote>
+                <p><strong>Note:</strong> focus on attribute  of <code>download</code> of  <code>&lt;a&gt;</code> tag</p>
+            </blockquote>
 
-        <p><code>html</code>:</p>
+            <p><code>html</code>:</p>
 
-        <div class="highlight highlight-text-html-basic"><pre>  &lt;<span class="pl-ent">a</span>  <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>download-png<span class="pl-pds">"</span></span> <span class="pl-e">download</span>=<span class="pl-s"><span class="pl-pds">"</span>my-file-name.png<span class="pl-pds">"</span></span>&gt;download png&lt;/<span class="pl-ent">a</span>&gt;</pre></div>
+            <div class="highlight highlight-text-html-basic"><pre>  &lt;<span class="pl-ent">a</span>  <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>download-png<span class="pl-pds">"</span></span> <span class="pl-e">download</span>=<span class="pl-s"><span class="pl-pds">"</span>my-file-name.png<span class="pl-pds">"</span></span>&gt;download png&lt;/<span class="pl-ent">a</span>&gt;</pre></div>
 
-        <p><code>javascript</code></p>
+            <p><code>javascript</code></p>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#download-png<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
+            <div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#download-png<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
     <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>download-png<span class="pl-pds">"</span></span>).<span class="pl-c1">href</span><span class="pl-k">=</span><span class="pl-smi">designer</span>.<span class="pl-c1">toDataURL</span>(<span class="pl-s"><span class="pl-pds">'</span>image/png<span class="pl-pds">'</span></span>);
 });</pre></div>
 
-        <h3>
-            <a id="iframe" class="anchor" href="#iframe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>iframe</code>
-        </h3>
+            <h3>
+                <a id="iframe" class="anchor" href="#iframe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>iframe</code>
+            </h3>
 
-        <p>You can access designer iframe as following:</p>
+            <p>You can access designer iframe as following:</p>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-smi">iframe</span>.<span class="pl-c1">style</span>.<span class="pl-c1">border</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>5px solid red<span class="pl-pds">'</span></span>;
+            <div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-smi">iframe</span>.<span class="pl-c1">style</span>.<span class="pl-c1">border</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>5px solid red<span class="pl-pds">'</span></span>;
 
 <span class="pl-c1">window</span>.<span class="pl-c1">open</span>(<span class="pl-smi">designer</span>.<span class="pl-smi">iframe</span>.<span class="pl-smi">src</span>);</pre></div>
 
-        <p><code>designer.iframe</code> will be <code>null/undefined</code> until you call <code>appendTo</code>. So always use this code-block:</p>
+            <p><code>designer.iframe</code> will be <code>null/undefined</code> until you call <code>appendTo</code>. So always use this code-block:</p>
 
-        <div class="highlight highlight-source-js"><pre><span class="pl-k">if</span>(<span class="pl-k">!</span><span class="pl-smi">designer</span>.<span class="pl-smi">iframe</span>) {
+            <div class="highlight highlight-source-js"><pre><span class="pl-k">if</span>(<span class="pl-k">!</span><span class="pl-smi">designer</span>.<span class="pl-smi">iframe</span>) {
     <span class="pl-smi">designer</span>.<span class="pl-en">appendTo</span>(<span class="pl-c1">document</span>.<span class="pl-c1">body</span>);
 }
 <span class="pl-smi">designer</span>.<span class="pl-smi">iframe</span>.<span class="pl-c1">style</span>.<span class="pl-c1">border</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>5px solid red<span class="pl-pds">'</span></span>;</pre></div>
 
-        <ul>
-            <li> <strong>Config</strong>
-            </li>
-        </ul>
+            <ul>
+                <li> <strong>Config</strong>
+                </li>
+            </ul>
 
-        <h3>
-            <a id="ifrname" class="anchor" href="#ifrname" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>ifrName</code>
-        </h3>
+            <p>The configuration of the entire project.</p>
 
-        <p>Name of iframe</p>
+            <blockquote>
+                <p><strong>Note:</strong>The unit of length is: px.</p>
 
-        <h3>
-            <a id="projectpath" class="anchor" href="#projectpath" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>projectPath</code>
-        </h3>
+                <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> designer<span class="pl-k">=</span><span class="pl-en">CrysyanDesigner</span>({
+    ifrName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+    projectPath<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+    canvas<span class="pl-k">:</span> {
+        <span class="pl-c">// px</span>
+        width<span class="pl-k">:</span> <span class="pl-c1">900</span>,
+        height<span class="pl-k">:</span> <span class="pl-c1">500</span>
+    },
+    toobar<span class="pl-k">:</span> {
+        widgetLength<span class="pl-k">:</span> <span class="pl-c1">50</span>,
+        widgets<span class="pl-k">:</span>
+        [
+        <span class="pl-s"><span class="pl-pds">"</span>CursorWidget<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>PencilWidget<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>EraserWidget<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>ImageWidget<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>UndoWidget<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>IndoGoWidget<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>ClearWidget<span class="pl-pds">"</span></span>],
+    }
+    }
+}, <span class="pl-k">function</span>(<span class="pl-smi">designer</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">dir</span>(designer);
+});</pre></div>
+            </blockquote>
 
-        <p>Path of  crysyan project </p>
+            <h3>
+                <a id="ifrname" class="anchor" href="#ifrname" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>ifrName</code>
+            </h3>
 
-        <h3>
-            <a id="canvas" class="anchor" href="#canvas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>canvas</code>
-        </h3>
+            <p>Name of iframe.
+                You do not need to set this value if it is not necessary.
+                Normally, the default value is OK</p>
 
-        <ul>
-            <li>
-                <code>width</code><br>
-                Width of the  canvas</li>
-            <li>
-                <code>height</code><br>
-                Height of the  canvas</li>
-        </ul>
+            <h3>
+                <a id="projectpath" class="anchor" href="#projectpath" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>projectPath</code>
+            </h3>
 
-        <h3>
-            <a id="toolbar" class="anchor" href="#toolbar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>toolbar</code>
-        </h3>
+            <p>Path of  crysyan project.</p>
 
-        <ul>
-            <li><code>widgetLength</code><br>
-                The length of each tool icon</li>
-            <li><code>widgets</code><br>
-                The widgets you want to use. see <code>build-in/widgets</code></li>
-        </ul>
+            <h3>
+                <a id="canvas" class="anchor" href="#canvas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>canvas</code>
+            </h3>
 
-        <h2 align="center">
-            <a id="add-new-tools-widgets" class="anchor" href="#add-new-tools-widgets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add New Tools Widgets</h2>
+            <ul>
+                <li>
+                    <p><code>width</code>  </p>
 
-        <h2>
-            <a id="first-step" class="anchor" href="#first-step" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First Step</h2>
+<pre><code>Width of the  canvas.
+</code></pre>
+                </li>
+                <li>
+                    <p><code>height</code></p>
 
-        <h2>
-            <a id="second-step" class="anchor" href="#second-step" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Second Step</h2>
+<pre><code>Height of the bottom canvas
+</code></pre>
+                </li>
+            </ul>
 
-        <h2>
-            <a id="third-step" class="anchor" href="#third-step" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Third Step</h2>
+            <h3>
+                <a id="toolbar" class="anchor" href="#toolbar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>toolbar</code>
+            </h3>
 
-        <h1>
-            <a id="dependence" class="anchor" href="#dependence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependence</h1>
+            <ul>
+                <li>
+                    <p><code>widgetLength</code></p>
 
-        <ul>
-            <li>jQuery</li>
-        </ul>
+<pre><code>The length of each tool icon.
+</code></pre>
+                </li>
+                <li>
+                    <p><code>widgets</code></p>
 
-        <h1>
-            <a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatibility</h1>
+<pre><code>The widgets you want to use. see `build-in/widgets`.
+Normally, the default value is OK.
+</code></pre>
+                </li>
+            </ul>
 
-        <ul>
-            <li>turn the canvas into a picture and save  <code>IE9+, Chrome4+,Firefox3.6(1.9.2)</code>
-            </li>
-        </ul>
+            <h2 align="center">
+                <a id="add-new-tools-widgets" class="anchor" href="#add-new-tools-widgets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add New Tools Widgets</h2>
 
-        <h1>
-            <a id="reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reference</h1>
+            <h2>
+                <a id="first-step" class="anchor" href="#first-step" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First Step</h2>
 
-        <ul>
-            <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer">Canvas-Designer</a></li>
-        </ul>
-    </section>
+            <h2>
+                <a id="second-step" class="anchor" href="#second-step" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Second Step</h2>
+
+            <h2>
+                <a id="third-step" class="anchor" href="#third-step" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Third Step</h2>
+
+            <h1>
+                <a id="dependence" class="anchor" href="#dependence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Dependence"></a>Dependence</h1>
+
+            <ul>
+                <li>jQuery</li>
+            </ul>
+
+            <h1>
+                <a id="reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Reference"></a>Reference</h1>
+
+            <ul>
+                <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer">Canvas-Designer</a></li>
+            </ul>
+        </section>
+
+        <aside id="sidebar">
+            <a href="https://github.com/BPing/crysyan/releases/download/crysyan-0.0.9/crysyan-0.0.9.zip" class="button">
+                <small>Download</small>
+                0.0.9.zip
+            </a>
+            <a href="https://github.com/BPing/crysyan/tarball/master" class="button">
+                <small>Download</small>
+                .tar.gz file
+            </a>
+
+            <p class="repo-owner"><a href="https://github.com/BPing/crysyan"></a> is maintained by <a href="https://github.com/BPing">BPing</a>.</p>
+
+            <!--<p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>-->
+        </aside>
+    </div>
 </div>
+
+
 <script type="application/javascript" src="crysyan/crysyan-designer-min.js"></script>
 <script type="application/javascript">
     $(".crysyan-designer").CrysyanDesigner({
@@ -325,10 +457,10 @@
 
         var dataurl =
                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
-        designer.drawBackgroupWithImage(dataurl);
+        designer.drawBackgroupWithImage("../img/pencil.png");
     });
 
-//
+    //
 </script>
 
 </body>
