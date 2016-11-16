@@ -3,32 +3,32 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
     <title>Crysyan by BPing</title>
   </head>
 
   <body>
-
     <header>
-      <div class="container">
+      <div class="inner">
         <h1>Crysyan</h1>
         <h2>a web drawing board with canvas</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/BPing/crysyan/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/BPing/crysyan/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/BPing/crysyan" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
+        <a href="https://github.com/BPing/crysyan" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
-    <div class="container">
-      <section id="main_content">
-        <h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="crysyan" class="anchor" href="#crysyan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>crysyan</h1>
 
 <p>a web drawing board with canvas</p>
@@ -107,10 +107,39 @@
 <h1>
 <a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Compatibility"></a>Compatibility</h1>
 
-<ul>
-<li>turn the canvas into a picture and save  <code>IE9+, Chrome4+,Firefox3.6(1.9.2)</code>
-</li>
-</ul>
+<p>Is not very accurate, because it is estimated base on a variety of attribute , and not really completely tested.
+But It can be a reference for you.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th align="center">Chrome</th>
+<th align="center">Firefox</th>
+<th>IE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Turn the canvas into a picture and save</td>
+<td align="center">4+</td>
+<td align="center">3.6(1.9.2)</td>
+<td>9+</td>
+</tr>
+<tr>
+<td>CORS enabled image</td>
+<td align="center">13+</td>
+<td align="center">(Gecko)8+</td>
+<td>No support</td>
+</tr>
+<tr>
+<td>Record Canvas(video/webM)</td>
+<td align="center">30+</td>
+<td align="center">30+</td>
+<td>No support</td>
+</tr>
+</tbody>
+</table>
 
 <h1>
 <a id="version" class="anchor" href="#version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="Version"></a>Version</h1>
@@ -166,8 +195,9 @@
 
 <p>1、First of all,you need install node.js and gulp and gulp's add-ons which used in gulpfile.js.</p>
 
-<p>2、You can choose which widgets you need to include,in other word, widgets that you can provide to users.
-Look file <code>gulpfile.js</code> as follows:</p>
+<p>2、You can choose which widgets you need to include,in other word, widgets that you can provide to users.</p>
+
+<p>Look <code>gulpfile.js</code> as follows:</p>
 
 <div class="highlight highlight-source-js"><pre>widgetPath<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>js/widget/<span class="pl-pds">"</span></span>;
     <span class="pl-c">// widgetsLoad = [widgetPath+"*.js"]; or </span>
@@ -183,14 +213,18 @@ Look file <code>gulpfile.js</code> as follows:</p>
 
 <p>3、build.</p>
 
-<div class="highlight highlight-source-batchfile"><pre>    gulp build</pre></div>
+<div class="highlight highlight-source-batchfile"><pre><span class="pl-k">&gt;</span>gulp build</pre></div>
 
 <p>After build successfully.
-You can find a 'crysyan' folder,the JS files under this folder have been compressed, which can be used in your project, under the 'dist' folder
-Just like that:</p>
+You can find a 'crysyan' folder,the JS files under this folder have been compressed, which can be used in your project, under the 'dist' folder</p>
 
-<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- include the crysyan-designer.js --&gt;</span>
+<p>Include in your html file Just like that:</p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- include the crysyan-designer-min.js.js --&gt;</span>
+<span class="pl-c">&lt;!-- projectPath is the root of 'crysyan' folder --&gt;</span>
 &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>projectPath/crysyan-designer-min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p><code>projectPath</code> is the root directory where the 'crysyan' project  is located.</p>
 
 <h1>
 <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="API"></a>API Reference</h1>
@@ -233,7 +267,9 @@ This method allows you pass <code>&lt;body&gt;</code> or any other HTMLDOMElemen
 
 <p>Draw a image on a canvas as background.</p>
 
-<p>draw <code>DataUrl</code> :</p>
+<p>1、draw <code>DataUrl</code> :</p>
+
+<p>recommended to replace by<code>#4</code>(<code>draw image-path</code>) </p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> dataurl <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-ii">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr</span></span>
 <span class="pl-s"><span class="pl-ii">GAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn</span></span>
@@ -241,17 +277,23 @@ This method allows you pass <code>&lt;body&gt;</code> or any other HTMLDOMElemen
 <span class="pl-s">EgqPcT12VgAAAABJRU5ErkJggg==<span class="pl-pds">"</span></span>
 <span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(dataurl);</pre></div>
 
-<p>draw <code>Image</code> :</p>
+<p>2、draw <code>Image</code> :</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> image<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">Image</span>()
 <span class="pl-smi">image</span>.<span class="pl-smi">src</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>imagePath<span class="pl-pds">"</span></span>;
 <span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(image);</pre></div>
 
-<p>draw <code>File</code> :</p>
+<p>3、draw <code>File</code> :</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> file<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">File</span>()
 <span class="pl-c">// do something</span>
 <span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(file);</pre></div>
+
+<p>4、draw <code>image-path</code>：</p>
+
+<p>Usually, you need to add "../../" in front of the relative directory to roll back to the root directory where the 'crysyan' project  is located</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">designer</span>.<span class="pl-en">drawBackgroupWithImage</span>(<span class="pl-s"><span class="pl-pds">"</span>../../img/a.png<span class="pl-pds">"</span></span>);</pre></div>
 
 <h3>
 <a id="todataurl" class="anchor" href="#todataurl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>toDataUrl</code>
@@ -275,6 +317,42 @@ This method allows you pass <code>&lt;body&gt;</code> or any other HTMLDOMElemen
 
 <div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#download-png<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
     <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>download-png<span class="pl-pds">"</span></span>).<span class="pl-c1">href</span><span class="pl-k">=</span><span class="pl-smi">designer</span>.<span class="pl-c1">toDataURL</span>(<span class="pl-s"><span class="pl-pds">'</span>image/png<span class="pl-pds">'</span></span>);
+});</pre></div>
+
+<h3>
+<a id="getcanvasrecorder" class="anchor" href="#getcanvasrecorder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>getCanvasRecorder</code>
+</h3>
+
+<p>Get <code>RecordRTC</code> of your drawings,which used to record canvas to video(video/webm).Does not supported in IE browser.</p>
+
+<p>API of RecordRTC,see:<a href="http://recordrtc.org/RecordRTC.html">RecordRTC API Reference</a></p>
+
+<p><code>example:</code></p>
+
+<p><code>html</code>:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>start-record<span class="pl-pds">"</span></span>&gt;start-record&lt;/<span class="pl-ent">button</span>&gt;
+&lt;<span class="pl-ent">button</span>  <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>stop-record<span class="pl-pds">"</span></span>&gt;stop-record&lt;/<span class="pl-ent">button</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>videoTag<span class="pl-pds">"</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>width:1000px; height:500px;<span class="pl-pds">"</span></span>&gt;ddd&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p><code>javascript</code></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> recorder <span class="pl-k">=</span> <span class="pl-smi">designer</span>.<span class="pl-en">getCanvasRecorder</span>();
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#start-record<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
+       <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>recording<span class="pl-pds">"</span></span>);
+       <span class="pl-smi">recorder</span>.<span class="pl-en">startRecording</span>();
+});
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#stop-record<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>stop<span class="pl-pds">"</span></span>);
+    <span class="pl-smi">recorder</span>.<span class="pl-en">stopRecording</span>(<span class="pl-k">function</span>() {
+        <span class="pl-k">var</span> blob <span class="pl-k">=</span> <span class="pl-smi">recorder</span>.<span class="pl-en">getBlob</span>();
+        <span class="pl-k">var</span> video <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>video<span class="pl-pds">'</span></span>);
+        <span class="pl-smi">video</span>.<span class="pl-smi">src</span> <span class="pl-k">=</span> <span class="pl-c1">URL</span>.<span class="pl-en">createObjectURL</span>(blob);
+        <span class="pl-smi">video</span>.<span class="pl-c1">setAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>style<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>height: 100%; position: absolute; top:0; left:0;z-index:9999;width:100%;<span class="pl-pds">'</span></span>);
+        <span class="pl-c1">document</span>.<span class="pl-c1">body</span>.<span class="pl-c1">appendChild</span>(video);
+        <span class="pl-smi">video</span>.<span class="pl-smi">controls</span> <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+        <span class="pl-smi">video</span>.<span class="pl-c1">play</span>();
+    });
 });</pre></div>
 
 <h3>
@@ -307,6 +385,7 @@ This method allows you pass <code>&lt;body&gt;</code> or any other HTMLDOMElemen
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> designer<span class="pl-k">=</span><span class="pl-en">CrysyanDesigner</span>({
     ifrName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
     projectPath<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+    isRecord<span class="pl-k">:</span><span class="pl-c1">false</span>,
     canvas<span class="pl-k">:</span> {
         <span class="pl-c">// px</span>
         width<span class="pl-k">:</span> <span class="pl-c1">900</span>,
@@ -343,6 +422,12 @@ Normally, the default value is OK</p>
 </h3>
 
 <p>Path of  crysyan project.</p>
+
+<h3>
+<a id="isrecord" class="anchor" href="#isrecord" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>isRecord</code>
+</h3>
+
+<p>Whether to open the recording feature.Default:<code>false</code>.</p>
 
 <h3>
 <a id="canvas" class="anchor" href="#canvas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>canvas</code>
@@ -400,6 +485,8 @@ Normally, the default value is OK.
 
 <ul>
 <li>jQuery</li>
+<li>
+<a href="https://github.com/muaz-khan/WebRTC-Experiment/edit/master/RecordRTC/RecordRTC.js">RecordRTC</a>: Record Canvas2D.</li>
 </ul>
 
 <h1>
@@ -408,9 +495,25 @@ Normally, the default value is OK.
 <ul>
 <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer">Canvas-Designer</a></li>
 </ul>
-      </section>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/BPing/crysyan/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/BPing/crysyan/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/BPing/crysyan"></a> is maintained by <a href="https://github.com/BPing">BPing</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    
+  
   </body>
 </html>
