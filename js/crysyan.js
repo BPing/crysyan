@@ -1,12 +1,12 @@
 /**
  *  @module Crysyan-Core
  */
-(function($load) {
+(function ($load) {
     'use strict';
-    if (typeof $load==="undefined") $load=true;
+    if (typeof $load === "undefined") $load = true;
     // jquery
     if (!window.$) {
-        var jQuery = window.parent.$ || window.jQuery;
+        var jQuery = window.parent.$ || window.parent.jQuery || window.jQuery;
         if (!jQuery) {
             throw new Error("Crysyan requires 'jQuery'");
         } else {
@@ -16,7 +16,7 @@
     var jsLoadCache = [];
     // map to Cache  the view instances
     var viewCacheMap = {};
-   // Parameters parsed from href
+    // Parameters parsed from href
     var hrefRequestArgs = {};
 
     /**
@@ -33,7 +33,7 @@
         if (typeof filePaths !== "object") {
             return;
         }
-        var recursiveLoad = function(i) {
+        var recursiveLoad = function (i) {
             if (i >= filePaths.length) {
                 if (typeof callback === "function") callback();
                 return;
@@ -45,9 +45,9 @@
             var script = document.createElement("script");
             script.src = filePaths[i];
             script.type = "text/javascript";
-            script.onload = script.onreadystatechange = function() {
+            script.onload = script.onreadystatechange = function () {
                 // !/*@cc_on!@*/0 not IE
-                if (! /*@cc_on!@*/ 0 || this.readyState == "loaded" || this.readyState == "complete") {
+                if (!/*@cc_on!@*/ 0 || this.readyState == "loaded" || this.readyState == "complete") {
                     // remove the 'script' tag  after loading the js file is complete
                     this.onload = this.onreadystatechange = null;
                     this.parentNode.removeChild(this);
@@ -74,7 +74,7 @@
         }
     })();
     //
-    var widgetinit = function(callback) {
+    var widgetinit = function (callback) {
         var widgetBasePath = "../js/widget/";
         var widgetIconPath = "../img/";
         var widgetsLoad = [];
@@ -94,11 +94,21 @@
         }
     };
     //
-    var init = function() {
-        widgetinit(function() {
+    var init = function () {
+        widgetinit(function () {
+            var createView = function () {
+                var view = new CrysyanView(config).init();
+                viewCacheMap["default"] = view;
+            };
             var config = JSON.parse(hrefRequestArgs.config);
-            var view = new CrysyanView(config).init();
-            viewCacheMap["default"] = view;
+            if (config.isRecord&&config.isRecord===true) {
+                requireSeries("../js/ext/RecordRTC.js", function () {
+                    createView();
+                });
+            } else {
+                createView();
+            }
+
         });
     };
     if ($load) {
@@ -108,6 +118,9 @@
             baseLoadPath + "util.js",
             baseLoadPath + "config.js",
             baseLoadPath + "widget.js",
+            // baseLoadPath + "record-lib.js",
+            // baseLoadPath + "record.js",
+            baseLoadPath + "widget.js",
             baseLoadPath + "canvas.js",
             baseLoadPath + "view.js",
         ], init);
@@ -115,10 +128,10 @@
         init();
     }
     var Crysyan = {
-        getView: function(name) {
+        getView: function (name) {
             if (typeof name === "undefined" || name === "") name = "default";
             return viewCacheMap[name];
         }
     };
     window.Crysyan = Crysyan;
-})(typeof CrysyanFlag==="undefined"? true:CrysyanFlag);
+})(typeof CrysyanFlag === "undefined" ? true : CrysyanFlag);

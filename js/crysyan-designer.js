@@ -8,7 +8,6 @@
             window.$ = jQuery;
         }
     }
-
     //
     function getRandomString() {
         if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
@@ -51,6 +50,11 @@
                 designer.iframe = null;
             }
         };
+        /**
+         *  get view 
+         *  
+         * @returns {*}
+         */
         designer.getView = function() {
             return window[designer.iframe.uid].Crysyan.getView();
         };
@@ -65,13 +69,27 @@
             var view = window[designer.iframe.uid].Crysyan.getView();
             view.crysyanCanvas.drawBackGroupWithImage(image, 1);
         };
-
+        /**
+         *  get Date-Url 
+         * @param type
+         * @returns {*|string}
+         */
         designer.toDataUrl = function(type) {
             if (typeof type==="undefined") type="image/png";
             var view = window[designer.iframe.uid].Crysyan.getView();
             return view.crysyanCanvas.toDataURL(type);
         };
 
+        /**
+         *  get  Recorder
+         *  
+         * @param config
+         * @returns {*|RecordRTC}
+         */
+        designer.getCanvasRecorder = function(config) {
+            var view = window[designer.iframe.uid].Crysyan.getView();
+            return view.crysyanCanvas.getCanvasRecorder(config);
+        };
     }
 
     // jquery Plug-in

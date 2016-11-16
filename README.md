@@ -63,10 +63,14 @@ $(".crysyan-designer").CrysyanDesigner({
 
 # <a name="Compatibility"/>Compatibility
 
+Is not very accurate, because it is estimated base on a variety of attribute , and not really completely tested.
+But It can be a reference for you.
+
 Feature | Chrome | Firefox |IE
 --- | :----:| :----:| ---
 Turn the canvas into a picture and save  | 4+	  | 3.6(1.9.2) | 9+
 CORS enabled image   | 13+	  | (Gecko)8+ | No support
+Record Canvas(video/webM)   | 30+	  | 30+ | No support
 
 # <a name="Version"/>Version
 * 0.0.9
@@ -163,12 +167,12 @@ designer.destroy();
 designer.getView();
 ```
 
-
 ### `drawBackgroupWithImage`
   Draw a image on a canvas as background.
 
 1、draw `DataUrl` :
-`#4`(`draw image-path`) recommended to replace.
+
+recommended to replace by`#4`(`draw image-path`) 
 ```javascript
 var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIr
 GAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn
@@ -221,6 +225,40 @@ $("#download-png").click(function () {
 });
 ```
 
+### `getCanvasRecorder`
+Get `RecordRTC` of your drawings,which used to record canvas to video(video/webm).Does not supported in IE browser.
+
+API of RecordRTC,see:[RecordRTC API Reference](http://recordrtc.org/RecordRTC.html)
+
+`example:`
+
+`html`:
+```html
+<button type="button" id="start-record">start-record</button>
+<button  id="stop-record">stop-record</button>
+<div id="videoTag" style="width:1000px; height:500px;">ddd</div>
+```
+`javascript`
+```javascript
+var recorder = designer.getCanvasRecorder();
+$("#start-record").click(function () {
+       console.log("recording");
+       recorder.startRecording();
+});
+$("#stop-record").click(function () {
+    console.log("stop");
+    recorder.stopRecording(function() {
+        var blob = recorder.getBlob();
+        var video = document.createElement('video');
+        video.src = URL.createObjectURL(blob);
+        video.setAttribute('style', 'height: 100%; position: absolute; top:0; left:0;z-index:9999;width:100%;');
+        document.body.appendChild(video);
+        video.controls = true;
+        video.play();
+    });
+});
+```
+
 ### `iframe`
 You can access designer iframe as following:
 
@@ -246,6 +284,7 @@ The configuration of the entire project.
 var designer=CrysyanDesigner({
     ifrName:"",
     projectPath:"",
+    isRecord:false,
     canvas: {
         // px
         width: 900,
@@ -275,6 +314,8 @@ You do not need to set this value if it is not necessary.
 Normally, the default value is OK
 ### `projectPath`
 Path of  crysyan project.
+### `isRecord`
+Whether to open the recording feature.Default:`false`.
 ### `canvas`
 * `width`  
 
@@ -301,6 +342,7 @@ Path of  crysyan project.
 
 # <a name="Dependence"/>Dependence
 * jQuery
+* [RecordRTC](https://github.com/muaz-khan/WebRTC-Experiment/edit/master/RecordRTC/RecordRTC.js): Record Canvas2D.
 
 # <a name="Reference"/>Reference
 * [Canvas-Designer](https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer)

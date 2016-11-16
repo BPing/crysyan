@@ -11,7 +11,7 @@ var zip = require('gulp-zip');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
 var distPath = "dist/crysyan/";
-var version = "0.0.9";
+var version = "0.1";
 var widgetsLoad = [];
 
 (function () {
@@ -43,9 +43,18 @@ gulp.task('clean-all', function () {
 
 gulp.task('designer-minify', function () {
     return gulp.src(["js/crysyan-designer.js"])
+        .pipe(replace('html/crysyan.html?config=', 'crysyan.html?config='))
+        .pipe(plumber())
         .pipe(uglify())
         .pipe(plumber())
         .pipe(rename({suffix: '-min'}))
+        .pipe(gulp.dest(distPath));
+});
+
+gulp.task('RecordRTC-minify', function () {
+    return gulp.src(["js/ext/RecordRTC.js"])
+        .pipe(uglify())
+        .pipe(plumber())
         .pipe(gulp.dest(distPath));
 });
 
@@ -66,6 +75,8 @@ gulp.task('core-concat', function () {
 gulp.task('core-header', function () {
     return gulp.src(["js/crysyan.js"])
         .pipe(header('var CrysyanFlag=false;'))
+        .pipe(plumber())
+        .pipe(replace('../js/ext/RecordRTC.js', 'RecordRTC.js'))
         .pipe(plumber())
         .pipe(gulp.dest(distPath + "js/"));
 });
@@ -89,9 +100,9 @@ gulp.task('imagemin', function () {
 
 gulp.task('html-replace-move', function () {
     return gulp.src(["html/*"])
-        .pipe(replace('src="../js/crysyan.js"', 'src="../crysyan-core-min.js"'))
+        .pipe(replace('src="../js/crysyan.js"', 'src="crysyan-core-min.js"'))
         .pipe(plumber())
-        .pipe(gulp.dest(distPath + "html/"));
+        .pipe(gulp.dest(distPath));
 });
 
 gulp.task('demo-replace-move', function () {
@@ -109,10 +120,13 @@ gulp.task('guidance-move', function () {
 
 gulp.task('building', ['clean-all'], function (cb) {
     runSequence(
-        ["designer-minify",
+           ["designer-minify",
+            "RecordRTC-minify",
             "core-widgets-concat-minify",
             "imagemin",
-            "html-replace-move","guidance-move","demo-replace-move"], cb);
+            "html-replace-move",
+            "guidance-move",
+            "demo-replace-move"], cb);
 });
 
 gulp.task('after-building-clean', ['building'], function () {

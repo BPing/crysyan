@@ -7,14 +7,18 @@
     <script src="lib/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-    <div style="width:1000px; height:1000px;" class="crysyan-designer"></div>
+    <div style="width:1000px; height:600px;" class="crysyan-designer"></div>
+    <button type="button" id="start-record">start-record</button>
+    <button  id="stop-record">stop-record</button>
+    <div id="videoTag" style="width:1000px; height:500px;">ddd</div>
 </body>
 
 </html>
 <script src="js/crysyan-designer.js"></script>
 <script>
     $(".crysyan-designer").CrysyanDesigner({
-        projectPath:"../",
+        projectPath:"",
+        isRecord:true,
         canvas: {
             // px
             width: 900,
@@ -25,22 +29,33 @@
         }
     }, function(designer) {
         console.dir(designer);
-        var dataurl =
-            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
-        designer.drawBackgroupWithImage(dataurl);
+        var image=new Image();
+        image.src="http://dream.com:9977/img/pencil.png";
+        console.log(image instanceof Image);
+        var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
+        designer.drawBackgroupWithImage("img/pencil.png");
+
+        var video=document.getElementsByTagName("videoTag");
+
+        var recorder = designer.getCanvasRecorder({mimeType:"video/wav"});
+
+        $("#start-record").click(function () {
+               console.log("recording");
+               recorder.startRecording();
+        });
+
+        $("#stop-record").click(function () {
+            console.log("stop");
+            recorder.stopRecording(function() {
+                var blob = recorder.getBlob();
+                var video = document.createElement('video');
+                video.src = URL.createObjectURL(blob);
+                video.setAttribute('style', 'height: 100%; position: absolute; top:0; left:0;z-index:9999;width:100%;');
+                document.body.appendChild(video);
+                video.controls = true;
+                video.onload
+                video.play();
+            });
+        });
     });
-    //
-// var designer=CrysyanDesigner({
-//     canvas: {
-//         // px
-//         width: 900,
-//         height: 500
-//     },
-//     toobar: {
-//         length: 500
-//     }
-// }, function(designer) {
-//     console.dir(designer);
-// });
-// designer.appendTo()
 </script>
