@@ -1,7 +1,7 @@
 # crysyan
 a web drawing board with canvas
 
-> home: [https://bping.github.io/crysyan/](https://bping.github.io/crysyan/)
+> home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/)
 
 # <a name="index"/>Index
 * [Compatibility](#Compatibility)
