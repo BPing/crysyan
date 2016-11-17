@@ -9,6 +9,8 @@ var imagemin = require('gulp-imagemin');
 var zip = require('gulp-zip');
 var tar = require('gulp-tar');
 var gzip = require('gulp-gzip');
+var less = require('gulp-less');
+var cleanCSS = require('gulp-clean-css');
 // var debug = require('gulp-debug');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
@@ -38,7 +40,7 @@ var widgetsLoad = [];
 })();
 
 gulp.task('clean-all', function () {
-    return gulp.src([distPath + "*", distPath, "release/", "release/*"])
+    return gulp.src([distPath + "*", distPath, "release/"])
         .pipe(clean())
         .pipe(plumber());
 });
@@ -60,6 +62,20 @@ gulp.task('RecordRTC-minify', function () {
         .pipe(gulp.dest(distPath));
 });
 
+gulp.task('less', function () {
+    return gulp.src('css/*.less')
+        .pipe(less())
+        .pipe(plumber())
+        .pipe(gulp.dest('css/'));
+});
+
+gulp.task('minify-css',["less"], function () {
+    return gulp.src('css/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest(distPath));
+});
+
+
 gulp.task('widgets-concat', function () {
     return gulp.src(widgetsLoad)
         .pipe(concat("widgets.js"))
@@ -79,6 +95,10 @@ gulp.task('core-header', function () {
         .pipe(header('var CrysyanFlag=false;'))
         .pipe(plumber())
         .pipe(replace('../js/ext/RecordRTC.js', 'RecordRTC.js'))
+        .pipe(plumber())    
+        .pipe(replace('../js/ext/RecordRTC.js', 'RecordRTC.js'))
+        .pipe(plumber())
+        .pipe(replace('"../css/crysyan.css"', '"crysyan.css"'))
         .pipe(plumber())
         .pipe(replace(' var widgetIconPath = "../img/";', ' var widgetIconPath = "img/";'))
         .pipe(plumber())
@@ -128,6 +148,7 @@ gulp.task('building', ['clean-all'], function (cb) {
     runSequence(
            ["designer-minify",
             "RecordRTC-minify",
+            "minify-css",
             "core-widgets-concat-minify",
             "imagemin",
             "html-replace-move",
@@ -158,7 +179,6 @@ gulp.task('tar.gz', function () {
         .pipe(gulp.dest('release'));
 
 });
-
 
 
 gulp.task('publish', ['build'], function (cb) {

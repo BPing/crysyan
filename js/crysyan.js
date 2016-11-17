@@ -3,6 +3,12 @@
  */
 (function ($load) {
     'use strict';
+
+    var baseLoadPath = "../js/";
+    var widgetBasePath = "../js/widget/";
+    var widgetIconPath = "../img/";
+    var defaultCss = "../css/crysyan.css";
+        
     if (typeof $load === "undefined") $load = true;
     // jquery
     if (!window.$) {
@@ -62,6 +68,20 @@
         recursiveLoad(0);
     }
 
+    /**
+     *
+     * @param filePath css file
+     */
+    function requireCss(filePath) {
+        if (typeof filePath!=="string") return;
+        var headElement = document.getElementsByTagName("head").item(0) || document.documentElement;
+        var cssLink=document.createElement("link");
+        cssLink.setAttribute("rel", "stylesheet");
+        cssLink.setAttribute("type", "text/css");
+        cssLink.setAttribute("href", filePath);
+        headElement.appendChild(cssLink);
+    }
+
     (function getRequest() {
         // get from URL string after '?'
         var url = decodeURI(location.search);
@@ -75,8 +95,6 @@
     })();
     //
     var widgetinit = function (callback) {
-        var widgetBasePath = "../js/widget/";
-        var widgetIconPath = "../img/";
         var widgetsLoad = [];
         var widgets = CrysyanWidgetConfig.widgets;
         for (var attr in widgets) {
@@ -101,6 +119,7 @@
                 viewCacheMap["default"] = view;
             };
             var config = JSON.parse(hrefRequestArgs.config);
+            requireCss(config.cssFile&&config.cssFile!==""? config.cssFile:defaultCss);
             if (config.isRecord&&config.isRecord===true) {
                 requireSeries("../js/ext/RecordRTC.js", function () {
                     createView();
@@ -113,7 +132,6 @@
     };
     if ($load) {
         // load file（Pseudo module）
-        var baseLoadPath = "../js/";
         requireSeries([
             baseLoadPath + "util.js",
             baseLoadPath + "config.js",

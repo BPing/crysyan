@@ -64,6 +64,9 @@
     window.CrysyanDefaultConfig = {
         projectPath:"",
         isRecord:false,
+        // default:empty string,load inner css.
+        // if you not need load the css(include inner css).set the value of it to not string type
+        cssFile:"",
         submit: {
             Id: "crysyan-submit",
             // function called after submit
