@@ -76,7 +76,9 @@
             canvasId: "crysyan-canvas",
             // px
             width: 900,
-            height: 400
+            height: 400,
+            // the most length of history 'revoke' list
+            historyListLen:50
         },
         toolbar: {
             Id: "crysyan-toolbar",

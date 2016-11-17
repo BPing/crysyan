@@ -12,6 +12,7 @@ a web drawing board with canvas
 * [API Reference](#API)
 * [Dependence](#Dependence)
 * [Reference](#Reference)
+* [License](#License)
 * [**](#**)
 
 # <a name="Quick_start"/>Quick start
@@ -84,6 +85,10 @@ Record Canvas(video/webM)   | 30+	  | 30+ | No support
 * 0.1.1
 
 > record canvas.
+
+* 0.1.2
+
+> UI style upgrade.
 
 # <a name="Build-in"/>Build-in
 ## widgets
@@ -299,7 +304,8 @@ var designer=CrysyanDesigner({
     canvas: {
         // px
         width: 900,
-        height: 500
+        height: 500,
+        historyListLen:50
     },
     toobar: {
         widgetLength: 50,
@@ -337,7 +343,11 @@ If you not need load the css(include inner css).set the value of it to not strin
 
 * `height`
 
-        Height of the bottom canvas
+        Height of the bottom canvas* 
+        
+* `historyListLen` `default:50`
+
+        the most length of history 'revoke' list. Normally, the default value is OK.
 
 ### `toolbar`
 * `widgetLength`
@@ -360,3 +370,6 @@ If you not need load the css(include inner css).set the value of it to not strin
 
 # <a name="Reference"/>Reference
 * [Canvas-Designer](https://github.com/muaz-khan/WebRTC-Experiment/tree/master/Canvas-Designer)
+
+# <a name="License"/>License
+Apache License Version 2.0

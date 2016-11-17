@@ -116,7 +116,7 @@ gulp.task('core-widgets-concat-minify', ["widgets-concat", "core-concat",'core-h
 });
 
 gulp.task('imagemin', function () {
-    return gulp.src(["img/*"])
+    return gulp.src(["img/*","!img/bg-lesson-begin.jpg"])
         .pipe(imagemin())
         .pipe(plumber())
         .pipe(gulp.dest(distPath + "img/"));
