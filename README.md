@@ -295,6 +295,7 @@ var designer=CrysyanDesigner({
     ifrName:"",
     projectPath:"",
     isRecord:false,
+    cssFile:"",
     canvas: {
         // px
         width: 900,
@@ -326,6 +327,9 @@ Normally, the default value is OK
 Path of  crysyan project.
 ### `isRecord`
 Whether to open the recording feature.Default:`false`.
+### `cssFile`
+Default:`empty string`,load inner css.
+If you not need load the css(include inner css).set the value of it to not string type
 ### `canvas`
 * `width`  
 

@@ -1,0 +1,68 @@
+body {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  overflow-y: auto;
+  background-color: transparent;
+}
+.crysan-canvas-main {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+}
+.crysan-canvas-main canvas {
+  margin: 0 auto;
+  background: #ffffff;
+  cursor: pointer;
+  border: 2px solid orange;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px, 4px, 8px, 0, rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px, 4px, 8px, 0, rgba(0, 0, 0, 0.5);
+  box-shadow: 4px, 4px, 8px, 0, rgba(0, 0, 0, 0.5);
+}
+#crysyan-toolbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+#crysyan-toolbar ul {
+  padding: 10px;
+  display: inline-block;
+  background: white;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+.ul-widget-list {
+  padding-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.ul-widget-list li {
+  margin: 0 10px;
+  list-style-type: none;
+  display: inline;
+  padding: 0;
+}
+.ul-widget-list li img {
+  vertical-align: middle;
+}
+.ul-widget-list li img:hover {
+  background: #fff767 !important;
+}
+.widget-selected-shape {
+  box-shadow: inset 0px 0px 4px 1px #c1a413 !important;
+  background: #fff767 !important;
+}
+.crysan-canvas-cover {
+  margin: 0 auto;
+  width: 1200px;
+  height: 650px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
+}
