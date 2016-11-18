@@ -57,7 +57,7 @@
                 view.widgetEventMap[widgetExportVar.CrysyanWidgetType] = widgetExportVar;
                 // widget view
                 //  id must be equal to 'CrysyanWidgetType'
-                innerHTML = innerHTML + " <li><img  width=\"" + view.ops.toolbar.widgetLength + "px\" height=\"" + view.ops.toolbar.widgetLength + "px\"  id=\"" + widgetExportVar.CrysyanWidgetType + " \" class=\"crysyan-widget-class\" src=\" " + widgetExportVar.icon + "  \"></li>";
+                innerHTML = innerHTML + " <li><img draggable=\"false\" width=\"" + view.ops.toolbar.widgetLength + "px\" height=\"" + view.ops.toolbar.widgetLength + "px\"  id=\"" + widgetExportVar.CrysyanWidgetType + " \" class=\"crysyan-widget-class\" src=\" " + widgetExportVar.icon + "  \"></li>";
             }
             // set flag
             handledWidgetsMap[widget] = 1;
