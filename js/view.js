@@ -3,20 +3,20 @@
  *  @module
  *  @depend util.js;canvas.js;widget.js;widget/*.js
  */
-(function($defaultConfig, $widgetConfig, $util) {
+(function ($defaultConfig, $widgetConfig, $util) {
     'use strict';
     /**
      *      view
      * @param {[object]} ops config
      */
     function CrysyanView(ops) {
-        ops =ops|| {};
+        ops = ops || {};
         this.ops = {};
         this.ops.common = $.extend($defaultConfig.submit, ops.common || {});
         this.ops.submit = $.extend($defaultConfig.submit, ops.submit || {});
         this.ops.canvas = $.extend($defaultConfig.canvas, ops.canvas || {});
         this.ops.toolbar = $.extend($defaultConfig.toolbar, ops.toolbar || {});
-        this.ops = $.extend(ops,  this.ops);
+        this.ops = $.extend(ops, this.ops);
 
         this.crysyanCanvas = new CrysyanCanvas(this.ops.canvas);
         this.toolbarElement = document.getElementById(this.ops.toolbar.Id);
@@ -36,7 +36,7 @@
     // Record the widget which has been handled
     var handledWidgetsMap = {};
     //
-    var handleWidget = function(view) {
+    var handleWidget = function (view) {
         var widgets = view.ops.toolbar.widgets;
         var configWidgets = $widgetConfig.widgets;
         var innerHTML = "<ul id=\"widgets-list\" class=\"ul-widget-list \">";
@@ -68,16 +68,17 @@
         view.widgetSelected = "CrysyanCursorWidget";
         //  Set click event
         //  Error ,'Don't make functions within a loop' ,detected by jslint can be ignored.
-        $(".crysyan-widget-class", document).each(function() {
+        $(".crysyan-widget-class", document).each(function () {
             var ele = $(this);
             //  id is equal to 'CrysyanWidgetType'
             var widgetSelected = ele.attr("id").replace(/\s+/g, "");
-            var clickFunc = function(e) {
+            var clickFunc = function (e) {
                 if (widgetSelected !== "CrysyanUndoWidget" && widgetSelected !== "CrysyanIndoGoWidget" && widgetSelected !== "CrysyanClearWidget") {
-                    $(".widget-selected-shape", document).each(function() {
+                    $(".widget-selected-shape", document).each(function () {
                         $(this).removeClass("widget-selected-shape");
                     });
                     ele.addClass("widget-selected-shape");
+                    view.widgetSelected !== widgetSelected && view.widgetEventMap[view.widgetSelected] && view.widgetEventMap[view.widgetSelected].iconLeave(ele, e);
                     view.widgetSelected = widgetSelected;
                 }
                 //console.log(view.widgetSelected);
@@ -91,8 +92,8 @@
     };
     //
     // called after the 'handleWidget'
-    var handleCanvas = function(view) {
-        view.crysyanCanvas.mousedown(function(e, loc) {
+    var handleCanvas = function (view) {
+        view.crysyanCanvas.mousedown(function (e, loc) {
             // console.log("mousedown");
             if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
                 var widgetInstance = view.widgetEventMap[view.widgetSelected];
@@ -102,12 +103,12 @@
                 widgetInstance.mouseDown(e, loc);
             }
         });
-        view.crysyanCanvas.mousemove(function(e, loc) {
+        view.crysyanCanvas.mousemove(function (e, loc) {
             if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
                 view.widgetEventMap[view.widgetSelected].mouseMove(e, loc);
             }
         });
-        view.crysyanCanvas.mouseup(function(e, loc) {
+        view.crysyanCanvas.mouseup(function (e, loc) {
             // console.log("mouseup");
             if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
                 var widgetInstance = view.widgetEventMap[view.widgetSelected];
@@ -118,22 +119,22 @@
     };
 
     CrysyanView.prototype = {
-        init: function() {
+        init: function () {
             var view = this;
             handleWidget(view);
             handleCanvas(view);
             if (view.submitElement !== null) {
-                $util.addEvent(view.submitElement, "click", function(e) {
+                $util.addEvent(view.submitElement, "click", function (e) {
                     view.ops.submit.callback(view.crysyanCanvas, e);
                 });
             }
             return this;
         },
-        // reset callback of submit action
-        setSubmitCallback: function(callback) {
-            if (typeof callback === "function")
-                this.ops.submit.callback = callback;
-        },
+        // // reset callback of submit action
+        // setSubmitCallback: function(callback) {
+        //     if (typeof callback === "function")
+        //         this.ops.submit.callback = callback;
+        // },
     };
     CrysyanView.prototype.constructor = CrysyanView;
     window.CrysyanView = CrysyanView;

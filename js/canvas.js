@@ -3,7 +3,7 @@
  *  @module CrysyanCanvas
  *  @depend util.js
  */
-(function($util) {
+(function ($util) {
     'use strict';
     /**
      * @class CrysyanCanvas
@@ -36,7 +36,7 @@
             height: 0
         };
 
-        this.backgroudColor=ops.bgColor||"#ffffff";
+        this.backgroudColor = ops.bgColor || "#ffffff";
         // An array that store the history imgdata which capture from canvas
         // for revoking and forward revoking.
         // The length should shorter than 'ops.historyListLen'.
@@ -53,19 +53,21 @@
 
         this.clearCanvas();
     }
+
     CrysyanCanvas.prototype = {
         // Save e drawing surface
-        saveDrawingSurface: function() {
+        saveDrawingSurface: function () {
             this.drawingSurfaceImageData = this.playContext.getImageData(0, 0,
                 this.playCanvas.width,
                 this.playCanvas.height);
+            return this.drawingSurfaceImageData;
         },
         // Restore drawing surface
-        restoreDrawingSurface: function() {
-            this.playContext.putImageData(this.drawingSurfaceImageData, 0, 0);
+        restoreDrawingSurface: function (imageData) {
+            this.playContext.putImageData(imageData||this.drawingSurfaceImageData, 0, 0);
         },
         // save history ''drawingSurfaceImageData''
-        saveRevokeImgDatas: function() {
+        saveRevokeImgDatas: function () {
             var drawingSurfaceImageData = this.playContext.getImageData(0, 0, this.playCanvas.width, this.playCanvas.height);
             if (this.revokeImgDatas.length >= this.historyListLen) {
                 // If the length is longer than the maximum length of the configuration
@@ -79,12 +81,12 @@
             // clear the array
             this.forwardRevokeImgDatas = [];
         },
-        saveForwardRevokeFirstFrame: function() {
+        saveForwardRevokeFirstFrame: function () {
             this.forwardRevokeImgDatas[0] = this.playContext.getImageData(0, 0, this.playCanvas.width, this.playCanvas.height);
         },
         // Revoke
         //  if length of list is zero ,return zero
-        revoke: function() {
+        revoke: function () {
             if (this.revokeImgDatas.length <= 0)
                 return 0;
             var drawingSurfaceImageData = this.revokeImgDatas.pop();
@@ -93,7 +95,7 @@
         },
         //  Forward revoke
         //  if length of list is zero ,return zero
-        forwardRevoke: function() {
+        forwardRevoke: function () {
             if (this.forwardRevokeImgDatas.length <= 0)
                 return 0;
             var drawingSurfaceImageData = this.forwardRevokeImgDatas.pop();
@@ -101,11 +103,11 @@
             this.playContext.putImageData(drawingSurfaceImageData, 0, 0);
         },
         //
-        clearCanvas: function() {
+        clearCanvas: function () {
             this.playContext.save();
-            this.playContext.fillStyle=this.backgroudColor;
-            this.playContext.fillRect(0,0,this.playCanvas.width, this.playCanvas.height);
-           // this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
+            this.playContext.fillStyle = this.backgroudColor;
+            this.playContext.fillRect(0, 0, this.playCanvas.width, this.playCanvas.height);
+            // this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
             if (this.backgroudImage.image !== null) {
                 var image = this.backgroudImage.image;
                 this.drawImage(image, (this.playCanvas.width - image.width) / 2, (this.playCanvas.height - image.height) / 2, image.width, image.height);
@@ -118,7 +120,7 @@
          * @param  {number} x  e.clientX
          * @param  {number} y  e.clientY
          */
-        windowToCanvas: function(x, y) {
+        windowToCanvas: function (x, y) {
             var bbox = this.playCanvas.getBoundingClientRect();
             return {
                 x: x - bbox.left,
@@ -134,7 +136,7 @@
          * @param {String|File|Image|Blob} obj
          * @param mode
          */
-        drawBackGroupWithImage: function(obj, mode) {
+        drawBackGroupWithImage: function (obj, mode) {
             if (typeof mode === "undefined") {
                 //  image scaling mode
                 //  if mode !=1 ,fulling mode
@@ -145,7 +147,7 @@
             var image = new Image();
             // CORS settings attributes
             image.crossOrigin = 'Anonymous';
-            image.onload = function() {
+            image.onload = function () {
                 canvas.backgroudImage.image = image;
                 canvas.backgroudImage.width = canvas.playCanvas.width;
                 canvas.backgroudImage.height = canvas.playCanvas.height;
@@ -166,16 +168,16 @@
                 canvas.clearCanvas();
             };
             // image  the image object maybe come from parent's window.
-            if (obj instanceof Image ||(parent&&parent.window&&obj instanceof parent.window.Image)||typeof obj.src!=="undefined") {
+            if (obj instanceof Image || (parent && parent.window && obj instanceof parent.window.Image) || typeof obj.src !== "undefined") {
                 image.src = obj.src;
                 return;
             }
             // file the File|Blob object maybe come from parent's window.
             if (obj instanceof File
                 || obj instanceof Blob
-                ||(parent&&parent.window&&(obj instanceof parent.window.File||obj instanceof parent.window.Blob))) {
+                || (parent && parent.window && (obj instanceof parent.window.File || obj instanceof parent.window.Blob))) {
                 var reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = function (event) {
                     image.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
@@ -200,10 +202,10 @@
          * 3、Cut the image and locate the part on the canvas:
          *   drawImageFile(imagefile,sx,sy,swidth,sheight,x,y,width,height);
          */
-        drawImageFile: function(file) {
+        drawImageFile: function (file) {
             var canvas = this;
             var reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = function (event) {
                 canvas.drawDataUrl(event.target.result);
             };
             reader.readAsDataURL(file);
@@ -213,12 +215,12 @@
          *
          * @param dataUrl
          */
-        drawDataUrl: function(dataUrl) {
+        drawDataUrl: function (dataUrl) {
             var ctx = this.playContext;
             var image = new Image();
             // CORS settings attributes
             image.crossOrigin = 'Anonymous';
-            image.onload = function() {
+            image.onload = function () {
                 arguments[0] = image;
                 ctx.drawImage.apply(ctx, arguments);
             };
@@ -236,7 +238,7 @@
          * 3、Cut the image and locate the part on the canvas:
          *   drawImage(image,sx,sy,swidth,sheight,x,y,width,height);
          */
-        drawImage: function() {
+        drawImage: function () {
             var ctx = this.playContext;
             ctx.drawImage.apply(ctx, arguments);
         },
@@ -250,7 +252,7 @@
          *                            Other arguments are ignored.
          *@return {string}
          */
-        toDataURL: function(type, encoderOptions) {
+        toDataURL: function (type, encoderOptions) {
             return this.playCanvas.toDataURL(type, encoderOptions);
         },
 
@@ -262,9 +264,9 @@
          * @param callback  called in image.onload
          * @returns {Image}  image dom element
          */
-        toImageEle: function(type, encoderOptions, callback) {
+        toImageEle: function (type, encoderOptions, callback) {
             var image = new Image();
-            image.onload = function() {
+            image.onload = function () {
                 callback();
             };
             image.src = this.toDataURL(type, encoderOptions);
@@ -275,7 +277,7 @@
          *  See toDataURL()
          * @return {Blob}
          */
-        toBlob: function(type, encoderOptions) {
+        toBlob: function (type, encoderOptions) {
             //DataURL: 'data:text/plain;base64,YWFhYWFhYQ=='
             var arr = this.toDataURL(type, encoderOptions).split(','),
                 mime = arr[0].match(/:(.*?);/)[1],
@@ -295,7 +297,7 @@
          * @deprecated
          * @link http://weworkweplay.com/play/saving-html5-canvas-as-image/
          */
-        saveAsLocalImagePng: function() {
+        saveAsLocalImagePng: function () {
             // here is the most important part because if you don't replace you will get a DOM 18 exception.
             var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition:attachment;filename=foo.png");
             //var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream");
@@ -310,44 +312,44 @@
          * @returns {RecordRTC|null}
          * @see {@link https://github.com/muaz-khan/RecordRTC}
          */
-        getCanvasRecorder:function (config) {
-            if(RecordRTC){
-            config=config||{};
-            config.type="canvas";
-            return new RecordRTC(this.playCanvas,config);
+        getCanvasRecorder: function (config) {
+            if (RecordRTC) {
+                config = config || {};
+                config.type = "canvas";
+                return new RecordRTC(this.playCanvas, config);
             }
             console.error("can't record canvas")
             return null;
         },
-        
+
         //  add  event  to canvas
-        addEvent: function(eventType, callback) {
+        addEvent: function (eventType, callback) {
             $util.addEvent(this.playCanvas, eventType, callback);
         },
         //
-        mousedown: function(callback) {
+        mousedown: function (callback) {
             if (typeof callback !== "function") return;
             var canvas = this;
-            canvas.addEvent("mousedown", function(e) {
+            canvas.addEvent("mousedown", function (e) {
                 e.preventDefault();
                 canvas.saveRevokeImgDatas();
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
             });
         },
         //
-        mousemove: function(callback) {
+        mousemove: function (callback) {
             if (typeof callback !== "function") return;
             var canvas = this;
-            canvas.addEvent("mousemove", function(e) {
+            canvas.addEvent("mousemove", function (e) {
                 e.preventDefault();
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
             });
         },
         //
-        mouseup: function(callback) {
+        mouseup: function (callback) {
             if (typeof callback !== "function") return;
             var canvas = this;
-            canvas.addEvent("mouseup", function(e) {
+            canvas.addEvent("mouseup", function (e) {
                 e.preventDefault();
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
                 canvas.saveForwardRevokeFirstFrame();

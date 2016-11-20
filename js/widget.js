@@ -53,6 +53,8 @@
          */
         iconClick: function(ele, e) {},
 
+        iconLeave:function(ele, e) {},
+
         //  clone widget
         //  another child widget  call this function to  clone  'CaysyanWidget'
         clone: function() {

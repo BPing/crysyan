@@ -36,6 +36,12 @@
                 icon: "image.png",
                 name: "image"
             },
+            TextWidget: {
+                exportVar: "CrysyanTextWidget",
+                jsFile: "text.js",
+                icon: "text.png",
+                name: "text"
+            },
             UndoWidget: {
                 exportVar: "CrysyanUndoWidget",
                 jsFile: "undo.js",
@@ -84,7 +90,7 @@
             Id: "crysyan-toolbar",
             length:900,
             widgetLength:50,
-            widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
+            widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget","TextWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
         }
     };
 
