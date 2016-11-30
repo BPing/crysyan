@@ -3,7 +3,7 @@
  *  @module
  *  @depend util.js;canvas.js;widget.js;widget/*.js
  */
-(function ($defaultConfig, $widgetConfig, $util) {
+(function ($defaultConfig,  $widgetConfig, $util) {
     'use strict';
     /**
      *      view
@@ -70,6 +70,7 @@
         //  Error ,'Don't make functions within a loop' ,detected by jslint can be ignored.
         $(".crysyan-widget-class", document).each(function () {
             var ele = $(this);
+            var docEle=this;
             //  id is equal to 'CrysyanWidgetType'
             var widgetSelected = ele.attr("id").replace(/\s+/g, "");
             var clickFunc = function (e) {
@@ -78,13 +79,13 @@
                         $(this).removeClass("widget-selected-shape");
                     });
                     ele.addClass("widget-selected-shape");
-                    view.widgetSelected !== widgetSelected && view.widgetEventMap[view.widgetSelected] && view.widgetEventMap[view.widgetSelected].iconLeave(ele, e);
+                    view.widgetSelected !== widgetSelected && view.widgetEventMap[view.widgetSelected] && view.widgetEventMap[view.widgetSelected].iconLeave(docEle, e);
                     view.widgetSelected = widgetSelected;
                 }
                 //console.log(view.widgetSelected);
                 // call the click event if is exist
                 if (view.widgetEventMap.hasOwnProperty(widgetSelected)) {
-                    view.widgetEventMap[widgetSelected].iconClick(ele, e);
+                    view.widgetEventMap[widgetSelected].iconClick(docEle, e);
                 }
             };
             ele.click(clickFunc);
@@ -98,8 +99,8 @@
             if (view.widgetEventMap.hasOwnProperty(view.widgetSelected)) {
                 var widgetInstance = view.widgetEventMap[view.widgetSelected];
                 widgetInstance.isDown = true;
-                widgetInstance.prePiont.e = e;
-                widgetInstance.prePiont.loc = loc;
+                widgetInstance.prePoint.e = e;
+                widgetInstance.prePoint.loc = loc;
                 widgetInstance.mouseDown(e, loc);
             }
         });

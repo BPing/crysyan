@@ -28,7 +28,7 @@
         crysyanCanvas: null,
 
         // pre-event attribute
-        prePiont: {
+        prePoint: {
             //  event
             e: null,
             // the coordinates on the canvas of event

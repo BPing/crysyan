@@ -22,6 +22,13 @@
                 icon: "pencil.png",
                 name: "pencil"
             },
+            ShapeWidget: {
+                exportVar: "CrysyanShapeWidget",
+                jsFile: "shape.js",
+                // Icon and Name of widget in toolbar
+                icon: "shape.png",
+                name: "shape"
+            },
             EraserWidget: {
                 exportVar: "CrysyanEraserWidget",
                 jsFile: "eraser.js",
@@ -90,7 +97,7 @@
             Id: "crysyan-toolbar",
             length:900,
             widgetLength:50,
-            widgets: ["CursorWidget", "PencilWidget", "EraserWidget", "ImageWidget","TextWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
+            widgets: ["CursorWidget", "PencilWidget","ShapeWidget", "EraserWidget", "ImageWidget","TextWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
         }
     };
 

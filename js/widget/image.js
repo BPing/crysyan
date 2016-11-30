@@ -24,7 +24,7 @@
     };
 
     image.drawImage = function(context, loc) {
-        var preloc = image.prePiont.loc;
+        var preloc = image.prePoint.loc;
         if (!image.imageHandler.image || (loc.x - preloc.x) === 0) {
             return;
         }

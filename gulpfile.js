@@ -34,6 +34,8 @@ var widgetsLoad = [];
         widgetPath+"pencil.js", 
         widgetPath+"eraser.js", 
         widgetPath+"image.js", 
+        widgetPath+"image.js",
+        widgetPath+"shape.js",
         widgetPath+"undo.js", 
         widgetPath+"into-go.js",
         widgetPath+"clear.js"];

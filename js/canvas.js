@@ -52,6 +52,7 @@
         this.historyListLen = ops.historyListLen;
 
         this.clearCanvas();
+
     }
 
     CrysyanCanvas.prototype = {
@@ -64,7 +65,7 @@
         },
         // Restore drawing surface
         restoreDrawingSurface: function (imageData) {
-            this.playContext.putImageData(imageData||this.drawingSurfaceImageData, 0, 0);
+            this.playContext.putImageData(imageData || this.drawingSurfaceImageData, 0, 0);
         },
         // save history ''drawingSurfaceImageData''
         saveRevokeImgDatas: function () {
@@ -131,6 +132,31 @@
             //     y: y - bbox.top * (canvas.height / bbox.height)
             // };
         },
+        /**
+         *  The event coordinate point is transformed
+         *  from canvas coordinate  system to window coordinate system.
+         * @param  {number} x  e.clientX
+         * @param  {number} y  e.clientY
+         */
+        canvasToWindow: function (x, y) {
+            var bbox = this.playCanvas.getBoundingClientRect();
+            return {
+                x: x + bbox.left,
+                y: y + bbox.top
+            };
+        },
+        canvasPosition: function () {
+            var rect = this.playCanvas.getBoundingClientRect();
+            var top = document.documentElement.clientTop;
+            var left = document.documentElement.clientLeft;
+            return {
+                top: rect.top - top,
+                bottom: rect.bottom - top,
+                left: rect.left - left,
+                right: rect.right - left
+            };
+        },
+
         /**
          *
          * @param {String|File|Image|Blob} obj
@@ -333,6 +359,7 @@
             canvas.addEvent("mousedown", function (e) {
                 e.preventDefault();
                 canvas.saveRevokeImgDatas();
+                canvas.saveDrawingSurface();
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
             });
         },
