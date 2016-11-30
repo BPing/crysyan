@@ -7,8 +7,7 @@
     var baseLoadPath = "../js/";
     var widgetBasePath = "../js/widget/";
     var widgetIconPath = "../img/";
-    var defaultCss = "../css/crysyan.css";
-        
+    
     if (typeof $load === "undefined") $load = true;
     // jquery
     if (!window.$) {
@@ -119,7 +118,7 @@
                 viewCacheMap["default"] = view;
             };
             var config = JSON.parse(hrefRequestArgs.config);
-            requireCss(config.cssFile&&config.cssFile!==""? config.cssFile:defaultCss);
+            config.cssFile&&config.cssFile!==""? requireCss(config.cssFile):"";
             if (config.isRecord&&config.isRecord===true) {
                 requireSeries("../js/ext/RecordRTC.js", function () {
                     createView();

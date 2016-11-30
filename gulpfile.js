@@ -77,7 +77,6 @@ gulp.task('minify-css',["less"], function () {
         .pipe(gulp.dest(distPath));
 });
 
-
 gulp.task('widgets-concat', function () {
     return gulp.src(widgetsLoad)
         .pipe(concat("widgets.js"))
@@ -97,10 +96,6 @@ gulp.task('core-header', function () {
         .pipe(header('var CrysyanFlag=false;'))
         .pipe(plumber())
         .pipe(replace('../js/ext/RecordRTC.js', 'RecordRTC.js'))
-        .pipe(plumber())    
-        .pipe(replace('../js/ext/RecordRTC.js', 'RecordRTC.js'))
-        .pipe(plumber())
-        .pipe(replace('"../css/crysyan.css"', '"crysyan.css"'))
         .pipe(plumber())
         .pipe(replace(' var widgetIconPath = "../img/";', ' var widgetIconPath = "img/";'))
         .pipe(plumber())
@@ -127,6 +122,8 @@ gulp.task('imagemin', function () {
 gulp.task('html-replace-move', function () {
     return gulp.src(["html/*"])
         .pipe(replace('src="../js/crysyan.js"', 'src="crysyan-core-min.js"'))
+        .pipe(plumber()) 
+        .pipe(replace('href="../css/crysyan.css"', 'href="crysyan.css"'))
         .pipe(plumber())
         .pipe(gulp.dest(distPath));
 });
@@ -181,7 +178,6 @@ gulp.task('tar.gz', function () {
         .pipe(gulp.dest('release'));
 
 });
-
 
 gulp.task('publish', ['build'], function (cb) {
     runSequence(["zip","tar.gz"], cb);
