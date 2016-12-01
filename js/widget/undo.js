@@ -2,7 +2,7 @@
     'use strict';
     var CrysyanUndoWidget = $widget.clone();
     CrysyanUndoWidget.iconClick = function(ele, e) {
-        console.log("UndoiconClick");
+       // console.log("UndoiconClick");
         CrysyanUndoWidget.crysyanCanvas.revoke();
     };
     CrysyanUndoWidget.CrysyanWidgetType = "CrysyanUndoWidget";

@@ -1,5 +1,7 @@
 /**
  *  Entrance for canvas operation
+ *  
+ *  @author cbping
  *  @module CrysyanCanvas
  *  @depend util.js
  */
@@ -162,7 +164,7 @@
          * @param {String|File|Image|Blob} obj
          * @param mode
          */
-        drawBackGroupWithImage: function (obj, mode) {
+        drawBackgroundWithImage: function (obj, mode) {
             if (typeof mode === "undefined") {
                 //  image scaling mode
                 //  if mode !=1 ,fulling mode

@@ -67,7 +67,7 @@
         eraser.prePoint.loc = loc;
 
     };
-    eraser.mouseUp = function (e, loc) {
+    eraser.mouseUp = function () {
         var ctx = eraser.crysyanCanvas.playContext;
         switch (eraser.shapeType) {
             case 0:
@@ -158,7 +158,7 @@
             var innerHtml = "<ul>";
 
             innerHtml = innerHtml.concat("<li type='margin-bottom: 10px;'><label for='crysyan-eraser-shape'>shape:</label><select id='crysyan-eraser-shape'>");
-            var shapeOps = ["圆形", "方形", "路径"];
+            var shapeOps = ["Circular", "Square", "Path"];
             for (var key in shapeOps) {
                 innerHtml = innerHtml.concat("<option value=\"", key, "\">", shapeOps[key], "</option>");
             }

@@ -1,4 +1,11 @@
-(function() {
+/**
+ *  Interface or portal for users to use Crysyan.
+ *       It provides some API to the user operating Crysyan.
+ *
+ * @author cbping
+ * @module CrysyanDesigner
+ */
+!(function() {
     // jquery
     if (!window.$) {
         var jQuery = window.parent.$ || window.jQuery;
@@ -59,15 +66,16 @@
             return window[designer.iframe.uid].Crysyan.getView();
         };
         /**
-         *  drawBackgroupWithImage
+         *  drawBackgroundWithImage
          *
-         *       Usually, you need to add "../../" in front of the relative directory
-         *       to roll back to the root directory where the 'crysyan' project  is located.
-         * @param  {[File|Image|String} image
+         *        Usually, you need to add "../../" in front of the relative directory
+         *        to roll back to the root directory where the 'crysyan' project  is located,
+         *        when the parameter is the image path.
+         * @param  {[File|Image|String} image the image you want to draw as background
          */
         designer.drawBackgroupWithImage = function(image) {
             var view = window[designer.iframe.uid].Crysyan.getView();
-            view.crysyanCanvas.drawBackGroupWithImage(image, 1);
+            view.crysyanCanvas.drawBackgroundWithImage(image, 1);
         };
         /**
          *  get Date-Url 

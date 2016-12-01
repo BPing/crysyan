@@ -77,7 +77,7 @@
             //     buttons: 0,
             //     mozInputSource: 1
             // });
-            var fired = element.dispatchEvent(evt);
+            element.dispatchEvent(evt);
         } else {
             element.click();
         }

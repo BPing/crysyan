@@ -1,5 +1,14 @@
 /**
- *  @module Crysyan-Core
+ *  Do some preparation before starting crysyan-view as a inner bootstrap for Crysyan.
+ *
+ *  do:
+ *    1\Checking for the presence of the required external resources. as:Jquery
+ *    2\Parsing configuration parameters from users.
+ *    3\Loading default configs for widgets and all system.
+ *    4\Starting crysyan-view.
+ *
+ *  @author cbping
+ *  @module CrysyanBootstrap
  */
 (function ($load) {
     'use strict';
@@ -18,7 +27,7 @@
             window.$ = jQuery;
         }
     }
-    var jsLoadCache = [];
+   // var jsLoadCache = [];
     // map to Cache  the view instances
     var viewCacheMap = {};
     // Parameters parsed from href
@@ -52,7 +61,7 @@
             script.type = "text/javascript";
             script.onload = script.onreadystatechange = function () {
                 // !/*@cc_on!@*/0 not IE
-                if (!/*@cc_on!@*/ 0 || this.readyState == "loaded" || this.readyState == "complete") {
+                if (!/*@cc_on!@*/ 0 || this.readyState === "loaded" || this.readyState === "complete") {
                     // remove the 'script' tag  after loading the js file is complete
                     this.onload = this.onreadystatechange = null;
                     this.parentNode.removeChild(this);
@@ -80,11 +89,11 @@
         cssLink.setAttribute("href", filePath);
         headElement.appendChild(cssLink);
     }
-
-    (function getRequest() {
+    // getRequest
+    (function() {
         // get from URL string after '?'
         var url = decodeURI(location.search);
-        if (url.indexOf("?") != -1) {
+        if (url.indexOf("?") !== -1) {
             var str = url.substr(1);
             var strs = str.split("&");
             for (var i = 0; i < strs.length; i++) {
@@ -113,11 +122,11 @@
     //
     var init = function () {
         widgetinit(function () {
+            var config = JSON.parse(hrefRequestArgs.config);
             var createView = function () {
                 var view = new CrysyanView(config).init();
                 viewCacheMap["default"] = view;
             };
-            var config = JSON.parse(hrefRequestArgs.config);
             config.cssFile&&config.cssFile!==""? requireCss(config.cssFile):"";
             if (config.isRecord&&config.isRecord===true) {
                 requireSeries("../js/ext/RecordRTC.js", function () {

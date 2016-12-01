@@ -23,7 +23,6 @@
         lineWidth: 1,
         strokeStyle: '#000000',
         type: 0
-
     };
 
     Pencil.mouseDown = function (e, loc) {
@@ -38,10 +37,10 @@
         var pencil = this;
         if (!pencil.isDown) return;
         var ctx = pencil.crysyanCanvas.playContext;
-        ctx.beginPath();
         switch (pencil.config.type) {
             case 0:
             case "0":
+                ctx.beginPath();
                 drawFullLine(ctx, pencil.prePoint.loc.x, pencil.prePoint.loc.y, loc.x, loc.y);
                 pencil.prePoint.e = e;
                 pencil.prePoint.loc = loc;
@@ -61,10 +60,12 @@
             default:
 
         }
-        ctx.closePath();
+        // ctx.closePath();
     };
 
     Pencil.mouseUp = function (e, loc) {
+        var ctx = Pencil.crysyanCanvas.playContext;
+        ctx.restore();
     };
 
     Pencil.setConfig = function () {

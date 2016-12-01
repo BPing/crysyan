@@ -1,6 +1,9 @@
 /**
- *   View of canvas
- *  @module
+ *  View of drawing board
+ *     init view of canvas and widgets.
+ *     init event handler of widgets.
+ *  @author cbping
+ *  @module CrysyanView
  *  @depend util.js;canvas.js;widget.js;widget/*.js
  */
 (function ($defaultConfig,  $widgetConfig, $util) {
@@ -42,10 +45,10 @@
         var innerHTML = "<ul id=\"widgets-list\" class=\"ul-widget-list \">";
         for (var index = 0; index < widgets.length; index++) {
             var widget = widgets[index];
-            if (handledWidgetsMap.hasOwnProperty(widget)) {
-                continue;
-            }
-            if (!configWidgets.hasOwnProperty(widget) || !window.hasOwnProperty(configWidgets[widget].exportVar)) {
+            // if (handledWidgetsMap.hasOwnProperty(widget)) {
+            //     continue;
+            // }
+            if (handledWidgetsMap.hasOwnProperty(widget)||!configWidgets.hasOwnProperty(widget) || !window.hasOwnProperty(configWidgets[widget].exportVar)) {
                 console.error("widget: '" + widget + "'does not exist");
                 continue;
             }

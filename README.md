@@ -43,7 +43,7 @@ $(".crysyan-designer").CrysyanDesigner({
 //         width: 900,
 //         height: 500
 //     },
-//     toobar: {
+//     toolbar: {
 //         length: 500
 //     }
 // }, function(designer) {
@@ -307,7 +307,7 @@ var designer=CrysyanDesigner({
         height: 500,
         historyListLen:50
     },
-    toobar: {
+    toolbar: {
         widgetLength: 50,
         widgets:
         [
