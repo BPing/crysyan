@@ -360,9 +360,82 @@ If you not need load the css(include inner css).set the value of it to not strin
 
 <h2 align="center">Add New Tools Widgets</h2>
 
+For example: add a `shape`'s widget.
+
 ## First Step
+Create a file `shape.js` to implement your tool's facility code ，under the  folder `js/widget/`.
+
+1、the shape widget must be a replica copy from `CrysyanWidget`.
+```javascript
+ (function($widget) {
+    'use strict';
+    var CrysyanShapeWidget = $widget.clone();
+    ....
+   // the name of widget type must be unique.
+   Shape.CrysyanWidgetType = "CrysyanShapeWidget";
+   // export to window
+   window.CrysyanShapeWidget = CrysyanShapeWidget;
+ })(CrysyanWidget);
+```
+
+2、`CrysyanWidget`
+
+**Properties:** 
+
+`crysyanCanvas`
+An instance of `crysyanCanvas` with which you can draw canvas.
+```javascript
+var ctx = Shape.crysyanCanvas.playContext;
+```
+
+`prePoint`
+Record the previous point coordinates `prePoint.loc` and event `prePoint.e`
+
+`isDown`
+when the mouse down,`isDown` will be true.
+
+**Methods**:  can be overridden.
+
+`mouseDown`: function(e, loc) {}
+when the mouse down in canvas,it will be called. `e` a window event object,`loc`  point coordinates in canvas.
+
+`mouseUp`: 
+when the mouse up in canvas,it will be called.
+
+`mouseMove`:
+when the mouse move in canvas,it will be called.
+
+`iconClick`: function(ele, e) {},
+when click the widget's icon ,it will be called. `ele` widget's html element,`e` a window event object.
+
+`iconLeave`:
+when click and select a new widget's icon and leave selected older ,it will be called.
+
 ## Second Step
+Put your widget's icon `shape.png` under the folder `img/`.
 ## Third Step
+Open `config.js` and append following snippet to `window.CrysyanWidgetConfig`.
+
+```javascript
+ShapeWidget: {
+    // Variable name export to window
+    exportVar: "CrysyanShapeWidget",
+    // Name of js file
+    jsFile: "shape.js",
+    // Icon and Name of widget in toolbar
+    icon: "shape.png",
+    name: "shape"
+},
+```
+
+Then, append variable `ShapeWidget` above to `window.CrysyanDefaultConfig.toolbar.widgets`.
+
+```javascript
+widgets: [...,"ShapeWidget",...]
+```
+
+## Four Step
+Open `gulpfile.js`,append ` widgetPath+"shape.js",` to `widgetsLoad` array,if you want to built-in.
 
 # <a name="Dependence"/>Dependence
 * jQuery
