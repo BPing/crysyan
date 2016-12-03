@@ -382,33 +382,38 @@ Create a file `shape.js` to implement your tool's facility code ，under the  fo
 
 **Properties:** 
 
-`crysyanCanvas`
+#### `crysyanCanvas`
 An instance of `crysyanCanvas` with which you can draw canvas.
 ```javascript
 var ctx = Shape.crysyanCanvas.playContext;
 ```
 
-`prePoint`
+#### `prePoint`
 Record the previous point coordinates `prePoint.loc` and event `prePoint.e`
 
-`isDown`
+#### `isDown`
 when the mouse down,`isDown` will be true.
 
 **Methods**:  can be overridden.
 
-`mouseDown`: function(e, loc) {}
+####`mouseDown`: function(e, loc) {}
+
 when the mouse down in canvas,it will be called. `e` a window event object,`loc`  point coordinates in canvas.
 
-`mouseUp`: 
+####`mouseUp`: 
+
 when the mouse up in canvas,it will be called.
 
-`mouseMove`:
+####`mouseMove`:
+
 when the mouse move in canvas,it will be called.
 
-`iconClick`: function(ele, e) {},
+####`iconClick`: function(ele, e) {},
+
 when click the widget's icon ,it will be called. `ele` widget's html element,`e` a window event object.
 
-`iconLeave`:
+####`iconLeave`:
+
 when click and select a new widget's icon and leave selected older ,it will be called.
 
 ## Second Step
