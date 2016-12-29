@@ -393,7 +393,7 @@
         width: 0,
         height: 0,
         // id of canvas element
-        canvasId: "canvas",
+        canvasId: "crysyan-canvas",
         // length of history 'revokeImgDatas' list
         historyListLen: 50
     };
