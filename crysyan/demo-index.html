@@ -22,12 +22,17 @@
             color: gray;
             text-shadow: none;
         }
+        body {
+            background-image: url("img/bg-lesson-begin.jpg");
+        }
     </style>
 </head>
 <body>
-    <button type="button" id="start-record">start-record</button>
-    <button  id="stop-record">stop-record</button>
-    <div style="height:660px;" class="crysyan-designer"></div>
+
+    <div style="height:760px;" class="crysyan-designer">
+        <button type="button" id="start-record">start-record</button>
+        <button  id="stop-record">stop-record</button>
+    </div>
     <div id="videoTag" style="height:500px;"></div>
 </body>
 
@@ -39,11 +44,12 @@
         isRecord:true,
         canvas: {
             // px
-            width: 800,
-            height: 500
+            width: 1000,
+            height: 600
         },
-        toobar: {
-            length: 500
+        toolbar: {
+          //  widgets: ["CursorWidget", "PencilWidget","ShapeWidget", "EraserWidget", "TextWidget", "UndoWidget", "IndoGoWidget", "ClearWidget"],
+
         }
     }, function(designer) {
         console.dir(designer);
