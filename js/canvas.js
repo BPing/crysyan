@@ -1,6 +1,6 @@
 /**
  *  Entrance for canvas operation
- *  
+ *
  *  @author cbping
  *  @module CrysyanCanvas
  *  @depend util.js
@@ -358,31 +358,85 @@
         mousedown: function (callback) {
             if (typeof callback !== "function") return;
             var canvas = this;
-            canvas.addEvent("mousedown", function (e) {
+            var mousedown = function (e) {
+                if (typeof e.type === "undefined") return;
                 e.preventDefault();
+                e.stopPropagation();
+                // console.dir(e.type);
+                // console.dir(e);
+                // mouse event
+                if (e.type === "mousedown") {
+                }
+                // touch event
+                if (e.type === "touchstart") {
+                    e = e.clientX ? e : e.touches.length ? e.touches[0] : {
+                                clientX: 0,
+                                clientY: 0
+                            };
+                }
                 canvas.saveRevokeImgDatas();
                 canvas.saveDrawingSurface();
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
-            });
+            };
+            canvas.addEvent("mousedown", mousedown);
+            //Register touch event's listener if it's supported.
+            if ('createTouch' in document) {
+                canvas.addEvent("touchstart", mousedown);
+            }
         },
         //
         mousemove: function (callback) {
             if (typeof callback !== "function") return;
             var canvas = this;
-            canvas.addEvent("mousemove", function (e) {
+            var mousemove = function (e) {
+                if (typeof e.type === "undefined") return;
                 e.preventDefault();
+                e.stopPropagation();
+                // console.dir(e.type);
+                // console.dir(e);
+                // mouse event
+                if (e.type === "mousemove") {
+                }
+                // touch event
+                if (e.type === "touchmove") {
+                    e = e.clientX ? e : e.touches.length ? e.touches[0] : {
+                                clientX: 0,
+                                clientY: 0
+                            };
+                }
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
-            });
+            };
+            canvas.addEvent("mousemove", mousemove);
+            if ('createTouch' in document) {
+                canvas.addEvent("touchmove", mousemove);
+            }
         },
         //
         mouseup: function (callback) {
             if (typeof callback !== "function") return;
             var canvas = this;
-            canvas.addEvent("mouseup", function (e) {
+            var mouseup = function (e) {
+                if (typeof e.type === "undefined") return;
                 e.preventDefault();
+                e.stopPropagation();
+                // console.dir(e.type);
+                // console.dir(e);
+                // mouse event
+                if (e.type === "mouseup") {
+                }
+                // touch event
+                if (e.type === "touchend") {
+                    e = e.clientX ? e : e.touches.length ? e.touches[0] : e.changedTouches.length ? e.changedTouches[0] : null;
+                    // if e is null ,do nothing
+                    if (e === null) return;
+                }
                 callback(e, canvas.windowToCanvas(e.clientX, e.clientY));
                 canvas.saveForwardRevokeFirstFrame();
-            });
+            };
+            canvas.addEvent("mouseup", mouseup);
+            if ('createTouch' in document) {
+                canvas.addEvent("touchend", mouseup);
+            }
         }
 
     };

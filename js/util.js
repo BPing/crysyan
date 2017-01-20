@@ -11,6 +11,13 @@
          *  @param {Function} callback function for callback
          */
         addEvent: function(element, eventType, callback) {
+            // if (eventType.split(' ').length > 1) {
+            //     var events = eventType.split(' ');
+            //     for (var i = 0; i < events; i++) {
+            //         util.addEvent(element, events[i], callback);
+            //     }
+            //     return;
+            // }
             if (element.addEventListener) {
                 element.addEventListener(eventType, callback, !1);
             } else if (element.attachEvent) { // for IE

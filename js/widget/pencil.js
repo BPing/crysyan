@@ -48,7 +48,9 @@
             case 1 :
             case "1":
                 pencil.crysyanCanvas.restoreDrawingSurface();
+                ctx.beginPath();
                 drawFullLine(ctx, pencil.prePoint.loc.x, pencil.prePoint.loc.y, loc.x, loc.y);
+                ctx.closePath();
                 break;
             case 2 :
             case "2":
