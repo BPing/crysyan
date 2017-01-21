@@ -84,11 +84,24 @@ Record Canvas(video/webM)   | 30+	  | 30+ | No support
 
 * 0.1.1
 
-> record canvas.
+> feature:
+>   record canvas.
 
 * 0.1.2
 
-> UI style upgrade.
+> feature:
+>  UI style upgrade.
+
+* 0.1.3.beta
+
+> feature:
+>    1、add shape widget.
+>    2、second-level menu for pencil、eraser and shape widgets.
+>    3、add touch event for canvas event.
+>    4、via variable `historyListLen`,set the historical canvas's record length.
+> fix:
+>    1、tool icon: draggable=false.
+
 
 # <a name="Build-in"/>Build-in
 ## widgets
