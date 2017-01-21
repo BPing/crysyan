@@ -15,7 +15,7 @@ var cleanCSS = require('gulp-clean-css');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
 var distPath = "dist/crysyan/";
-var version = "0.1.2";
+var version = "0.1.3.beta";
 var widgetsLoad = [];
 
 (function () {
