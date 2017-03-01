@@ -139,22 +139,22 @@
             var image = new Image();
             // CORS settings attributes
             image.crossOrigin = 'Anonymous';
-            image.onload = function() {
+            image.onload = function () {
                 canvas.backgroudImage.image = image;
-                canvas.backgroudImage.width = canvas.playCanvas.width;
-                canvas.backgroudImage.height = canvas.playCanvas.height;
+                canvas.backgroudImage.width =image.width = canvas.playCanvas.width;
+                canvas.backgroudImage.height = image.height=canvas.playCanvas.height;
                 if (mode === 1) {
                     // Ratio of picture's and canvas's  width and height
                     var ivwr = image.width === 0 || canvas.playCanvas.width === 0 ? 0 : image.width / canvas.playCanvas.width;
                     var ivhr = image.height === 0 || canvas.playCanvas.height === 0 ? 0 : image.height / canvas.playCanvas.height;
                     if (image.width >= canvas.playCanvas.width && ivwr > ivhr) {
                         // Beyond the canvas's width
-                        //zoom ratio
-                        canvas.backgroudImage.height = image.height * ivwr;
+                        // zoom ratio
+                        canvas.backgroudImage.height = image.height=canvas.playCanvas.height * (1/ivwr).toFixed(2);
                     } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
-                        //zoom ratio
-                        canvas.backgroudImage.width = image.width * ivhr;
+                        // zoom ratio
+                        canvas.backgroudImage.width = image.width=canvas.playCanvas.width * (1/ivhr).toFixed(2);
                     }
                 }
                 canvas.clearCanvas();
