@@ -95,11 +95,17 @@ Record Canvas(video/webM)   | 30+	  | 30+ | No support
 * 0.1.3.beta
 
 > feature:
+
 >    1、add shape widget.
+
 >    2、second-level menu for pencil、eraser and shape widgets.
+
 >    3、add touch event for canvas event.
+
 >    4、via variable `historyListLen`,set the historical canvas's record length.
+
 > fix:
+
 >    1、tool icon: draggable=false.
 
 
@@ -117,7 +123,8 @@ config{
         "ImageWidget",
         "UndoWidget",
         "IndoGoWidget",
-        "ClearWidget"],
+        "ClearWidget",
+        "ShapeWidget" ],
     }
     }
 ```
@@ -128,6 +135,7 @@ config{
 4. `uodo` ---  `UndoWidget`      revoke history of canvas
 5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
 6. `clear` --- `ClearWidget`     clear canvas
+7. `shape` --- `ShapeWidget`     draw graphics（Square、Circular、Triangle）
 
 ## gulp
 
