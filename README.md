@@ -109,6 +109,12 @@ Record Canvas(video/webM)   | 30+	  | 30+ | No support
 >    1、tool icon: draggable=false.
 
 
+* 0.1.3
+
+> fix:
+
+>    1、background image scaling exceptions
+
 # <a name="Build-in"/>Build-in
 ## widgets
  You can use config for below widgets.
