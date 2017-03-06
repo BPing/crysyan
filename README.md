@@ -123,7 +123,8 @@ config{
         "ImageWidget",
         "UndoWidget",
         "IndoGoWidget",
-        "ClearWidget"],
+        "ClearWidget",
+        "ShapeWidget" ],
     }
     }
 ```
@@ -134,7 +135,7 @@ config{
 4. `uodo` ---  `UndoWidget`      revoke history of canvas
 5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
 6. `clear` --- `ClearWidget`     clear canvas
-7. `shape` --- `ClearWidget`     draw graphics（Square、Circular、Triangle）
+7. `shape` --- `ShapeWidget`     draw graphics（Square、Circular、Triangle）
 
 ## gulp
 
