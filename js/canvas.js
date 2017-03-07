@@ -141,8 +141,8 @@
             image.crossOrigin = 'Anonymous';
             image.onload = function () {
                 canvas.backgroudImage.image = image;
-                canvas.backgroudImage.width =image.width = canvas.playCanvas.width;
-                canvas.backgroudImage.height = image.height=canvas.playCanvas.height;
+                canvas.backgroudImage.width = canvas.playCanvas.width;
+                canvas.backgroudImage.height = canvas.playCanvas.height;
                 if (mode === 1) {
                     // Ratio of picture's and canvas's  width and height
                     var ivwr = image.width === 0 || canvas.playCanvas.width === 0 ? 0 : image.width / canvas.playCanvas.width;
@@ -150,11 +150,22 @@
                     if (image.width >= canvas.playCanvas.width && ivwr > ivhr) {
                         // Beyond the canvas's width
                         // zoom ratio
-                        canvas.backgroudImage.height = image.height=canvas.playCanvas.height * (1/ivwr).toFixed(2);
+                        canvas.backgroudImage.height = canvas.playCanvas.height * (1 / ivwr).toFixed(2);
                     } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
                         // zoom ratio
-                        canvas.backgroudImage.width = image.width=canvas.playCanvas.width * (1/ivhr).toFixed(2);
+                        canvas.backgroudImage.width = canvas.playCanvas.width * (1 / ivhr).toFixed(2);
+                    }
+                    image.width = canvas.backgroudImage.width;
+                    image.height = canvas.backgroudImage.height;
+                }else{
+                    // if the width of image bigger than canvas's,will set to canvas's width
+                    if (image.width >= canvas.backgroudImage.width) {
+                        image.width = canvas.backgroudImage.width;
+                    }
+                    // if the height of image bigger than canvas's,will set to canvas's height
+                    if (image.height >= canvas.backgroudImage.height) {
+                        image.height = canvas.backgroudImage.height;
                     }
                 }
                 canvas.clearCanvas();
