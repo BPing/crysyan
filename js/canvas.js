@@ -162,7 +162,7 @@
         /**
          *
          * @param {String|File|Image|Blob} obj
-         * @param mode
+         * @param mode Scale by scale,if mode=1.default 1.
          */
         drawBackgroundWithImage: function (obj, mode) {
             if (typeof mode === "undefined") {
@@ -185,12 +185,23 @@
                     var ivhr = image.height === 0 || canvas.playCanvas.height === 0 ? 0 : image.height / canvas.playCanvas.height;
                     if (image.width >= canvas.playCanvas.width && ivwr > ivhr) {
                         // Beyond the canvas's width
-                        //zoom ratio
-                        canvas.backgroudImage.height = image.height * ivwr;
+                        // zoom ratio
+                        canvas.backgroudImage.height = canvas.playCanvas.height * (1 / ivwr).toFixed(2);
                     } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
-                        //zoom ratio
-                        canvas.backgroudImage.width = image.width * ivhr;
+                        // zoom ratio
+                        canvas.backgroudImage.width = canvas.playCanvas.width * (1 / ivhr).toFixed(2);
+                    }
+                    image.width = canvas.backgroudImage.width;
+                    image.height = canvas.backgroudImage.height;
+                }else{
+                    // if the width of image bigger than canvas's,will set to canvas's width
+                    if (image.width >= canvas.backgroudImage.width) {
+                        image.width = canvas.backgroudImage.width;
+                    }
+                    // if the height of image bigger than canvas's,will set to canvas's height
+                    if (image.height >= canvas.backgroudImage.height) {
+                        image.height = canvas.backgroudImage.height;
                     }
                 }
                 canvas.clearCanvas();
