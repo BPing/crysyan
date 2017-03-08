@@ -65,7 +65,7 @@
          */
         designer.drawBackgroupWithImage = function(image,mode) {
             var view = window[designer.iframe.uid].Crysyan.getView();
-            view.crysyanCanvas.drawBackgroundWithImage(image, mode);
+            view.crysyanCanvas.drawBackGroupWithImage(image, mode);
         };
 
         designer.toDataUrl = function(type) {
