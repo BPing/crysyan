@@ -3,7 +3,7 @@
  *  @module CrysyanCanvas
  *  @depend util.js
  */
-(function($util) {
+(function ($util) {
     'use strict';
     /**
      * @class CrysyanCanvas
@@ -50,19 +50,20 @@
         //  the most length of history 'revokeImgDatas' list
         this.historyListLen = ops.historyListLen;
     }
+
     CrysyanCanvas.prototype = {
         // Save e drawing surface
-        saveDrawingSurface: function() {
+        saveDrawingSurface: function () {
             this.drawingSurfaceImageData = this.playContext.getImageData(0, 0,
                 this.playCanvas.width,
                 this.playCanvas.height);
         },
         // Restore drawing surface
-        restoreDrawingSurface: function() {
+        restoreDrawingSurface: function () {
             this.playContext.putImageData(this.drawingSurfaceImageData, 0, 0);
         },
         // save history ''drawingSurfaceImageData''
-        saveRevokeImgDatas: function() {
+        saveRevokeImgDatas: function () {
             var drawingSurfaceImageData = this.playContext.getImageData(0, 0, this.playCanvas.width, this.playCanvas.height);
             if (this.revokeImgDatas.length >= this.historyListLen) {
                 // If the length is longer than the maximum length of the configuration
@@ -76,12 +77,12 @@
             // clear the array
             this.forwardRevokeImgDatas = [];
         },
-        saveForwardRevokeFirstFrame: function() {
+        saveForwardRevokeFirstFrame: function () {
             this.forwardRevokeImgDatas[0] = this.playContext.getImageData(0, 0, this.playCanvas.width, this.playCanvas.height);
         },
         // Revoke
         //  if length of list is zero ,return zero
-        revoke: function() {
+        revoke: function () {
             if (this.revokeImgDatas.length <= 0)
                 return 0;
             var drawingSurfaceImageData = this.revokeImgDatas.pop();
@@ -90,7 +91,7 @@
         },
         //  Forward revoke
         //  if length of list is zero ,return zero
-        forwardRevoke: function() {
+        forwardRevoke: function () {
             if (this.forwardRevokeImgDatas.length <= 0)
                 return 0;
             var drawingSurfaceImageData = this.forwardRevokeImgDatas.pop();
@@ -98,8 +99,12 @@
             this.playContext.putImageData(drawingSurfaceImageData, 0, 0);
         },
         //
-        clearCanvas: function() {
+        clearCanvas: function () {
             this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
+            this.clearCanvasWithOnlyBackGroupImage();
+        },
+        //
+        clearCanvasWithOnlyBackGroupImage: function () {
             if (this.backgroudImage.image !== null) {
                 var image = this.backgroudImage.image;
                 this.drawImage(image, (this.playCanvas.width - image.width) / 2, (this.playCanvas.height - image.height) / 2, image.width, image.height);
@@ -112,7 +117,7 @@
          * @param  {number} x  e.clientX
          * @param  {number} y  e.clientY
          */
-        windowToCanvas: function(x, y) {
+        windowToCanvas: function (x, y) {
             var bbox = this.playCanvas.getBoundingClientRect();
             return {
                 x: x - bbox.left,
@@ -128,7 +133,7 @@
          * @param {String|File|Image|Blob} obj
          * @param mode
          */
-        drawBackGroupWithImage: function(obj, mode) {
+        drawBackGroupWithImage: function (obj, mode) {
             if (typeof mode === "undefined") {
                 //  image scaling mode
                 //  if mode !=1 ,fulling mode
@@ -150,15 +155,15 @@
                     if (image.width >= canvas.playCanvas.width && ivwr > ivhr) {
                         // Beyond the canvas's width
                         // zoom ratio
-                        canvas.backgroudImage.height = canvas.playCanvas.height * (1 / ivwr).toFixed(2);
+                        image.width = canvas.backgroudImage.width;
+                        image.height = canvas.backgroudImage.height = canvas.playCanvas.height * (1 / ivwr).toFixed(2);
                     } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
                         // zoom ratio
-                        canvas.backgroudImage.width = canvas.playCanvas.width * (1 / ivhr).toFixed(2);
+                        image.height = canvas.backgroudImage.height;
+                        image.width = canvas.backgroudImage.width = canvas.playCanvas.width * (1 / ivhr).toFixed(2);
                     }
-                    image.width = canvas.backgroudImage.width;
-                    image.height = canvas.backgroudImage.height;
-                }else{
+                } else {
                     // if the width of image bigger than canvas's,will set to canvas's width
                     if (image.width >= canvas.backgroudImage.width) {
                         image.width = canvas.backgroudImage.width;
@@ -171,16 +176,16 @@
                 canvas.clearCanvas();
             };
             // image  the image object maybe come from parent's window.
-            if (obj instanceof Image ||(parent&&parent.window&&obj instanceof parent.window.Image)||typeof obj.src!=="undefined") {
+            if (obj instanceof Image || (parent && parent.window && obj instanceof parent.window.Image) || typeof obj.src !== "undefined") {
                 image.src = obj.src;
                 return;
             }
             // file the File|Blob object maybe come from parent's window.
             if (obj instanceof File
                 || obj instanceof Blob
-                ||(parent&&parent.window&&(obj instanceof parent.window.File||obj instanceof parent.window.Blob))) {
+                || (parent && parent.window && (obj instanceof parent.window.File || obj instanceof parent.window.Blob))) {
                 var reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = function (event) {
                     image.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
@@ -205,10 +210,10 @@
          * 3、Cut the image and locate the part on the canvas:
          *   drawImageFile(imagefile,sx,sy,swidth,sheight,x,y,width,height);
          */
-        drawImageFile: function(file) {
+        drawImageFile: function (file) {
             var canvas = this;
             var reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = function (event) {
                 canvas.drawDataUrl(event.target.result);
             };
             reader.readAsDataURL(file);
@@ -218,12 +223,12 @@
          *
          * @param dataUrl
          */
-        drawDataUrl: function(dataUrl) {
+        drawDataUrl: function (dataUrl) {
             var ctx = this.playContext;
             var image = new Image();
             // CORS settings attributes
             image.crossOrigin = 'Anonymous';
-            image.onload = function() {
+            image.onload = function () {
                 arguments[0] = image;
                 ctx.drawImage.apply(ctx, arguments);
             };
@@ -241,7 +246,7 @@
          * 3、Cut the image and locate the part on the canvas:
          *   drawImage(image,sx,sy,swidth,sheight,x,y,width,height);
          */
-        drawImage: function() {
+        drawImage: function () {
             var ctx = this.playContext;
             ctx.drawImage.apply(ctx, arguments);
         },
@@ -255,7 +260,7 @@
          *                            Other arguments are ignored.
          *@return {string}
          */
-        toDataURL: function(type, encoderOptions) {
+        toDataURL: function (type, encoderOptions) {
             return this.playCanvas.toDataURL(type, encoderOptions);
         },
 
@@ -267,9 +272,9 @@
          * @param callback  called in image.onload
          * @returns {Image}  image dom element
          */
-        toImageEle: function(type, encoderOptions, callback) {
+        toImageEle: function (type, encoderOptions, callback) {
             var image = new Image();
-            image.onload = function() {
+            image.onload = function () {
                 callback();
             };
             image.src = this.toDataURL(type, encoderOptions);
@@ -280,7 +285,7 @@
          *  See toDataURL()
          * @return {Blob}
          */
-        toBlob: function(type, encoderOptions) {
+        toBlob: function (type, encoderOptions) {
             //DataURL: 'data:text/plain;base64,YWFhYWFhYQ=='
             var arr = this.toDataURL(type, encoderOptions).split(','),
                 mime = arr[0].match(/:(.*?);/)[1],
@@ -300,7 +305,7 @@
          * @deprecated
          * @link http://weworkweplay.com/play/saving-html5-canvas-as-image/
          */
-        saveAsLocalImagePng: function() {
+        saveAsLocalImagePng: function () {
             // here is the most important part because if you don't replace you will get a DOM 18 exception.
             var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition:attachment;filename=foo.png");
             //var image = this.toDataURL("image/png").replace("image/png", "image/octet-stream");
@@ -309,7 +314,7 @@
         },
 
         //  add  event  to canvas
-        addEvent: function(eventType, callback) {
+        addEvent: function (eventType, callback) {
             $util.addEvent(this.playCanvas, eventType, callback);
         },
         //

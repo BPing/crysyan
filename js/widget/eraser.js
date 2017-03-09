@@ -1,4 +1,4 @@
-(function($widget) {
+(function ($widget) {
     'use strict';
 
     var ERASER_LINE_WIDTH = 1,
@@ -12,7 +12,7 @@
     var eraser = CrysyanEraserWidget;
     eraser.eraserWidth = 25;
     // eraser.mouseDown = function(e, loc) {};
-    eraser.mouseMove = function(e, loc) {
+    eraser.mouseMove = function (e, loc) {
         if (!eraser.isDown) return;
         var ctx = eraser.crysyanCanvas.playContext;
         eraser.eraseLast(ctx);
@@ -20,12 +20,12 @@
         eraser.prePiont.e = e;
         eraser.prePiont.loc = loc;
     };
-    eraser.mouseUp = function(e, loc) {
+    eraser.mouseUp = function (e, loc) {
         var ctx = eraser.crysyanCanvas.playContext;
         eraser.eraseLast(ctx);
     };
     //
-    eraser.setDrawPathForEraser = function(loc, context) {
+    eraser.setDrawPathForEraser = function (loc, context) {
         context.beginPath();
         context.arc(loc.x, loc.y,
             eraser.eraserWidth / 2,
@@ -33,15 +33,7 @@
         context.clip();
     };
     //
-    eraser.setErasePathForEraser = function(context) {
-        context.beginPath();
-        context.arc(eraser.prePiont.loc.x, eraser.prePiont.loc.y,
-            eraser.eraserWidth / 2 + ERASER_LINE_WIDTH,
-            0, Math.PI * 2, false);
-        context.clip();
-    };
-    //
-    eraser.setEraserAttributes = function(context) {
+    eraser.setEraserAttributes = function (context) {
         context.lineWidth = ERASER_LINE_WIDTH;
         context.shadowColor = ERASER_SHADOW_STYLE;
         context.shadowOffsetX = ERASER_SHADOW_OFFSET;
@@ -50,16 +42,33 @@
         context.strokeStyle = ERASER_STROKE_STYLE;
     };
     //
-    eraser.eraseLast = function(context) {
-        var last = eraser.prePiont.loc;
-        var radio = eraser.eraserWidth / 2 + ERASER_LINE_WIDTH;
+    eraser.eraseLast = function (context) {
+        // clear
         context.save();
-        eraser.setErasePathForEraser(context);
-        eraser.crysyanCanvas.clearCanvas();
+        context.beginPath();
+        context.arc(eraser.prePiont.loc.x, eraser.prePiont.loc.y,
+            eraser.eraserWidth / 2 + ERASER_LINE_WIDTH,
+            0, Math.PI * 2, false);
+        context.globalCompositeOperation="destination-out";
+        // context.strokeStyle = "rgba(0, 0,0,0)";
+        // context.fillStyle = "rgb(255, 255, 255)";
+        // context.stroke();
+        context.fill();
+        context.restore();
+
+        // draw backgroup Image
+        context.save();
+        context.beginPath();
+        // Clear edge background color, so the radius of the circle 1 units bigger than the previous
+        context.arc(eraser.prePiont.loc.x, eraser.prePiont.loc.y,
+            eraser.eraserWidth / 2 + ERASER_LINE_WIDTH+1,
+            0, Math.PI * 2, false);
+        context.clip();
+        eraser.crysyanCanvas.clearCanvasWithOnlyBackGroupImage();
         context.restore();
     };
     //
-    eraser.drawEraser = function(loc, context) {
+    eraser.drawEraser = function (loc, context) {
         context.save();
         eraser.setEraserAttributes(context);
         eraser.setDrawPathForEraser(loc, context);
