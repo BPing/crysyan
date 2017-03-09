@@ -11,7 +11,7 @@
     var CrysyanEraserWidget = $widget.clone();
     var eraser = CrysyanEraserWidget;
     // when shapeType is 'path',it doesn't work.
-    eraser.eraserWidth = 25;
+    eraser.eraserWidth = 15;
     // 0:square ,1:circular, 2:path
     eraser.shapeType = 0;
     eraser.menu = null;
@@ -42,7 +42,7 @@
             case "2":
                 ctx.save();
                 ctx.beginPath();
-                ctx.moveTo(loc.x,loc.y);
+                ctx.moveTo(loc.x, loc.y);
                 break;
         }
     };
@@ -106,9 +106,9 @@
                 eraser.eraserWidth / 2 + ERASER_LINE_WIDTH,
                 0, Math.PI * 2, false);
         } else if (shape === "1" || shape === 1) {
-            context.rect(eraser.prePoint.loc.x - eraser.eraserWidth / 2,
-                eraser.prePoint.loc.y - eraser.eraserWidth / 2,
-                eraser.eraserWidth, eraser.eraserWidth)
+            context.rect(eraser.prePoint.loc.x - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH,
+                eraser.prePoint.loc.y - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH,
+                (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH, (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH + 1);
         }
         context.clip();
     };
@@ -181,7 +181,7 @@
             var eraserWithEle = findElement("crysyan-eraser-diameter");
             $util.addEvent(findElement("crysan-eraser-done"), "click", function () {
                 eraser.eraserWidth = eraserWithEle.value;
-                eraser.shapeType=eraserShapeEle.value;
+                eraser.shapeType = eraserShapeEle.value;
                 menu.hide();
             })
         },
