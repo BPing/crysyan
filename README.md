@@ -446,8 +446,8 @@ Open `gulpfile.js`,append ` widgetPath+"shape.js",` to `widgetsLoad` array,if yo
 # <a name="License"/>License
 Apache License Version 2.0
 
-# <a name="Version"/>Version
-* 0.0.9
+# <a name="Version"/>Version History
+* [0.0.9](https://home.cbping.vip/crysyan/demo-0.0.9/index.html)
 
 > 1、simple UI version.
 
@@ -455,17 +455,17 @@ Apache License Version 2.0
 
 > 3、widgets：simple pencil、eraser、iamge、clear、revoke and anti-revoke.
 
-* 0.1.1
+* [0.1.1](https://home.cbping.vip/crysyan/demo-0.1.1/index.html)
 
 > feature:
 >   record canvas.
 
-* 0.1.2
+* [0.1.2](https://home.cbping.vip/crysyan/demo-0.1.2/index.html)
 
 > feature:
 >  UI style upgrade.
 
-* 0.1.3.beta
+* [0.1.3.beta](https://home.cbping.vip/crysyan/demo-0.1.3.beta/index.html)
 
 > feature:
 
@@ -482,14 +482,14 @@ Apache License Version 2.0
 >    1、tool icon: draggable=false.
 
 
-* 0.1.3
+* [0.1.3](https://home.cbping.vip/crysyan/demo-0.1.3/index.html)
 
 > fix:
 
 >    1、background image scaling exceptions
 
 
-* 0.1.3.fix20170310
+* [0.1.3.fix20170310](https://home.cbping.vip/crysyan/demo-0.1.3.fix20170310/index.html)
     * add  `drawBackgroundWithImage` for `drawBackgroupWithImage` For compatibility, two methods exist simultaneously
     * fix :
         * edge background color when erasing ,exclude  `path` shape of eraser.
