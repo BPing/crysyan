@@ -3,6 +3,8 @@ a web drawing board with canvas
 
 > home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/)
 
+> demo: [https://home.cbping.vip/crysyan/demo-index.html](https://home.cbping.vip/crysyan/demo-index.html)
+
 # <a name="index"/>Index
 * [Compatibility](#Compatibility)
 * [Quick start](#Quick_start)
