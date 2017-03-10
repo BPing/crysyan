@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Demo</title>
+    <script src="lib/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div style="width:1000px; height:1000px;" class="crysyan-designer"></div>
+</body>
+
+</html>
+<script src="crysyan-designer-min.js"></script>
+<script>
+    $(".crysyan-designer").CrysyanDesigner({
+        projectPath:"../",
+        canvas: {
+            // px
+            width: 900,
+            height: 500
+        },
+        toobar: {
+            length: 500
+        }
+    }, function(designer) {
+        console.dir(designer);
+        var dataurl =
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
+        designer.drawBackgroupWithImage(dataurl);
+    });
+    //
+// var designer=CrysyanDesigner({
+//     canvas: {
+//         // px
+//         width: 900,
+//         height: 500
+//     },
+//     toobar: {
+//         length: 500
+//     }
+// }, function(designer) {
+//     console.dir(designer);
+// });
+// designer.appendTo()
+</script>
