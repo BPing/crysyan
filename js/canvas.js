@@ -38,6 +38,7 @@
             height: 0
         };
 
+        // can be export
         this.backgroudColor = ops.bgColor || "#ffffff";
         // An array that store the history imgdata which capture from canvas
         // for revoking and forward revoking.
@@ -111,11 +112,15 @@
             this.playContext.fillStyle = this.backgroudColor;
             this.playContext.fillRect(0, 0, this.playCanvas.width, this.playCanvas.height);
             // this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
+            this.clearCanvasWithOnlyBackGroundImage();
+            this.playContext.restore();
+        },
+        //
+        clearCanvasWithOnlyBackGroundImage: function () {
             if (this.backgroudImage.image !== null) {
                 var image = this.backgroudImage.image;
                 this.drawImage(image, (this.playCanvas.width - image.width) / 2, (this.playCanvas.height - image.height) / 2, image.width, image.height);
             }
-            this.playContext.restore();
         },
         /**
          *  The event coordinate point is transformed
@@ -186,15 +191,15 @@
                     if (image.width >= canvas.playCanvas.width && ivwr > ivhr) {
                         // Beyond the canvas's width
                         // zoom ratio
-                        canvas.backgroudImage.height = canvas.playCanvas.height * (1 / ivwr).toFixed(2);
+                        image.width = canvas.backgroudImage.width;
+                        image.height = canvas.backgroudImage.height = canvas.playCanvas.height * (1 / ivwr).toFixed(2);
                     } else if (image.height >= canvas.playCanvas.height && (ivhr > ivwr)) {
                         // Beyond the canvas's height
                         // zoom ratio
-                        canvas.backgroudImage.width = canvas.playCanvas.width * (1 / ivhr).toFixed(2);
+                        image.width = canvas.backgroudImage.width = canvas.playCanvas.width * (1 / ivhr).toFixed(2);
+                        image.height = canvas.backgroudImage.height;
                     }
-                    image.width = canvas.backgroudImage.width;
-                    image.height = canvas.backgroudImage.height;
-                }else{
+                } else {
                     // if the width of image bigger than canvas's,will set to canvas's width
                     if (image.width >= canvas.backgroudImage.width) {
                         image.width = canvas.backgroudImage.width;
@@ -460,7 +465,8 @@
         // id of canvas element
         canvasId: "crysyan-canvas",
         // length of history 'revokeImgDatas' list
-        historyListLen: 50
+        historyListLen: 50,
+        bgColor:"#ffffff",
     };
 
 
