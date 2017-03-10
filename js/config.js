@@ -91,7 +91,8 @@
             width: 900,
             height: 400,
             // the most length of history 'revoke' list
-            historyListLen:50
+            historyListLen:50,
+            bgColor:"#ffffff",
         },
         toolbar: {
             Id: "crysyan-toolbar",

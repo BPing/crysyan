@@ -5,7 +5,7 @@
  * @author cbping
  * @module CrysyanDesigner
  */
-!(function() {
+!(function () {
     // jquery
     if (!window.$) {
         var jQuery = window.parent.$ || window.jQuery;
@@ -28,6 +28,7 @@
             return (Math.random() * new Date().getTime()).toString(36).replace(/\./g, '');
         }
     }
+
     /**
      *   CrysyanDesigner
      *
@@ -38,7 +39,7 @@
      */
     function CrysyanDesigner(config, callback) {
         var designer = this;
-        designer.appendTo = function(parentNode) {
+        designer.appendTo = function (parentNode) {
             designer.iframe = document.createElement('iframe');
             designer.iframe.name = config.ifrName ? config.ifrName : "default-iframe" + getRandomString();
             designer.iframe.uid = designer.iframe.name;
@@ -46,25 +47,37 @@
             designer.iframe.style.width = '100%';
             designer.iframe.style.height = '100%';
             designer.iframe.style.border = 0;
-            designer.iframe.onload = function() {
+            designer.iframe.onload = function () {
                 callback(designer);
             };
             parentNode.appendChild(designer.iframe);
         };
-        designer.destroy = function() {
+        designer.destroy = function () {
             if (designer.iframe) {
                 designer.iframe.parentNode.removeChild(designer.iframe);
                 designer.iframe = null;
             }
         };
         /**
-         *  get view 
-         *  
+         *  get view
+         *
          * @returns {*}
          */
-        designer.getView = function() {
+        designer.getView = function () {
             return window[designer.iframe.uid].Crysyan.getView();
         };
+
+        /**
+         * drawBackgroupWithImage
+         *        compatible
+         * @see drawBackgroundWithImage
+         * @param image
+         * @param mode
+         */
+        designer.drawBackgroupWithImage = function (image, mode) {
+            designer.drawBackgroundWithImage(image, mode);
+        };
+
         /**
          *  drawBackgroundWithImage
          *
@@ -74,38 +87,38 @@
          * @param  {[File|Image|String} image the image you want to draw as background
          * @param mode Scale by scale,if mode=1.default 1.
          */
-        designer.drawBackgroupWithImage = function(image,mode) {
+        designer.drawBackgroundWithImage = function (image, mode) {
             var view = window[designer.iframe.uid].Crysyan.getView();
             view.crysyanCanvas.drawBackgroundWithImage(image, mode);
         };
         /**
-         *  get Date-Url 
+         *  get Date-Url
          * @param type
          * @returns {*|string}
          */
-        designer.toDataUrl = function(type) {
-            if (typeof type==="undefined") type="image/png";
+        designer.toDataUrl = function (type) {
+            if (typeof type === "undefined") type = "image/png";
             var view = window[designer.iframe.uid].Crysyan.getView();
             return view.crysyanCanvas.toDataURL(type);
         };
 
         /**
          *  get  Recorder
-         *  
+         *
          * @param config
          * @returns {null|RecordRTC}  if record not  supported,return null.
          * @see {@link https://github.com/muaz-khan/RecordRTC}
          */
-        designer.getCanvasRecorder = function(config) {
+        designer.getCanvasRecorder = function (config) {
             var view = window[designer.iframe.uid].Crysyan.getView();
             return view.crysyanCanvas.getCanvasRecorder(config);
         };
     }
 
     // jquery Plug-in
-    $.fn.CrysyanDesigner = function(config, callback) {
+    $.fn.CrysyanDesigner = function (config, callback) {
         var designer = this;
-        designer.each(function() {
+        designer.each(function () {
             new CrysyanDesigner(config, callback).appendTo(this);
         });
     };

@@ -99,20 +99,6 @@
         context.clip();
     };
     //
-    eraser.setErasePathForEraser = function (context, shape) {
-        context.beginPath();
-        if (shape === "0" || shape === 0) {
-            context.arc(eraser.prePoint.loc.x, eraser.prePoint.loc.y,
-                eraser.eraserWidth / 2 + ERASER_LINE_WIDTH,
-                0, Math.PI * 2, false);
-        } else if (shape === "1" || shape === 1) {
-            context.rect(eraser.prePoint.loc.x - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH,
-                eraser.prePoint.loc.y - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH,
-                (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH, (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH + 1);
-        }
-        context.clip();
-    };
-    //
     eraser.setEraserAttributes = function (context) {
         context.lineWidth = ERASER_LINE_WIDTH;
         context.shadowColor = ERASER_SHADOW_STYLE;
@@ -123,9 +109,46 @@
     };
     //
     eraser.eraseLast = function (context, shape) {
-        context.save();
-        eraser.setErasePathForEraser(context, shape);
-        eraser.crysyanCanvas.clearCanvas();
+        if (shape === "0" || shape === 0) {//circle
+            // draw background color
+            context.save();
+            context.beginPath();
+            context.arc(eraser.prePoint.loc.x, eraser.prePoint.loc.y,
+                eraser.eraserWidth / 2 + ERASER_LINE_WIDTH,
+                0, Math.PI * 2, false);
+            context.fillStyle = eraser.crysyanCanvas.backgroudColor;
+            context.fill();
+            context.restore();
+
+            // draw background Image
+            context.save();
+            context.beginPath();
+            // Clear edge background color, so the radius of the circle 1 units bigger than the previous
+            context.arc(eraser.prePoint.loc.x, eraser.prePoint.loc.y,
+                eraser.eraserWidth / 2 + ERASER_LINE_WIDTH + 1,
+                0, Math.PI * 2, false);
+
+        } else if (shape === "1" || shape === 1) {//square
+            // draw background color
+            context.save();
+            context.beginPath();
+            context.rect(eraser.prePoint.loc.x - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH,
+                eraser.prePoint.loc.y - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH,
+                (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH, (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH + 1);
+            context.fillStyle = eraser.crysyanCanvas.backgroudColor;
+            context.fill();
+            context.restore();
+
+            // draw background Image
+            context.save();
+            context.beginPath();
+            // Clear edge background color, so the width of the square 2 units bigger than the previous
+            context.rect(eraser.prePoint.loc.x - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH - 1,
+                eraser.prePoint.loc.y - (eraser.eraserWidth / 2) - ERASER_LINE_WIDTH - 1,
+                (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH + 1, (eraser.eraserWidth / 1) + ERASER_LINE_WIDTH + 3);
+        }
+        context.clip();
+        eraser.crysyanCanvas.clearCanvasWithOnlyBackGroundImage();
         context.restore();
     };
     //

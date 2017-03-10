@@ -38,6 +38,7 @@
             height: 0
         };
 
+        // can be export
         this.backgroudColor = ops.bgColor || "#ffffff";
         // An array that store the history imgdata which capture from canvas
         // for revoking and forward revoking.
@@ -111,11 +112,11 @@
             this.playContext.fillStyle = this.backgroudColor;
             this.playContext.fillRect(0, 0, this.playCanvas.width, this.playCanvas.height);
             // this.playContext.clearRect(0, 0, this.playCanvas.width, this.playCanvas.height);
-            this.clearCanvasWithOnlyBackGroupImage();
+            this.clearCanvasWithOnlyBackGroundImage();
             this.playContext.restore();
         },
         //
-        clearCanvasWithOnlyBackGroupImage: function () {
+        clearCanvasWithOnlyBackGroundImage: function () {
             if (this.backgroudImage.image !== null) {
                 var image = this.backgroudImage.image;
                 this.drawImage(image, (this.playCanvas.width - image.width) / 2, (this.playCanvas.height - image.height) / 2, image.width, image.height);
@@ -464,7 +465,8 @@
         // id of canvas element
         canvasId: "crysyan-canvas",
         // length of history 'revokeImgDatas' list
-        historyListLen: 50
+        historyListLen: 50,
+        bgColor:"#ffffff",
     };
 
 
