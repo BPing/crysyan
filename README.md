@@ -7,12 +7,12 @@ a web drawing board with canvas
 * [Compatibility](#Compatibility)
 * [Quick start](#Quick_start)
 * [Directory](#Directory)
-* [Version](#Version)
 * [Build-in](#Version)
 * [API Reference](#API)
 * [Dependence](#Dependence)
 * [Reference](#Reference)
 * [License](#License)
+* [Version](#Version)
 * [**](#**)
 
 # <a name="Quick_start"/>Quick start
@@ -73,47 +73,6 @@ Turn the canvas into a picture and save  | 4+	  | 3.6(1.9.2) | 9+
 CORS enabled image   | 13+	  | (Gecko)8+ | No support
 Record Canvas(video/webM)   | 30+	  | 30+ | No support
 
-# <a name="Version"/>Version
-* 0.0.9
-
-> 1、simple UI version.
-
-> 2、draw image to canvas's backgroup and covert canvas to image（png）.
-
-> 3、widgets：simple pencil、eraser、iamge、clear、revoke and anti-revoke.
-
-* 0.1.1
-
-> feature:
->   record canvas.
-
-* 0.1.2
-
-> feature:
->  UI style upgrade.
-
-* 0.1.3.beta
-
-> feature:
-
->    1、add shape widget.
-
->    2、second-level menu for pencil、eraser and shape widgets.
-
->    3、add touch event for canvas event.
-
->    4、via variable `historyListLen`,set the historical canvas's record length.
-
-> fix:
-
->    1、tool icon: draggable=false.
-
-
-* 0.1.3
-
-> fix:
-
->    1、background image scaling exceptions
 
 # <a name="Build-in"/>Build-in
 ## widgets
@@ -207,7 +166,7 @@ designer.destroy();
 designer.getView();
 ```
 
-### `drawBackgroupWithImage`
+### `drawBackgroupWithImage` or `drawBackgroundWithImage`
   Draw a image on a canvas as background.
 
 1、draw `DataUrl` :
@@ -226,6 +185,7 @@ designer.drawBackgroupWithImage(dataurl);
 var image=new Image()
 image.src="imagePath";
 designer.drawBackgroupWithImage(image);
+// designer.drawBackgroundWithImage(image);
 ```
 
 3、draw `File` :
@@ -233,6 +193,7 @@ designer.drawBackgroupWithImage(image);
 var file=new File()
 // do something
 designer.drawBackgroupWithImage(file);
+//designer.drawBackgroundWithImage(file);
 ```
 
 4、draw `image-path`：
@@ -240,6 +201,7 @@ designer.drawBackgroupWithImage(file);
 Usually, you need to add "../../" in front of the relative directory to roll back to the root directory where the 'crysyan' project  is located
 ```javascript
 designer.drawBackgroupWithImage("../../img/a.png");
+//designer.drawBackgroundWithImage("../../img/a.png");
 ```
 
 ### `toDataUrl`
@@ -469,6 +431,9 @@ widgets: [...,"ShapeWidget",...]
 ## Four Step
 Open `gulpfile.js`,append ` widgetPath+"shape.js",` to `widgetsLoad` array,if you want to built-in.
 
+
+
+
 # <a name="Dependence"/>Dependence
 * jQuery
 * [RecordRTC](https://github.com/muaz-khan/WebRTC-Experiment/edit/master/RecordRTC/RecordRTC.js): Record Canvas2D.
@@ -478,3 +443,53 @@ Open `gulpfile.js`,append ` widgetPath+"shape.js",` to `widgetsLoad` array,if yo
 
 # <a name="License"/>License
 Apache License Version 2.0
+
+# <a name="Version"/>Version
+* 0.0.9
+
+> 1、simple UI version.
+
+> 2、draw image to canvas's backgroup and covert canvas to image（png）.
+
+> 3、widgets：simple pencil、eraser、iamge、clear、revoke and anti-revoke.
+
+* 0.1.1
+
+> feature:
+>   record canvas.
+
+* 0.1.2
+
+> feature:
+>  UI style upgrade.
+
+* 0.1.3.beta
+
+> feature:
+
+>    1、add shape widget.
+
+>    2、second-level menu for pencil、eraser and shape widgets.
+
+>    3、add touch event for canvas event.
+
+>    4、via variable `historyListLen`,set the historical canvas's record length.
+
+> fix:
+
+>    1、tool icon: draggable=false.
+
+
+* 0.1.3
+
+> fix:
+
+>    1、background image scaling exceptions
+
+
+* 0.1.3.fix20170310
+    * add  `drawBackgroundWithImage` for `drawBackgroupWithImage` For compatibility, two methods exist simultaneously
+    * fix :
+        * edge background color when erasing ,exclude  `path` shape of eraser.
+        * background image scaling exception when `mode`=1.
+
