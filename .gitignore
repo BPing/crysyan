@@ -1,0 +1,7 @@
+lib/
+.idea/
+node_modules/
+package.json
+dist/
+release/
+code-master/
