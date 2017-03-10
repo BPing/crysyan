@@ -11,12 +11,22 @@ var tar = require('gulp-tar');
 var gzip = require('gulp-gzip');
 var less = require('gulp-less');
 var cleanCSS = require('gulp-clean-css');
-// var debug = require('gulp-debug');
+var header = require('gulp-header');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
 var distPath = "dist/crysyan/";
-var version = "0.1.3.beta";
+// using data from package.json
+var pkg = require('./package.json');
 var widgetsLoad = [];
+
+var headTitle = ['/**',
+    ' * <%= pkg.name %> - <%= pkg.description %>',
+    ' * @version v<%= pkg.version %>',
+    ' * @link <%= pkg.homepage %>',
+    ' * @author <%= pkg.author %>',
+    ' * @license <%= pkg.license %>',
+    ' */',
+    ''].join('\n');
 
 (function () {
     // var widgetConfig= require('js/config.js');
@@ -51,6 +61,8 @@ gulp.task('designer-minify', function () {
         .pipe(replace('html/crysyan.html?config=', 'crysyan.html?config='))
         .pipe(plumber())
         .pipe(uglify())
+        .pipe(plumber())
+        .pipe(header(headTitle,{pkg:pkg}))
         .pipe(plumber())
         .pipe(rename({suffix: '-min'}))
         .pipe(gulp.dest(distPath));
@@ -165,14 +177,14 @@ gulp.task('build', ['building','after-building-clean']);
 gulp.task('zip', function () {
     return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
         .pipe(plumber())
-        .pipe(zip('crysyan-' + version + '.zip'))
+        .pipe(zip('crysyan-' + pkg.version + '.zip'))
         .pipe(gulp.dest('release'));
 });
 
 gulp.task('tar.gz', function () {
     return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
         .pipe(plumber())
-        .pipe(tar('crysyan-' + version +'.tar'))
+        .pipe(tar('crysyan-' + pkg.version +'.tar'))
         .pipe(gzip())
         .pipe(gulp.dest('release'));
 
