@@ -2,7 +2,7 @@
   "name": "crysyan",
   "version": "0.1.3",
   "description": "a web drawing board with canvas",
-  "main": "gulpfile.js",
+  "main": "server.js",
   "directories": {
     "doc": "doc"
   },
