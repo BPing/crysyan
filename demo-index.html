@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Demo</title>
     <script src="lib/jquery-3.1.1.min.js"></script>
 
@@ -11,10 +11,12 @@
         input[type=button]:hover {
             background: rgb(9, 147, 240);
         }
+
         button:active,
         input[type=button]:active {
             background: rgb(10, 118, 190);
         }
+
         button[disabled],
         input[type=button][disabled] {
             background: none;
@@ -22,25 +24,26 @@
             color: gray;
             text-shadow: none;
         }
+
         body {
             background-image: url("bg-lesson-begin.jpg");
         }
     </style>
 </head>
 <body>
-    <a id="download-png" download="my-file-name.png" style="color: #ff0206" class="btn btn-github">download png</a>
-    <button type="button" id="start-record">start-record</button>
-    <button  id="stop-record">stop-record</button>
-    <div style="height:660px;" class="crysyan-designer"></div>
-    <div id="videoTag" style="height:500px;"></div>
+<a id="download-png" download="my-file-name.png" style="color: #ff0206" class="btn btn-github">download png</a>
+<button type="button" id="start-record">start-record</button>
+<button id="stop-record">stop-record</button>
+<div style="height:660px;" class="crysyan-designer"></div>
+<div id="videoTag" style="height:500px;"></div>
 </body>
 
 </html>
 <script src="crysyan/crysyan-designer-min.js"></script>
 <script>
     $(".crysyan-designer").CrysyanDesigner({
-        projectPath:"crysyan/",
-        isRecord:true,
+        projectPath: "crysyan/",
+        isRecord: true,
         canvas: {
             // px
             width: 800,
@@ -49,26 +52,26 @@
         toobar: {
             length: 500
         }
-    }, function(designer) {
+    }, function (designer) {
         $("#download-png").click(function () {
             var canvas = designer.getView().crysyanCanvas;
             document.getElementById("download-png").href = canvas.toDataURL();
 
         });
         console.dir(designer);
-        var image=new Image();
-        image.src="http://dream.com:9977/img/pencil.png";
+        var image = new Image();
+        image.src = "http://dream.com:9977/img/pencil.png";
         console.log(image instanceof Image);
         var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAADFBMVEVYWFhVVVUAAABUVFTqqlXjAAAAA3RSTlMxdACUjPeLAAAATElEQVR42u3SQQrAMAwDQSn7/z+XFExTcOxroN3zgC4STecApy1gpP2gBgZXQMwKwJ23QITYACLlQBC9gAFNwJMXoJhVc7lBA/gsuAArEgqPcT12VgAAAABJRU5ErkJggg=="
-        designer.drawBackgroupWithImage("img/pencil.png");
+        designer.drawBackgroupWithImage("crysyan-love.png");
 
-        var videoTag=document.getElementById("videoTag");
+        var videoTag = document.getElementById("videoTag");
         var videoEle;
         var recorder = designer.getCanvasRecorder();
         $("#start-record").click(function () {
             document.getElementById('start-record').disabled = true;
             document.getElementById('stop-record').disabled = false;
-            document.getElementById('start-record').innerHTML="Recording";
+            document.getElementById('start-record').innerHTML = "Recording";
             console.log("recording");
             if (videoEle instanceof HTMLVideoElement) videoTag.removeChild(videoEle);
             recorder.initRecorder();
@@ -77,9 +80,9 @@
         $("#stop-record").click(function () {
             document.getElementById('start-record').disabled = false;
             document.getElementById('stop-record').disabled = true;
-            document.getElementById('start-record').innerHTML="start-record";
+            document.getElementById('start-record').innerHTML = "start-record";
             console.log("stop");
-            recorder.stopRecording(function() {
+            recorder.stopRecording(function () {
                 var blob = recorder.getBlob();
                 videoEle = document.createElement('video');
                 videoEle.src = URL.createObjectURL(blob);
