@@ -11,7 +11,6 @@ var tar = require('gulp-tar');
 var gzip = require('gulp-gzip');
 var less = require('gulp-less');
 var cleanCSS = require('gulp-clean-css');
-var header = require('gulp-header');
 var runSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
 var distPath = "dist/crysyan/";
