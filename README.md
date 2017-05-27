@@ -1,4 +1,7 @@
 # crysyan
+
+![project icon](https://github.com/BPing/crysyan/blob/master/doc/img/crysyan-love.png?raw=true)
+
 a web drawing board with canvas
 
 > home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/)
