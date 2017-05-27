@@ -2,9 +2,10 @@
 
 ![project icon](https://github.com/BPing/crysyan/blob/master/doc/img/crysyan-love.png?raw=true)
 
+[![npm](https://img.shields.io/npm/v/crysyan.svg)](https://npmjs.org/package/crysyan)[![downloads](https://img.shields.io/npm/dm/crysyan.svg)](https://npmjs.org/package/crysyan)
 a web drawing board with canvas
 
-> home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/)
+> home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/) 
 
 > demo: [https://home.cbping.vip/crysyan/demo-index.html](https://home.cbping.vip/crysyan/demo-index.html)
 
