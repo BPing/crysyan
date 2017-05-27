@@ -1,0 +1,45 @@
+{
+  "name": "crysyan",
+  "version": "0.1.3",
+  "description": "a web drawing board with canvas",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-gzip": "^1.4.0",
+    "gulp-clean-css": "^3.4.0",
+    "gulp-header": "^1.8.8",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sequence": "^0.4.6",
+    "gulp-less": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-tar": "^1.9.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BPing/crysyan.git"
+  },
+  "keywords": [
+    "canvas",
+    "draw"
+  ],
+  "author": "cbping",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/BPing/crysyan/issues"
+  },
+  "homepage": "https://github.com/BPing/crysyan#readme"
+}
