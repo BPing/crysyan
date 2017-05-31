@@ -5,7 +5,6 @@ install: npm install
 before_script:
   - npm install glup -g
   - pwd
-  - npm install --save-dev gulp-load-plugins
   - gulp
 after_failure: npm install  && glup
 matrix:

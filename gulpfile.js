@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var plumber = require('gulp-plumber');
