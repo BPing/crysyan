@@ -514,4 +514,9 @@ Apache License Version 2.0
     * fix :
         * edge background color when erasing ,exclude  `path` shape of eraser.
         * background image scaling exception when `mode`=1.
+        
+* [0.2.0](https://home.cbping.vip/crysyan/demo-0.2.0/index.html)
+    * add a simple text input widget
+    * add project icon
+    * publish to npm
 
