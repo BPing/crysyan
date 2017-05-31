@@ -4,9 +4,9 @@ node_js:
 install: npm install
 before_script:
   - npm install glup -g
-  - cd github.com/BPing/crysyan
+  - pwd
   - npm install --save-dev gulp-load-plugins
   - gulp
-after_failure: npm install && cd github.com/BPing/crysyan && glup
+after_failure: npm install  && glup
 matrix:
   fast_finish: true
