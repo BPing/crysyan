@@ -38,6 +38,7 @@
 <body>
 
 <div style="height:760px;" class="crysyan-designer">
+    <a id="download-png" download="my-file-name.png" style="color: #ff0206" class="btn btn-github">download png</a>
     <button type="button" id="start-record">start-record</button>
     <button id="stop-record">stop-record</button>
 </div>
@@ -60,6 +61,11 @@
 
         }
     }, function (designer) {
+        $("#download-png").click(function () {
+            var canvas = designer.getView().crysyanCanvas;
+            document.getElementById("download-png").href = canvas.toDataURL();
+        });
+
         console.dir(designer);
         var image = new Image();
         image.src = "http://dream.com:9977/img/pencil.png";

@@ -10,12 +10,17 @@ a web drawing board with canvas
 
 > demo: [https://home.cbping.vip/crysyan/demo-index.html](https://home.cbping.vip/crysyan/demo-index.html)
 
-# install
+`nodejs`
 
 ```cmd
-  
+
+   - node install crysyan -g
+   - crysyan
+   
+   visit http://locolhost:9001 with browser 
 ```
 
+![project demo](https://github.com/BPing/crysyan/blob/master/doc/img/crysyan-png.png?raw=true)
 
 # <a name="index"/>Index
 * [Compatibility](#Compatibility)
