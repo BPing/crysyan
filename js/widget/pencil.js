@@ -114,7 +114,7 @@
             }
             innerHtml = innerHtml.concat("</select></li>");
             innerHtml = innerHtml.concat("<li type='margin-bottom: 10px;'><label for='crysyan-pencil-color'>line color:</label><input id='crysyan-pencil-color' type='color' value='", config.strokeStyle, "'></li>");
-            innerHtml = innerHtml.concat("<li id='crysan-pencil-done' class='crysan-btn-done'>Done</li>");
+            innerHtml = innerHtml.concat("<li id='crysyan-pencil-done' class='crysyan-btn-done'>Done</li>");
             innerHtml = innerHtml.concat("</ul>");
             this.menuEle.innerHTML = innerHtml;
             (document.getElementsByTagName("body").item(0) || document.documentElement).appendChild(this.menuEle);
@@ -122,7 +122,7 @@
             var lineTypeEle = findElement("crysyan-pencil-type");
             var lineWithEle = findElement("crysyan-pencil-line-width");
             var colorEle = findElement("crysyan-pencil-color");
-            $util.addEvent(findElement("crysan-pencil-done"), "click", function () {
+            $util.addEvent(findElement("crysyan-pencil-done"), "click", function () {
                 config.type = lineTypeEle.value;
                 config.lineWidth = lineWithEle.value;
                 config.strokeStyle = colorEle.value;
