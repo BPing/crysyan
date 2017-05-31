@@ -14,7 +14,7 @@ a web drawing board with canvas
 
 ```cmd
 
-   - node install crysyan -g
+   - npm  install crysyan -g
    - crysyan
    
    visit http://locolhost:9001 with browser 
