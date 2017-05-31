@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var plugins = require('gulp-load-plugins')();
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var plumber = require('gulp-plumber');
@@ -36,17 +37,17 @@ var headTitle = ['/**',
     //         widgetsLoad.push(widgetBasePath + widgets[attr].jsFile);
     //     }
     // }
-    widgetPath="js/widget/";
+    widgetPath = "js/widget/";
     // widgetsLoad = [widgetPath+"*.js"]; or 
     widgetsLoad = [
-        widgetPath+"cursor.js", 
-        widgetPath+"pencil.js", 
-        widgetPath+"eraser.js", 
-        widgetPath+"image.js", 
-        widgetPath+"shape.js",
-        widgetPath+"undo.js", 
-        widgetPath+"into-go.js",
-        widgetPath+"clear.js"];
+        widgetPath + "cursor.js",
+        widgetPath + "pencil.js",
+        widgetPath + "eraser.js",
+        widgetPath + "image.js",
+        widgetPath + "shape.js",
+        widgetPath + "undo.js",
+        widgetPath + "into-go.js",
+        widgetPath + "clear.js"];
 })();
 
 gulp.task('clean-all', function () {
@@ -61,7 +62,7 @@ gulp.task('designer-minify', function () {
         .pipe(plumber())
         .pipe(uglify())
         .pipe(plumber())
-        .pipe(header(headTitle,{pkg:pkg}))
+        .pipe(header(headTitle, {pkg: pkg}))
         .pipe(plumber())
         .pipe(rename({suffix: '-min'}))
         .pipe(gulp.dest(distPath));
@@ -81,7 +82,7 @@ gulp.task('less', function () {
         .pipe(gulp.dest('css/'));
 });
 
-gulp.task('minify-css',["less"], function () {
+gulp.task('minify-css', ["less"], function () {
     return gulp.src('css/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest(distPath));
@@ -112,8 +113,8 @@ gulp.task('core-header', function () {
         .pipe(gulp.dest(distPath + "js/"));
 });
 
-gulp.task('core-widgets-concat-minify', ["widgets-concat", "core-concat",'core-header'], function () {
-    return gulp.src([distPath + "js/core.js", distPath + "js/widgets.js",distPath + "js/crysyan.js"])
+gulp.task('core-widgets-concat-minify', ["widgets-concat", "core-concat", 'core-header'], function () {
+    return gulp.src([distPath + "js/core.js", distPath + "js/widgets.js", distPath + "js/crysyan.js"])
         .pipe(concat("crysyan-core-min.js"))
         .pipe(plumber())
         .pipe(gulp.dest(distPath))
@@ -123,7 +124,7 @@ gulp.task('core-widgets-concat-minify', ["widgets-concat", "core-concat",'core-h
 });
 
 gulp.task('imagemin', function () {
-    return gulp.src(["img/*","!img/bg-lesson-begin.jpg"])
+    return gulp.src(["img/*", "!img/bg-lesson-begin.jpg"])
         .pipe(imagemin())
         .pipe(plumber())
         .pipe(gulp.dest(distPath + "img/"));
@@ -132,7 +133,7 @@ gulp.task('imagemin', function () {
 gulp.task('html-replace-move', function () {
     return gulp.src(["html/*"])
         .pipe(replace('src="../js/crysyan.js"', 'src="crysyan-core-min.js"'))
-        .pipe(plumber()) 
+        .pipe(plumber())
         .pipe(replace('href="../css/crysyan.css"', 'href="crysyan.css"'))
         .pipe(plumber())
         .pipe(gulp.dest(distPath));
@@ -155,7 +156,7 @@ gulp.task('guidance-move', function () {
 
 gulp.task('building', ['clean-all'], function (cb) {
     runSequence(
-           ["designer-minify",
+        ["designer-minify",
             "RecordRTC-minify",
             "minify-css",
             "core-widgets-concat-minify",
@@ -166,31 +167,31 @@ gulp.task('building', ['clean-all'], function (cb) {
 });
 
 gulp.task('after-building-clean', ['building'], function () {
-    return gulp.src([distPath+'js'])
+    return gulp.src([distPath + 'js'])
         .pipe(clean())
         .pipe(plumber());
 });
 
-gulp.task('build', ['building','after-building-clean']);
+gulp.task('build', ['building', 'after-building-clean']);
 
 gulp.task('zip', function () {
-    return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
+    return gulp.src([distPath + '*', distPath + '**/*', "!" + distPath + 'js'])
         .pipe(plumber())
         .pipe(zip('crysyan-' + pkg.version + '.zip'))
         .pipe(gulp.dest('release'));
 });
 
 gulp.task('tar.gz', function () {
-    return gulp.src([distPath+'*', distPath+'**/*', "!"+distPath+'js'])
+    return gulp.src([distPath + '*', distPath + '**/*', "!" + distPath + 'js'])
         .pipe(plumber())
-        .pipe(tar('crysyan-' + pkg.version +'.tar'))
+        .pipe(tar('crysyan-' + pkg.version + '.tar'))
         .pipe(gzip())
         .pipe(gulp.dest('release'));
 
 });
 
 gulp.task('publish', ['build'], function (cb) {
-    runSequence(["zip","tar.gz"], cb);
+    runSequence(["zip", "tar.gz"], cb);
 });
 
 gulp.task('default', ["build"]);

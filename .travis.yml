@@ -1,3 +1,11 @@
 language: node_js
 node_js:
   - "0.11"
+install: npm install
+before_script:
+  - npm install glup -g
+  - npm install --save-dev gulp-load-plugins
+  - glup
+after_failure: npm install && glup
+matrix:
+  fast_finish: true
