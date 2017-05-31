@@ -193,7 +193,7 @@
                 innerHtml = innerHtml.concat("<option value=\"", widthOps[key], "\">", widthOps[key], "px</option>");
             }
             innerHtml = innerHtml.concat("</select></li>");
-            innerHtml = innerHtml.concat("<li id='crysan-eraser-done' class='crysan-btn-done'>Done</li>");
+            innerHtml = innerHtml.concat("<li id='crysyan-eraser-done' class='crysyan-btn-done'>Done</li>");
             innerHtml = innerHtml.concat("</ul>");
             this.menuEle.innerHTML = innerHtml;
             (document.getElementsByTagName("body").item(0) || document.documentElement).appendChild(this.menuEle);
@@ -202,7 +202,7 @@
             var eraser = this.eraser;
             var eraserShapeEle = findElement("crysyan-eraser-shape");
             var eraserWithEle = findElement("crysyan-eraser-diameter");
-            $util.addEvent(findElement("crysan-eraser-done"), "click", function () {
+            $util.addEvent(findElement("crysyan-eraser-done"), "click", function () {
                 eraser.eraserWidth = eraserWithEle.value;
                 eraser.shapeType = eraserShapeEle.value;
                 menu.hide();

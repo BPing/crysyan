@@ -119,7 +119,7 @@
             innerHtml = innerHtml.concat("<li type='margin-bottom: 10px;'><label for='crysyan-shape-fill-color'>fill color:</label><input id='crysyan-shape-fill-color' type='color' value='", this.shape.fillStyle, "'></li>");
 
 
-            innerHtml = innerHtml.concat("<li id='crysan-shape-done' class='crysan-btn-done'>Done</li>");
+            innerHtml = innerHtml.concat("<li id='crysyan-shape-done' class='crysyan-btn-done'>Done</li>");
             innerHtml = innerHtml.concat("</ul>");
             this.menuEle.innerHTML = innerHtml;
             (document.getElementsByTagName("body").item(0) || document.documentElement).appendChild(this.menuEle);
@@ -130,7 +130,7 @@
             var depictOpsEle = findElement("crysyan-depict-type");
             var fillColorEle = findElement("crysyan-shape-fill-color");
             var strokeColorEle = findElement("crysyan-shape-stroke-color");
-            $util.addEvent(findElement("crysan-shape-done"), "click", function () {
+            $util.addEvent(findElement("crysyan-shape-done"), "click", function () {
                 shape.shapeType = shapeOpsEle.value;
                 shape.fillStyle = fillColorEle.value;
                 shape.strokeStyle = strokeColorEle.value;

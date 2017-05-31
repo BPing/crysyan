@@ -142,7 +142,7 @@ gulp.task('demo-replace-move', function () {
     return gulp.src(["index.html"])
         .pipe(replace('src="js/crysyan-designer.js"', 'src="crysyan-designer-min.js"'))
         .pipe(plumber())
-        .pipe(replace('../img/pencil.png"', 'img/pencil.png"'))
+        .pipe(replace('../img/crysyan-love.png"', 'img/crysyan-love.png"'))
         .pipe(plumber())
         .pipe(rename({prefix: 'demo-'}))
         .pipe(gulp.dest(distPath));

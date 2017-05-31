@@ -2,9 +2,11 @@
 
 ![project icon](https://github.com/BPing/crysyan/blob/master/doc/img/crysyan-love.png?raw=true)
 
+[![npm](https://img.shields.io/npm/v/crysyan.svg)](https://npmjs.org/package/crysyan)[![downloads](https://img.shields.io/npm/dm/crysyan.svg)](https://npmjs.org/package/crysyan)
+
 a web drawing board with canvas
 
-> home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/)
+> home: [https://home.cbping.vip/crysyan/](https://home.cbping.vip/crysyan/) 
 
 > demo: [https://home.cbping.vip/crysyan/demo-index.html](https://home.cbping.vip/crysyan/demo-index.html)
 
@@ -94,7 +96,9 @@ config{
         "UndoWidget",
         "IndoGoWidget",
         "ClearWidget",
-        "ShapeWidget" ],
+        "ShapeWidget",
+        "TextWidget"
+       ],
     }
     }
 ```
@@ -106,6 +110,7 @@ config{
 5. `indo-go` --- `IndoGoWidget`  forward revoke history of canvas
 6. `clear` --- `ClearWidget`     clear canvas
 7. `shape` --- `ShapeWidget`     draw graphics（Square、Circular、Triangle）
+8. `text` --- `TextWidget`       input text
 
 ## gulp
 

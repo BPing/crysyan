@@ -2,7 +2,7 @@
  *  utility
  *      common method
  */
-(function() {
+(function () {
     'use strict';
     var util = {
         /**
@@ -10,7 +10,7 @@
          *  @param {String} eventType  type of event
          *  @param {Function} callback function for callback
          */
-        addEvent: function(element, eventType, callback) {
+        addEvent: function (element, eventType, callback) {
             // if (eventType.split(' ').length > 1) {
             //     var events = eventType.split(' ');
             //     for (var i = 0; i < events; i++) {
@@ -33,7 +33,7 @@
          *  @param {string} eventType  type of event
          *  @param {function} callback function for callback
          */
-        removeEvent: function(element, eventType, callback) {
+        removeEvent: function (element, eventType, callback) {
             if (element.removeEventListener) {
                 element.removeEventListener(eventType, callback, !1);
             } else if (element.detachEvent) { // for IE
@@ -43,15 +43,18 @@
             }
             return this;
         },
-        isIE: function() {
-            if (navigator.appName === "Microsoft Internet Explorer") {
-                return true;
-            }
-            return false;
+        isIE: function () {
+            return navigator.appName === "Microsoft Internet Explorer";
+        },
+        isNumber: function (inputData) {
+            return "NaN" !== parseFloat(inputData).toString();
+        },
+        // find element by id
+        findElement: function (id) {
+            return document.getElementById(id);
         }
-
     };
-    // clone
+    // deep clone
     function clone(obj) {
         // Handle the 3 simple types, and null or undefined
         if (null === obj || "object" !== typeof obj) {
