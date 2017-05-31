@@ -10,6 +10,13 @@ a web drawing board with canvas
 
 > demo: [https://home.cbping.vip/crysyan/demo-index.html](https://home.cbping.vip/crysyan/demo-index.html)
 
+# install
+
+```cmd
+  
+```
+
+
 # <a name="index"/>Index
 * [Compatibility](#Compatibility)
 * [Quick start](#Quick_start)

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var server = require('http'),
     url = require('url'),
     path = require('path'),
@@ -26,14 +28,14 @@ function serverHandler(request, response) {
     }
 
     var contentType;
-    if(filename.indexOf('.html') !== -1) {
+    if (filename.indexOf('.html') !== -1) {
         contentType = {
             'Content-Type': 'text/html'
         };
     }
 
 
-    fs.readFile(filename, 'binary', function(err, file) {
+    fs.readFile(filename, 'binary', function (err, file) {
         if (err) {
             response.writeHead(500, {
                 'Content-Type': 'text/plain'
@@ -51,7 +53,7 @@ function serverHandler(request, response) {
 
 var app = server.createServer(serverHandler);
 
-app = app.listen(process.env.PORT || 9001, process.env.IP || "0.0.0.0", function() {
+app = app.listen(process.env.PORT || 9001, process.env.IP || "0.0.0.0", function () {
     var addr = app.address();
     console.log("Server listening at", addr.address + ":" + addr.port);
 });
