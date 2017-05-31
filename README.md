@@ -2,7 +2,7 @@
 
 ![project icon](https://github.com/BPing/crysyan/blob/master/doc/img/crysyan-love.png?raw=true)
 
-[![npm](https://img.shields.io/npm/v/crysyan.svg)](https://npmjs.org/package/crysyan)[![downloads](https://img.shields.io/npm/dm/crysyan.svg)](https://npmjs.org/package/crysyan)
+[![npm](https://img.shields.io/npm/v/crysyan.svg)](https://npmjs.org/package/crysyan) [![downloads](https://img.shields.io/npm/dm/crysyan.svg)](https://npmjs.org/package/crysyan) [![Build Status](https://travis-ci.org/BPing/crysyan.svg?branch=master)](https://travis-ci.org/BPing/crysyan)
 
 a web drawing board with canvas
 
